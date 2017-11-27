@@ -21,7 +21,7 @@ public class Mytunes_Project extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("gui/FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/BrugerFladeMain.fxml"));
         
         Scene scene = new Scene(root);
         
