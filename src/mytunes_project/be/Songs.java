@@ -11,14 +11,34 @@ package mytunes_project.be;
  */
 public class Songs
 {
-    
-    //hej
 
+    //hej
     private int ID;
     private String title;
     private String artistId;
     private String categoryId;
     private float time;
+    private String path;
+
+    /**
+     * Get the value of path
+     *
+     * @return the value of path
+     */
+    public String getPath()
+    {
+        return path;
+    }
+
+    /**
+     * Set the value of path
+     *
+     * @param path new value of path
+     */
+    public void setPath(String path)
+    {
+        this.path = path;
+    }
 
     /**
      * Get the value of time
@@ -118,6 +138,12 @@ public class Songs
     public void setID(int ID)
     {
         this.ID = ID;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Songs{" + "ID=" + ID + ", title=" + title + ", artistId=" + artistId + ", categoryId=" + categoryId + ", time=" + time + ", path=" + path + '}';
     }
 
 }
