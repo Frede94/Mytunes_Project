@@ -30,12 +30,12 @@
       <JFXButton fx:id="addSongBtn" layoutX="491.0" layoutY="501.0" text="Add song" />
       <JFXButton fx:id="editSongsBtn" layoutX="583.0" layoutY="501.0" text="Edit" />
       <JFXButton fx:id="deleteSongBtn" layoutX="647.0" layoutY="501.0" text="Delete" />
-      <JFXTextField layoutX="22.0" layoutY="63.0" text="Playlist:" />
-      <JFXTextField layoutX="247.0" layoutY="63.0" text="Songs on playlist:" />
-      <JFXTextField layoutX="491.0" layoutY="63.0" text="Songs:" />
       <JFXButton fx:id="closeBtn" layoutX="784.0" layoutY="501.0" text="Close" />
-      <JFXTextField layoutX="563.0" layoutY="24.0" text="Filter:" />
       <JFXTextField fx:id="filterField" layoutX="605.0" layoutY="24.0" prefHeight="25.0" prefWidth="135.0" />
       <JFXButton fx:id="searchBtn" layoutX="740.0" layoutY="24.0" text="🔍" />
+      <Label layoutX="22.0" layoutY="67.0" text="Playlist:" />
+      <Label layoutX="247.0" layoutY="67.0" text="Songs on playlist:" />
+      <Label layoutX="491.0" layoutY="67.0" text="Songs:" />
+      <Label layoutX="569.0" layoutY="37.0" text="Filter:" />
     </children>
 </AnchorPane>
