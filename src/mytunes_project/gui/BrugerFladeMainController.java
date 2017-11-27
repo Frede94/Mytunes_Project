@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 
 /**
  *
@@ -56,13 +57,13 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private JFXButton btnDown;
     @FXML
-    private ProgressBar volumeBar;
-    @FXML
     private JFXButton prevSongBtn;
     @FXML
     private JFXButton playPauseBtn;
     @FXML
     private JFXButton nextSongBtn;
+    @FXML
+    private Slider volumeSlider;
     
     private void handleButtonAction(ActionEvent event)
     {
