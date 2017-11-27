@@ -50,6 +50,10 @@ public class BrugerFladeMainController implements Initializable
     private JFXTextField filterField;
     @FXML
     private JFXButton searchBtn;
+    @FXML
+    private JFXButton btnUp;
+    @FXML
+    private JFXButton btnDown;
     
     private void handleButtonAction(ActionEvent event)
     {
