@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableView;
 
 /**
  *
@@ -27,11 +28,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Label label;
     @FXML
-    private JFXListView<?> playlistList;
-    @FXML
     private JFXListView<?> songsOnPlaylistList;
     @FXML
-    private JFXListView<?> songsList;
+    private TableView<?> songsList;
     @FXML
     private JFXButton newPlaylistBtn;
     @FXML
@@ -64,6 +63,8 @@ public class BrugerFladeMainController implements Initializable
     private JFXButton nextSongBtn;
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private TableView<?> playlistView;
     
     private void handleButtonAction(ActionEvent event)
     {

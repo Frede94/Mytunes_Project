@@ -5,15 +5,15 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.BrugerFladeMainController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <JFXListView fx:id="playlistList" layoutX="22.0" layoutY="88.0" prefHeight="400.0" prefWidth="181.0" />
-      <JFXListView fx:id="songsOnPlaylistList" layoutX="247.0" layoutY="88.0" prefHeight="400.0" prefWidth="181.0" />
-      <JFXListView fx:id="songsList" layoutX="491.0" layoutY="88.0" prefHeight="400.0" prefWidth="345.0" />
+      <JFXListView fx:id="songsOnPlaylistList" layoutX="261.0" layoutY="88.0" prefHeight="400.0" prefWidth="181.0" />
       <JFXButton fx:id="newPlaylistBtn" layoutX="29.0" layoutY="510.0" text="New playlist" />
       <JFXButton fx:id="editPlaylistBtn" layoutX="29.0" layoutY="535.0" text="Edit playlist" />
       <JFXButton fx:id="deletePlaylistBtn" layoutX="29.0" layoutY="560.0" text="Delete playlist" />
@@ -35,8 +35,8 @@
       <JFXTextField fx:id="filterField" layoutX="605.0" layoutY="24.0" prefHeight="25.0" prefWidth="135.0" />
       <JFXButton fx:id="searchBtn" layoutX="740.0" layoutY="24.0" text="🔍" />
       <Label layoutX="22.0" layoutY="67.0" text="Playlist:" />
-      <Label layoutX="247.0" layoutY="67.0" text="Songs on playlist:" />
-      <Label layoutX="491.0" layoutY="67.0" text="Songs:" />
+      <Label layoutX="266.0" layoutY="67.0" text="Songs on playlist:" />
+      <Label layoutX="459.0" layoutY="67.0" text="Songs:" />
       <Label layoutX="569.0" layoutY="37.0" text="Filter:" />
       <JFXButton fx:id="prevSongBtn" layoutX="261.0" layoutY="5.0" text="⏮">
          <font>
@@ -55,5 +55,20 @@
       </JFXButton>
       <Label layoutX="29.0" layoutY="16.0" text="Volume:" />
       <Slider fx:id="volumeSlider" layoutX="29.0" layoutY="42.0" />
+      <TableView fx:id="playlistView" layoutX="26.0" layoutY="88.0" prefHeight="400.0" prefWidth="217.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Name" />
+          <TableColumn prefWidth="52.0" text="Songs" />
+            <TableColumn prefWidth="98.0" text="Time" />
+        </columns>
+      </TableView>
+      <TableView fx:id="songsList" layoutX="459.0" layoutY="88.0" prefHeight="400.0" prefWidth="384.0">
+        <columns>
+          <TableColumn prefWidth="82.0" text="Title" />
+          <TableColumn prefWidth="106.0" text="Artist" />
+            <TableColumn prefWidth="86.0" text="Categori" />
+            <TableColumn prefWidth="109.0" text="Time" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>
