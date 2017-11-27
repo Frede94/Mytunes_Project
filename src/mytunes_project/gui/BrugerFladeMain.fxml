@@ -16,12 +16,12 @@
       <JFXButton fx:id="newPlaylistBtn" layoutX="29.0" layoutY="510.0" text="New playlist" />
       <JFXButton fx:id="editPlaylistBtn" layoutX="29.0" layoutY="535.0" text="Edit playlist" />
       <JFXButton fx:id="deletePlaylistBtn" layoutX="29.0" layoutY="560.0" text="Delete playlist" />
-      <JFXButton layoutX="247.0" layoutY="487.0" text="🢁">
+      <JFXButton fx:id="btnUp" layoutX="247.0" layoutY="487.0" text="🢁">
          <font>
             <Font size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="289.0" layoutY="491.0" prefHeight="44.0" prefWidth="46.0" text="🢃">
+      <JFXButton fx:id="btnDown" layoutX="289.0" layoutY="491.0" prefHeight="44.0" prefWidth="46.0" text="🢃">
          <font>
             <Font size="20.0" />
          </font>

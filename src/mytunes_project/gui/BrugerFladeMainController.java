@@ -5,6 +5,9 @@
  */
 package mytunes_project.gui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,8 +24,33 @@ public class BrugerFladeMainController implements Initializable
     
     @FXML
     private Label label;
-    
     @FXML
+    private JFXListView<?> playlistList;
+    @FXML
+    private JFXListView<?> songsOnPlaylistList;
+    @FXML
+    private JFXListView<?> songsList;
+    @FXML
+    private JFXButton newPlaylistBtn;
+    @FXML
+    private JFXButton editPlaylistBtn;
+    @FXML
+    private JFXButton deletePlaylistBtn;
+    @FXML
+    private JFXButton deleteSongPlaylistBtn;
+    @FXML
+    private JFXButton addSongBtn;
+    @FXML
+    private JFXButton editSongsBtn;
+    @FXML
+    private JFXButton deleteSongBtn;
+    @FXML
+    private JFXButton closeBtn;
+    @FXML
+    private JFXTextField filterField;
+    @FXML
+    private JFXButton searchBtn;
+    
     private void handleButtonAction(ActionEvent event)
     {
         System.out.println("You clicked me!");
