@@ -125,5 +125,22 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
+    @FXML
+    private void newPlaylistOnAction(ActionEvent event)
+    {
+         try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewPlaylistWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("New/Edit Playlist");
+            stage.show();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
 }
