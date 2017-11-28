@@ -68,6 +68,8 @@ public class BrugerFladeMainController implements Initializable
     private Slider volumeSlider;
     @FXML
     private TableView<?> playlistView;
+    
+    private SongModel songModel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -79,6 +81,11 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void searchAction(ActionEvent event)
     {
+         String searchText = filterField.getText().trim();
+        if (!searchText.isEmpty())
+        {
+            songModel.search(searchText);
+        }
     }
     
 
