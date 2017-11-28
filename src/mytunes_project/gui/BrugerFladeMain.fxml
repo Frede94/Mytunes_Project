@@ -15,7 +15,7 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <JFXListView fx:id="songsOnPlaylistList" layoutX="261.0" layoutY="88.0" prefHeight="400.0" prefWidth="181.0" />
       <JFXButton fx:id="newPlaylistBtn" layoutX="29.0" layoutY="510.0" onAction="#newPlaylistOnAction" text="New playlist" />
-      <JFXButton fx:id="editPlaylistBtn" layoutX="29.0" layoutY="535.0" text="Edit playlist" />
+      <JFXButton fx:id="editPlaylistBtn" layoutX="29.0" layoutY="535.0" onAction="#editPlaylistOnAction" text="Edit playlist" />
       <JFXButton fx:id="deletePlaylistBtn" layoutX="29.0" layoutY="560.0" text="Delete playlist" />
       <JFXButton fx:id="btnUp" layoutX="247.0" layoutY="487.0" text="🢁">
          <font>
