@@ -5,11 +5,21 @@
  */
 package mytunes_project.bll;
 
+import java.util.List;
+
 /**
  *
  * @author Frederik Bærbar
  */
-public class NewClass
+public class BLLManager
 {
+    private SongsDAO = new SongDAO();
+    public List<Song> getAllSongs() {
+        return songDAO.getAllSongs();
+    }
     
+    public void remove(Song song)
+    {
+        songDAO.remove(song);
+    }
 }
