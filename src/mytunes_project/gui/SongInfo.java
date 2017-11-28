@@ -8,6 +8,8 @@ package mytunes_project.gui;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mytunes_project.be.Song;
+import mytunes_project.bll.BLLManager;
 
 /**
  *
@@ -27,7 +29,7 @@ public class SongInfo
     
     public void loadSongs()
     {
-        List<Song> loadedSongs = bllManager.getAllCars();
+        List<Song> loadedSongs = bllManager.getAllSongs();
         
         songs.clear();
         songs.addAll(loadedSongs);
