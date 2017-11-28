@@ -41,4 +41,11 @@ public class SongManager
             throw new Exception(ex);
         }
     }
+
+    public void search(String searchText)
+    {
+        songDAO.search(searchText);
+    }
+
+   
 }

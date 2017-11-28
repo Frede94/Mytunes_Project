@@ -18,26 +18,26 @@ import mytunes_project.bll.SongManager;
 public class SongInfo
 {
     
-    private ObservableList<Song> songs
-            = FXCollections.observableArrayList();
-    private SongManager songManager = new SongManager();
-    
-    public ObservableList<Song> getSongs() 
-    {
-        return songs;
-    }
-    
-    public void loadSongs()
-    {
-        List<Song> loadedSongs = songManager.getAllSongs();
-        
-        songs.clear();
-        songs.addAll(loadedSongs);
-    }
-    
-    public void remove(Song selectedSong)
-    {
-        songs.remove(selectedSong);
-        songManager.remove(selectedSong);
-    }
+//    private ObservableList<Song> songs
+//            = FXCollections.observableArrayList();
+//    private SongManager songManager = new SongManager();
+//    
+//    public ObservableList<Song> getSongs() 
+//    {
+//        return songs;
+//    }
+//    
+//    public void loadSongs()
+//    {
+//        List<Song> loadedSongs = songManager.getAllSongs();
+//        
+//        songs.clear();
+//        songs.addAll(loadedSongs);
+//    }
+//    
+//    public void remove(Song selectedSong)
+//    {
+//        songs.remove(selectedSong);
+//        songManager.remove(selectedSong);
+//    }
 }

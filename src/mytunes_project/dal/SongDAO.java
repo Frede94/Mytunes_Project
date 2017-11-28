@@ -14,15 +14,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import mytunes_project.be.Song;
+import mytunes_project.bll.SearchFilter;
+import mytunes_project.gui.SongModel;
+
 
 /**
  *
  * @author Mikkel
  */
+
+
 public class SongDAO
 {
-
+    private ObservableList<Song> songsInSearch;
+    private SongDAO songDao;
+    private SearchFilter searchFilter;
+    
     private DataBaseConnector dbConnector;
 
     public SongDAO() throws IOException
@@ -116,5 +127,19 @@ public class SongDAO
         
         Song song = new Song(SongId, title, artistId, categoryId, time, path);
         return song;
+    }
+
+    public void search(String searchText)
+    {
+        try
+        {
+            List<Song> allSongs = songDao.getAllSongs();
+            List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+            songsInSearch.clear();
+            songsInSearch.addAll(searchResults);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import mytunes_project.be.Song;
 
 /**
- *
+ * 
  * @author Jens Karlskov
  */
 public class SearchFilter
