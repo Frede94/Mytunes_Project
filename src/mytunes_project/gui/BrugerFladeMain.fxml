@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.BrugerFladeMainController">
+<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.BrugerFladeMainController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <JFXListView fx:id="songsOnPlaylistList" layoutX="261.0" layoutY="88.0" prefHeight="400.0" prefWidth="181.0" />
@@ -28,12 +28,12 @@
          </font>
       </JFXButton>
       <JFXButton fx:id="deleteSongPlaylistBtn" layoutX="342.0" layoutY="497.0" text="Delete song" />
-      <JFXButton fx:id="addSongBtn" layoutX="491.0" layoutY="501.0" text="Add song" />
-      <JFXButton fx:id="editSongsBtn" layoutX="583.0" layoutY="501.0" text="Edit" />
+      <JFXButton fx:id="addSongBtn" layoutX="491.0" layoutY="501.0" onAction="#addSongAction" text="Add song" />
+      <JFXButton fx:id="editSongsBtn" layoutX="583.0" layoutY="501.0" onAction="#editSongAction" text="Edit..." />
       <JFXButton fx:id="deleteSongBtn" layoutX="647.0" layoutY="501.0" text="Delete" />
       <JFXButton fx:id="closeBtn" layoutX="784.0" layoutY="501.0" text="Close" />
       <JFXTextField fx:id="filterField" layoutX="605.0" layoutY="24.0" prefHeight="25.0" prefWidth="135.0" />
-      <JFXButton fx:id="searchBtn" layoutX="740.0" layoutY="24.0" text="🔍" />
+      <JFXButton fx:id="searchBtn" layoutX="740.0" layoutY="24.0" onAction="#searchAction" text="🔍" />
       <Label layoutX="22.0" layoutY="67.0" text="Playlist:" />
       <Label layoutX="266.0" layoutY="67.0" text="Songs on playlist:" />
       <Label layoutX="459.0" layoutY="67.0" text="Songs:" />

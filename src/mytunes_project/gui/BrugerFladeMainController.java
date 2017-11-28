@@ -12,11 +12,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  *
@@ -24,7 +27,7 @@ import javafx.scene.control.TableView;
  */
 public class BrugerFladeMainController implements Initializable
 {
-    
+
     @FXML
     private Label label;
     @FXML
@@ -65,13 +68,55 @@ public class BrugerFladeMainController implements Initializable
     private Slider volumeSlider;
     @FXML
     private TableView<?> playlistView;
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+
         
     }    
+
+    @FXML
+    private void searchAction(ActionEvent event)
+    {
+    }
     
+
+
+    @FXML
+    private void addSongAction(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Edit/add Songs");
+            stage.show();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    private void editSongAction(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Edit/add Songs");
+            stage.show();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
 }
