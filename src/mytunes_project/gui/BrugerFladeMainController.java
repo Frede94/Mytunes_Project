@@ -73,5 +73,10 @@ public class BrugerFladeMainController implements Initializable
     {
         
     }    
+
+    @FXML
+    private void searchAction(ActionEvent event)
+    {
+    }
     
 }
