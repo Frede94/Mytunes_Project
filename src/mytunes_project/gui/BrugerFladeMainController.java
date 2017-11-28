@@ -89,7 +89,9 @@ public class BrugerFladeMainController implements Initializable
     }
     
 
-
+    /*
+    opens new window when you press the add btn
+    */
     @FXML
     private void addSongAction(ActionEvent event)
     {
@@ -108,6 +110,9 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /*
+    opens new window when you press the Edit btn
+    */
     @FXML
     private void editSongAction(ActionEvent event)
     {
@@ -125,6 +130,9 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
+    /*
+    opens new window when you press the New playlist btn
+    */
     @FXML
     private void newPlaylistOnAction(ActionEvent event)
     {
