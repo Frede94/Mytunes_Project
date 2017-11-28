@@ -7,10 +7,6 @@ package mytunes_project.dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
-<<<<<<< HEAD
-=======
-
->>>>>>> b8e489500144f56be76bd87386499fb2cc17a37e
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

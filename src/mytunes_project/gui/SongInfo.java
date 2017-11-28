@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes_project.be.Song;
-import mytunes_project.bll.BLLManager;
+import mytunes_project.bll.SongManager;
 
 /**
  *
@@ -20,7 +20,7 @@ public class SongInfo
     
     private ObservableList<Song> songs
             = FXCollections.observableArrayList();
-    private BLLManager bllManager = new BLLManager();
+    private SongManager songManager = new SongManager();
     
     public ObservableList<Song> getSongs() 
     {
@@ -29,7 +29,7 @@ public class SongInfo
     
     public void loadSongs()
     {
-        List<Song> loadedSongs = bllManager.getAllSongs();
+        List<Song> loadedSongs = songManager.getAllSongs();
         
         songs.clear();
         songs.addAll(loadedSongs);
@@ -38,6 +38,6 @@ public class SongInfo
     public void remove(Song selectedSong)
     {
         songs.remove(selectedSong);
-        bllManager.remove(selectedSong);
+        songManager.remove(selectedSong);
     }
 }
