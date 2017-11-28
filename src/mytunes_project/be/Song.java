@@ -5,20 +5,42 @@
  */
 package mytunes_project.be;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Frederik Bærbar
  */
-public class Song
+public class Song implements Serializable
 {
 
     //hej
-    private int ID;
+    private final int SongId;
     private String title;
     private String artistId;
     private String categoryId;
     private float time;
     private String path;
+    
+    /**
+     * Constructs a new Song object
+     * 
+     * @param SongId
+     * @param title
+     * @param artistId
+     * @param categoryId
+     * @param time
+     * @param path
+     */
+    public Song(int SongId, String title, String artistId, String categoryId, float time, String path)
+    {
+        this.SongId = SongId;
+        this.title = title;
+        this.artistId = artistId;
+        this.categoryId = categoryId;
+        this.time = time;
+        this.path = path;
+    }
 
     /**
      * Get the value of path
@@ -125,25 +147,25 @@ public class Song
      *
      * @return the value of ID
      */
-    public int getID()
+    public int getSongId()
     {
-        return ID;
+        return SongId;
     }
 
     /**
-     * Set the value of ID
+     * Set the value of SongId
      *
-     * @param ID new value of ID
+     * @param SongId new value of SongId
      */
-    public void setID(int ID)
+    public void setSongId(int SongId)
     {
-        this.ID = ID;
+     
     }
 
     @Override
     public String toString()
     {
-        return "Songs{" + "ID=" + ID + ", title=" + title + ", artistId=" + artistId + ", categoryId=" + categoryId + ", time=" + time + ", path=" + path + '}';
+        return "Songs{" + "SongId=" + SongId + ", title=" + title + ", artistId=" + artistId + ", categoryId=" + categoryId + ", time=" + time + ", path=" + path + '}';
     }
 
 }

@@ -6,6 +6,8 @@
 package mytunes_project.bll;
 
 import java.util.List;
+import mytunes_project.be.Song;
+import mytunes_project.dal.SongDAO;
 
 /**
  *
@@ -13,13 +15,13 @@ import java.util.List;
  */
 public class BLLManager
 {
-    private SongsDAO = new SongDAO();
+    private SongDAO = new SongDAO();
     public List<Song> getAllSongs() {
-        return songDAO.getAllSongs();
+        return SongDAO.getAllSongs();
     }
     
     public void remove(Song song)
     {
-        songDAO.remove(song);
+        SongDAO.remove(song);
     }
 }
