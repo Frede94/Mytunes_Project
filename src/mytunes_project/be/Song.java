@@ -9,7 +9,7 @@ package mytunes_project.be;
  *
  * @author Frederik Bærbar
  */
-public class Songs
+public class Song
 {
 
     //hej
