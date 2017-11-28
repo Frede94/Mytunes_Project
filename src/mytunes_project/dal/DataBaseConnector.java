@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 /**
- * This makes a connection to the Database 
+ * This makes a connection to the Database. 
  * @author Mikkel
  */
 public class DataBaseConnector
