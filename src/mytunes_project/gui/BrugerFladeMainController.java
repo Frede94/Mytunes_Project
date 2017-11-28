@@ -18,8 +18,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import mytunes_project.be.Song;
 
 /**
  *
@@ -33,7 +36,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private JFXListView<?> songsOnPlaylistList;
     @FXML
-    private TableView<?> songsList;
+    private TableView<Song> songsList;
     @FXML
     private JFXButton newPlaylistBtn;
     @FXML
@@ -68,30 +71,52 @@ public class BrugerFladeMainController implements Initializable
     private Slider volumeSlider;
     @FXML
     private TableView<?> playlistView;
-    
+
     private SongModel songModel;
+
+    //private SongModel songModel = new SongModel();
+    @FXML
+    private TableColumn<Song, String> tableColumnTitle;
+    @FXML
+    private TableColumn<Song, String> tableColumnArtist;
+    @FXML
+    private TableColumn<Song, String> tableColumnCategory;
+    @FXML
+    private TableColumn<Song, String> tableColumnTime;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        //Binding list in model with ListView
+        //songsList.setItems(songModel.getSongs());
+        tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
+        tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
+        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Catergory"));
+        tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
 
-        
-    }    
+        //songsList.setItems(songModel.getSongs());
+    }
+
+    @FXML
+    private void clickLoad(ActionEvent event)
+    {
+        songModel.loadSongs();
+    }
 
     @FXML
     private void searchAction(ActionEvent event)
     {
-         String searchText = filterField.getText().trim();
+        String searchText = filterField.getText().trim();
         if (!searchText.isEmpty())
         {
             songModel.search(searchText);
         }
     }
-    
+
 
     /*
     opens new window when you press the add btn
-    */
+     */
     @FXML
     private void addSongAction(ActionEvent event)
     {
@@ -112,7 +137,7 @@ public class BrugerFladeMainController implements Initializable
 
     /*
     opens new window when you press the Edit btn
-    */
+     */
     @FXML
     private void editSongAction(ActionEvent event)
     {
@@ -132,11 +157,11 @@ public class BrugerFladeMainController implements Initializable
 
     /*
     opens new window when you press the New playlist btn
-    */
+     */
     @FXML
     private void newPlaylistOnAction(ActionEvent event)
     {
-         try
+        try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewPlaylistWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -152,13 +177,14 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * opens a new window when you press the edit playlist btn
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void editPlaylistOnAction(ActionEvent event)
     {
-        
-       try
+
+        try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewPlaylistWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -169,8 +195,7 @@ public class BrugerFladeMainController implements Initializable
         } catch (Exception e)
         {
             e.printStackTrace();
-        } 
+        }
     }
-
 
 }

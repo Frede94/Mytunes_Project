@@ -10,11 +10,12 @@ import java.util.List;
 import mytunes_project.be.Song;
 
 /**
- * 
+ *
  * @author Jens Karlskov
  */
 public class SearchFilter
 {
+
     public List<Song> searchBySongName(List<Song> songs, String query)
     {
         List<Song> searResult = new ArrayList<Song>();
@@ -24,12 +25,10 @@ public class SearchFilter
             if (song.getTitle().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(song);
-            } 
-            else if (song.getArtistId().toLowerCase().contains(query.toLowerCase()))
+            } else if (song.getArtistId().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(song);
-            }
-            else if (song.getCategoryId().toLowerCase().contains(query.toLowerCase()))
+            } else if (song.getCategoryId().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(song);
             }

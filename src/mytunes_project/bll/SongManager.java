@@ -18,28 +18,20 @@ import mytunes_project.dal.SongDAO;
 public class SongManager
 {
 
-    private SongDAO songDAO;
+    private SongDAO songDAO = new SongDAO();
 
-    public SongManager() throws Exception
+    public SongManager()
     {
-        try
-        {
-            songDAO = new SongDAO();
-        } catch (IOException ex)
-        {
-            throw new Exception(ex);
-        }
+
+        songDAO = new SongDAO();
+
     }
 
-    public List<Song> getAllSongs() throws Exception
+    public List<Song> getAllSongs()
     {
-        try
-        {
-            return songDAO.getAllSongs();
-        } catch (SQLException ex)
-        {
-            throw new Exception(ex);
-        }
+
+        return songDAO.getAllSongs();
+
     }
 
     public void search(String searchText)
@@ -47,5 +39,4 @@ public class SongManager
         songDAO.search(searchText);
     }
 
-   
 }

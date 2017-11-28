@@ -17,14 +17,14 @@ import javafx.stage.Stage;
  */
 public class Mytunes_Project extends Application
 {
-    
+
     @Override
     public void start(Stage stage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("gui/BrugerFladeMain.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
@@ -36,5 +36,5 @@ public class Mytunes_Project extends Application
     {
         launch(args);
     }
-    
+
 }

@@ -13,35 +13,34 @@ import java.io.Serializable;
  */
 public class Song implements Serializable
 {
-
-    //hej
-    private final int SongId;
     private String title;
     private String artistId;
     private String categoryId;
     private float time;
     private String path;
-    
-    /**
-     * Constructs a new Song object
-     * 
-     * @param SongId
-     * @param title
-     * @param artistId
-     * @param categoryId
-     * @param time
-     * @param path
-     */
-    public Song(int SongId, String title, String artistId, String categoryId, float time, String path)
-    {
-        this.SongId = SongId;
-        this.title = title;
-        this.artistId = artistId;
-        this.categoryId = categoryId;
-        this.time = time;
-        this.path = path;
-    }
+    private int songId;
 
+    
+
+//    /**
+//     * Constructs a new Song object
+//     * 
+//     * @param SongId
+//     * @param title
+//     * @param artistId
+//     * @param categoryId
+//     * @param time
+//     * @param path
+//     */
+//    public Song(int SongId, String title, String artistId, String categoryId, float time, String path)
+//    {
+//        this.SongId = SongId;
+//        this.title = title;
+//        this.artistId = artistId;
+//        this.categoryId = categoryId;
+//        this.time = time;
+//        this.path = path;
+//    }
     /**
      * Get the value of path
      *
@@ -143,29 +142,29 @@ public class Song implements Serializable
     }
 
     /**
-     * Get the value of ID
+     * Get the value of songId
      *
-     * @return the value of ID
+     * @return the value of songId
      */
     public int getSongId()
     {
-        return SongId;
+        return songId;
     }
 
     /**
-     * Set the value of SongId
+     * Set the value of songId
      *
-     * @param SongId new value of SongId
+     * @param songId new value of songId
      */
-    public void setSongId(int SongId)
+    public void setSongId(int songId)
     {
-     
+        this.songId = songId;
     }
 
     @Override
     public String toString()
     {
-        return "Songs{" + "SongId=" + SongId + ", title=" + title + ", artistId=" + artistId + ", categoryId=" + categoryId + ", time=" + time + ", path=" + path + '}';
+        return "Song{" + "title=" + title + ", artistId=" + artistId + ", categoryId=" + categoryId + ", time=" + time + ", path=" + path + ", songId=" + songId + '}';
     }
 
 }

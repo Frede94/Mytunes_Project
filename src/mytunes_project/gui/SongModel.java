@@ -5,6 +5,9 @@
  */
 package mytunes_project.gui;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes_project.be.Song;
@@ -14,32 +17,46 @@ import mytunes_project.bll.SongManager;
  *
  * @author Jens Karlskov
  */
-
-
 public class SongModel
 {
-    
-    private final ObservableList<Song> songsInView;
-    private SongManager songManager;
-    
-    public SongModel() throws Exception
-    {
-        this.songsInView = FXCollections.observableArrayList();
-        songManager = new SongManager();
-        songsInView.addAll(songManager.getAllSongs());
-    }
+
+    private ObservableList<Song> songs = FXCollections.observableArrayList();
+//    private final ObservableList<Song> songsInView;
+    private SongManager songManager2;
+
+    SongManager songManager = new SongManager();
+
+//    public SongModel()
+//    {
+//        this.songsInView = FXCollections.observableArrayList();
+//        songManager = new SongManager();
+//        songsInView.addAll(songManager.getAllSongs());
+//    }
 
     public ObservableList<Song> getSongs()
     {
-        return songsInView;
+        //return songsInView;
+        return songs;
     }
-    
+
+    public void search(String searchText)
+    {
+        songManager.search(searchText);
+    }
+
+    void loadSongs()
+    {
+        List<Song> loadedSongs = songManager.getAllSongs(); //undgå og throw
+
+        songs.clear();
+        songs.addAll(loadedSongs);
+    }
+
     public void createSong(String name)
     {
-        
+
     }
-    
-    
+
 //    private ObservableList<Song> songsInSearch;
 //    private SongDAO songDao;
 //    private SearchFilter searchFilter;
@@ -82,9 +99,4 @@ public class SongModel
 //            Logger.getLogger(SongModel.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
-    public void search(String searchText)
-    {
-        songManager.search(searchText);
-    }
 }

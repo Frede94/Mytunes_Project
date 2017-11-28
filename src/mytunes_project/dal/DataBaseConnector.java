@@ -11,27 +11,26 @@ import java.io.IOException;
 import java.sql.Connection;
 
 /**
- * This makes a connection to the Database. 
+ * This makes a connection to the Database.
+ *
  * @author Mikkel
  */
 public class DataBaseConnector
 {
 
-    private SQLServerDataSource dataSource;
+    private SQLServerDataSource ds = new SQLServerDataSource();
 
-    public DataBaseConnector() throws IOException
+    public DataBaseConnector()
     {
-        dataSource = new SQLServerDataSource();
-
-        dataSource.setServerName("EASV-DB2");
-        dataSource.setPortNumber(1433);
-        dataSource.setDatabaseName("MyTunesMMEF");
-        dataSource.setUser("CS2017A_25");
-        dataSource.setPassword("javajava");
+        ds.setDatabaseName("CarDealerFrederik");
+        ds.setUser("CS2017A_10_java");
+        ds.setPassword("javajava");
+        ds.setServerName("EASV-DB2");
+        ds.setPortNumber(1433);
     }
 
     public Connection getConnection() throws SQLServerException
     {
-        return dataSource.getConnection();
+        return ds.getConnection();
     }
 }
