@@ -78,7 +78,13 @@ public class SongDAO
             return allSongs;
         }
     }
-
+    
+    
+    /**
+     * This method gets all songs from the database.
+     * @return
+     * @throws SQLException 
+     */
     public List<Song> getAllSongs() throws SQLException
     {
         try (Connection con = dbConnector.getConnection())
