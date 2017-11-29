@@ -119,8 +119,8 @@ public class SongDAO
                 Song currentSong = new Song();
                 currentSong.setSongId(rs.getInt("Id"));
                 currentSong.setTitle(rs.getString("Title"));
-                currentSong.setArtistId(rs.getString("ArtistId"));
-                currentSong.setCategoryId(rs.getString("CatergoryId"));
+                currentSong.setArtist(rs.getString("Artist"));
+                currentSong.setCategory(rs.getString("Catergory"));
                 currentSong.setTime(rs.getFloat("Time"));
 
                 songs.add(currentSong);

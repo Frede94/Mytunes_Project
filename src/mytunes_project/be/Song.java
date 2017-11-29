@@ -14,8 +14,8 @@ import java.io.Serializable;
 public class Song implements Serializable
 {
     private String title;
-    private String artistId;
-    private String categoryId;
+    private String artist;
+    private String category;
     private float time;
     private String path;
     private int songId;
@@ -82,43 +82,43 @@ public class Song implements Serializable
     }
 
     /**
-     * Get the value of categoryId
+     * Get the value of category
      *
-     * @return the value of categoryId
+     * @return the value of category
      */
-    public String getCategoryId()
+    public String getCategory()
     {
-        return categoryId;
+        return category;
     }
 
     /**
-     * Set the value of categoryId
+     * Set the value of category
      *
-     * @param categoryId new value of categoryId
+     * @param category new value of category
      */
-    public void setCategoryId(String categoryId)
+    public void setCategory(String category)
     {
-        this.categoryId = categoryId;
+        this.category = category;
     }
 
     /**
-     * Get the value of artistId
+     * Get the value of artist
      *
-     * @return the value of artistId
+     * @return the value of artist
      */
-    public String getArtistId()
+    public String getArtist()
     {
-        return artistId;
+        return artist;
     }
 
     /**
-     * Set the value of artistId
+     * Set the value of artist
      *
-     * @param artistId new value of artistId
+     * @param artist new value of artist
      */
-    public void setArtistId(String artistId)
+    public void setArtist(String artist)
     {
-        this.artistId = artistId;
+        this.artist = artist;
     }
 
     /**
@@ -164,7 +164,7 @@ public class Song implements Serializable
     @Override
     public String toString()
     {
-        return "Song{" + "title=" + title + ", artistId=" + artistId + ", categoryId=" + categoryId + ", time=" + time + ", path=" + path + ", songId=" + songId + '}';
+        return "Song{" + "title=" + title + ", artist=" + artist + ", category=" + category + ", time=" + time + ", path=" + path + ", songId=" + songId + '}';
     }
 
 }

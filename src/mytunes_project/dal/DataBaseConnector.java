@@ -22,8 +22,8 @@ public class DataBaseConnector
 
     public DataBaseConnector()
     {
-        ds.setDatabaseName("CarDealerFrederik");
-        ds.setUser("CS2017A_10_java");
+        ds.setDatabaseName("MyTunesMMEF");
+        ds.setUser("CS2017A_25_java");
         ds.setPassword("javajava");
         ds.setServerName("EASV-DB2");
         ds.setPortNumber(1433);
