@@ -72,7 +72,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableView<?> playlistView;
 
-    private SongModel songModel;
+    private SongModel songModel = new SongModel();
 
     //private SongModel songModel = new SongModel();
     @FXML
