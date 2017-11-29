@@ -223,6 +223,7 @@ public class BrugerFladeMainController implements Initializable
         System.exit(0);
     }
 
+    @FXML
     private void clickDelete(ActionEvent event)
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
