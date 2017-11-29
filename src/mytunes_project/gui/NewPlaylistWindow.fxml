@@ -15,7 +15,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnCancelPlaylist" layoutX="229.0" layoutY="187.0" onAction="#closePlaylistBox" text="Cancel" />
+      <JFXButton fx:id="btnCancelPlaylist" layoutX="229.0" layoutY="187.0" text="Cancel" />
       <JFXButton fx:id="btnSavePlaylist" layoutX="132.0" layoutY="187.0" text="Save" />
    </children>
 </AnchorPane>

@@ -21,7 +21,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes_project.be.Song;
 
@@ -128,7 +127,6 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -150,7 +148,6 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -171,7 +168,6 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Playlist");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -195,18 +191,11 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit Playlist");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void closeApp(ActionEvent event)
-    {
-        System.exit(0);
     }
 
 }
