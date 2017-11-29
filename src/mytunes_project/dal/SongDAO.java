@@ -164,7 +164,6 @@ public class SongDAO
     public void remove(Song selectedSong)
     {
         
-        
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();

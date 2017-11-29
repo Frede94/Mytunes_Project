@@ -31,6 +31,7 @@
       <JFXButton fx:id="addSongBtn" layoutX="491.0" layoutY="501.0" onAction="#addSongAction" text="Add song" />
       <JFXButton fx:id="editSongsBtn" layoutX="583.0" layoutY="501.0" onAction="#editSongAction" text="Edit..." />
 
+
       <JFXButton fx:id="deleteSongBtn" layoutX="647.0" layoutY="501.0" text="Delete" />
       <JFXButton fx:id="closeBtn" layoutX="784.0" layoutY="501.0" onAction="#closeApp" text="Close" />
 

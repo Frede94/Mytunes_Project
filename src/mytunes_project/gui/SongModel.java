@@ -104,4 +104,6 @@ public class SongModel
 //            Logger.getLogger(SongModel.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
+
+    }
 }
