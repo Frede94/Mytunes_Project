@@ -18,7 +18,12 @@ import mytunes_project.dal.SongDAO;
 public class SongManager
 {
 
-    private SongDAO songDAO = new SongDAO();
+    private static SongDAO songDAO = new SongDAO();
+
+    public static void remove(Song selectedSong)
+    {
+        songDAO.remove(selectedSong);
+    }
 
     public SongManager()
     {
