@@ -88,16 +88,9 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
-<<<<<<< HEAD
-    @FXML
+        @FXML
     private JFXButton addSongToPlaylistBtn;
-=======
-
-    @FXML
-    private JFXButton addSongToPlaylistBtn;
-   
-
->>>>>>> bd4f2d74298ce92f2a75147b0dc3f97578fee526
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -222,11 +215,13 @@ public class BrugerFladeMainController implements Initializable
     }
 
     @FXML
-<<<<<<< HEAD
+
     private void closeApp(ActionEvent event)
     {
         System.exit(0);
-=======
+    }
+    
+
     private void clickDelete(ActionEvent event)
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -248,7 +243,7 @@ public class BrugerFladeMainController implements Initializable
 //        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
 //
 //        songModel.remove(selectedSong);
->>>>>>> 401e5fd7a8a3457389032f8a76cdb8b690bf4c98
+
     }
 
 }

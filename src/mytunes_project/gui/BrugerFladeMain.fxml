@@ -30,13 +30,10 @@
       <JFXButton fx:id="deleteSongPlaylistBtn" layoutX="342.0" layoutY="497.0" text="Delete song" />
       <JFXButton fx:id="addSongBtn" layoutX="491.0" layoutY="501.0" onAction="#addSongAction" text="Add song" />
       <JFXButton fx:id="editSongsBtn" layoutX="583.0" layoutY="501.0" onAction="#editSongAction" text="Edit..." />
-<<<<<<< HEAD
+
       <JFXButton fx:id="deleteSongBtn" layoutX="647.0" layoutY="501.0" text="Delete" />
       <JFXButton fx:id="closeBtn" layoutX="784.0" layoutY="501.0" onAction="#closeApp" text="Close" />
-=======
-      <JFXButton fx:id="deleteSongBtn" layoutX="647.0" layoutY="501.0" onAction="#clickDelete" text="Delete" />
-      <JFXButton fx:id="closeBtn" layoutX="784.0" layoutY="501.0" text="Close" />
->>>>>>> 401e5fd7a8a3457389032f8a76cdb8b690bf4c98
+
       <JFXTextField fx:id="filterField" layoutX="605.0" layoutY="24.0" prefHeight="25.0" prefWidth="135.0" />
       <JFXButton fx:id="searchBtn" layoutX="740.0" layoutY="24.0" onAction="#searchAction" text="🔍" />
       <Label layoutX="22.0" layoutY="67.0" text="Playlist:" />
