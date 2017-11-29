@@ -64,7 +64,9 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnCancelSong" layoutX="247.0" layoutY="278.0" onAction="#closeSongWindow" text="Cancel">
+
+      <JFXButton fx:id="btnCancelSong" layoutX="247.0" layoutY="278.0" onAction="#closeAddSongBox" text="Cancel">
+
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

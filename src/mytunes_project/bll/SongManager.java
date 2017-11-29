@@ -16,7 +16,12 @@ import mytunes_project.dal.SongDAO;
 public class SongManager
 {
 
-    private SongDAO songDAO = new SongDAO();
+    private static SongDAO songDAO = new SongDAO();
+
+    public static void remove(Song selectedSong)
+    {
+        songDAO.remove(selectedSong);
+    }
 
     public SongManager()
     {
@@ -37,12 +42,5 @@ public class SongManager
         songDAO.search(searchText);
     }
 
-    public void remove(Song selectedSong)
-    {
-
-//        statement stmt con.createStatement();
-//        stmt.execute(" DELETE FROM Song WHERE SongId = " + selectedSong.getSongId())
-  
-    }
 
 }

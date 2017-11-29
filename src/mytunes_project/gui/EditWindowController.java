@@ -31,7 +31,18 @@ public class EditWindowController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+
+    }
+
+    @FXML
+    private void closeAddSongBox(ActionEvent event)
+    {
+        Stage stage = (Stage)btnCancelSong.getScene().getWindow();
+        stage.close();
+    }
+
+
+       
 
     @FXML
     private void closeSongWindow(ActionEvent event)
@@ -40,4 +51,5 @@ public class EditWindowController implements Initializable
     stage.close();
     }
     
+
 }

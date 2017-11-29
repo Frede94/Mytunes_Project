@@ -25,6 +25,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes_project.be.Song;
 
@@ -87,6 +88,8 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
+    @FXML
+    private JFXButton addSongToPlaylistBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -97,13 +100,20 @@ public class BrugerFladeMainController implements Initializable
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
         tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
+//        tableColumnSongId.setCellValueFactory(new PropertyValueFactory("SongId"));
+//        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
 
         songsList.setItems(songModel.getSongs());
+
         songModel.loadSongs();
+
+
+        clickLoad();
+
     }
 
     @FXML
-    private void clickLoad(ActionEvent event)
+    private void clickLoad()
     {
         songModel.loadSongs();
     }
@@ -132,6 +142,7 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -153,6 +164,7 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -173,6 +185,7 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Playlist");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -196,6 +209,7 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit Playlist");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -203,13 +217,12 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
-
     @FXML
-
     private void closeApp(ActionEvent event)
     {
         System.exit(0);
     }
+
     private void clickDelete(ActionEvent event)
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -228,10 +241,8 @@ public class BrugerFladeMainController implements Initializable
         {
             // ... user chose CANCEL or closed the dialog
         }
-//        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
-//
-//        songModel.remove(selectedSong);
+
+
     }
-
-
 }
+
