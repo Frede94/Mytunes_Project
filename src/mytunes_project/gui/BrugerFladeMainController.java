@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -83,9 +87,12 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
+<<<<<<< HEAD
+=======
     @FXML
     private JFXButton addSongToPlaylistBtn;
    
+>>>>>>> 812b99122fdb76e7d825b9dc0fc770adea7cac86
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -100,10 +107,12 @@ public class BrugerFladeMainController implements Initializable
 //        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
 
         songsList.setItems(songModel.getSongs());
+
+        clickLoad();
     }
 
     @FXML
-    private void clickLoad(ActionEvent event)
+    private void clickLoad()
     {
         songModel.loadSongs();
     }
@@ -206,9 +215,25 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickDelete(ActionEvent event)
     {
-        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
-        
-        songModel.remove(selectedSong);
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Song selectedSong = songsList.getSelectionModel().getSelectedItem();
+
+            songModel.remove(selectedSong);
+            // ... user chose OK
+        } else
+        {
+            // ... user chose CANCEL or closed the dialog
+        }
+//        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
+//
+//        songModel.remove(selectedSong);
     }
 
 }

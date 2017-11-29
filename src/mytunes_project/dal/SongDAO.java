@@ -5,10 +5,7 @@
  */
 package mytunes_project.dal;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,9 +14,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import mytunes_project.be.Song;
 import mytunes_project.bll.SearchFilter;
-import mytunes_project.gui.SongModel;
 
 /**
  *
@@ -123,7 +121,6 @@ public class SongDAO
                 currentSong.setCategory(rs.getString("Category"));
                 currentSong.setTime(rs.getFloat("Time"));
                 currentSong.setPath(rs.getString("Path"));
-                
 
                 songs.add(currentSong);
 
@@ -166,6 +163,8 @@ public class SongDAO
 
     public void remove(Song selectedSong)
     {
+        
+        
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
