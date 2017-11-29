@@ -113,7 +113,7 @@ public class SongDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Cars");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Song");
             while (rs.next())
             {
                 Song currentSong = new Song();
