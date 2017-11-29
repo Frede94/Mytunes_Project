@@ -88,8 +88,16 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
+<<<<<<< HEAD
     @FXML
     private JFXButton addSongToPlaylistBtn;
+=======
+
+    @FXML
+    private JFXButton addSongToPlaylistBtn;
+   
+
+>>>>>>> bd4f2d74298ce92f2a75147b0dc3f97578fee526
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
