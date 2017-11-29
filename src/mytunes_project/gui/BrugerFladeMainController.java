@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,9 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -88,8 +84,6 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
-    @FXML
-    private JFXButton addSongToPlaylistBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -98,18 +92,14 @@ public class BrugerFladeMainController implements Initializable
         //songsList.setItems(songModel.getSongs());
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
-        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Category"));
+        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Catergory"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
-//        tableColumnSongId.setCellValueFactory(new PropertyValueFactory("SongId"));
-//        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
 
-        songsList.setItems(songModel.getSongs());
-
-        clickLoad();
+        //songsList.setItems(songModel.getSongs());
     }
 
     @FXML
-    private void clickLoad()
+    private void clickLoad(ActionEvent event)
     {
         songModel.loadSongs();
     }
@@ -214,33 +204,9 @@ public class BrugerFladeMainController implements Initializable
     }
 
     @FXML
-<<<<<<< HEAD
     private void closeApp(ActionEvent event)
     {
         System.exit(0);
-=======
-    private void clickDelete(ActionEvent event)
-    {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
-        alert.setContentText("Are you ok with this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-        {
-            Song selectedSong = songsList.getSelectionModel().getSelectedItem();
-
-            songModel.remove(selectedSong);
-            // ... user chose OK
-        } else
-        {
-            // ... user chose CANCEL or closed the dialog
-        }
-//        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
-//
-//        songModel.remove(selectedSong);
->>>>>>> 401e5fd7a8a3457389032f8a76cdb8b690bf4c98
     }
 
 }

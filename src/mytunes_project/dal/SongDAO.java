@@ -5,7 +5,10 @@
  */
 package mytunes_project.dal;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,10 +17,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import mytunes_project.be.Song;
 import mytunes_project.bll.SearchFilter;
+import mytunes_project.gui.SongModel;
 
 /**
  *
@@ -32,79 +34,6 @@ public class SongDAO
     private DataBaseConnector dbConnector;
 
     DataBaseConnector dbc = new DataBaseConnector();
-
-    public List<Song> getAllSongs()
-    {
-
-        List<Song> songs = new ArrayList();
-
-        try (Connection con = dbc.getConnection())
-        {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Song");
-            while (rs.next())
-            {
-                Song currentSong = new Song();
-                currentSong.setSongId(rs.getInt("SongId"));
-                currentSong.setTitle(rs.getString("Title"));
-                currentSong.setArtist(rs.getString("Artist"));
-                currentSong.setCategory(rs.getString("Category"));
-                currentSong.setTime(rs.getFloat("Time"));
-                currentSong.setPath(rs.getString("Path"));
-
-                songs.add(currentSong);
-
-            }
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return songs;
-    }
-
-    public void search(String searchText)
-    {
-
-        List<Song> allSongs = songDao.getAllSongs();
-        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-        songsInSearch.clear();
-        songsInSearch.addAll(searchResults);
-
-    }
-
-    public void remove(Song selectedSong)
-    {
-
-        try (Connection con = dbc.getConnection())
-        {
-            Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    /**
-     * Extracts a single song from the ResultSet at the current row
-     *
-     * @param rs The result set to work with
-     * @return The Song represented at the current row
-     * @throws SQLException
-     */
-//    private Song getSongFromResultSetRow(ResultSet rs) throws SQLException
-//    {
-//        int SongId = rs.getInt("SongId");
-//        String title = rs.getString("titel");
-//        String artistId = rs.getString("artist");
-//        String categoryId = rs.getString("category");
-//        float time = rs.getFloat("time");
-//        String path = rs.getString("path");
-//        
-//        //Song song = new Song(SongId, title, artistId, categoryId, time, path);
-//        return song;
-//    }
 
 //    public Song createSong(String title, String artistId, String categoryId, float time, String path) throws SQLServerException, SQLException
 //    {
@@ -132,8 +61,6 @@ public class SongDAO
 //        }
 //
 //    }
-    
-    
     /**
      * Gets a list of Songs with given title.
      *
@@ -155,8 +82,6 @@ public class SongDAO
 //            return allSongs;
 //        }
 //    }
-    
-    
 //    /**
 //     * This method gets all songs from the database.
 //     * @return
@@ -180,4 +105,62 @@ public class SongDAO
 //            return allSongs;
 //        }
 //    }
+    public List<Song> getAllSongs()
+    {
+
+        List<Song> songs = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Song");
+            while (rs.next())
+            {
+                Song currentSong = new Song();
+                currentSong.setSongId(rs.getInt("SongId"));
+                currentSong.setTitle(rs.getString("Title"));
+                currentSong.setArtist(rs.getString("Artist"));
+                currentSong.setCategory(rs.getString("Category"));
+                currentSong.setTime(rs.getFloat("Time"));
+                currentSong.setPath(rs.getString("Path"));
+                
+
+                songs.add(currentSong);
+
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return songs;
+    }
+
+    /**
+     * Extracts a single song from the ResultSet at the current row
+     *
+     * @param rs The result set to work with
+     * @return The Song represented at the current row
+     * @throws SQLException
+     */
+//    private Song getSongFromResultSetRow(ResultSet rs) throws SQLException
+//    {
+//        int SongId = rs.getInt("SongId");
+//        String title = rs.getString("titel");
+//        String artistId = rs.getString("artist");
+//        String categoryId = rs.getString("category");
+//        float time = rs.getFloat("time");
+//        String path = rs.getString("path");
+//        
+//        //Song song = new Song(SongId, title, artistId, categoryId, time, path);
+//        return song;
+//    }
+    public void search(String searchText)
+    {
+
+        List<Song> allSongs = songDao.getAllSongs();
+        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+        songsInSearch.clear();
+        songsInSearch.addAll(searchResults);
+
+    }
 }
