@@ -40,8 +40,8 @@ public class SongManager
     public void remove(Song selectedSong)
     {
 
-        statement stmt con.createStatement();
-        stmt.execute(" DELETE FROM Song WHERE SongId = " + selectedSong.getSongId())
+//        statement stmt con.createStatement();
+//        stmt.execute(" DELETE FROM Song WHERE SongId = " + selectedSong.getSongId())
   
     }
 
