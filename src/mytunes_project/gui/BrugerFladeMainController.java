@@ -95,10 +95,11 @@ public class BrugerFladeMainController implements Initializable
         //songsList.setItems(songModel.getSongs());
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
-        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Catergory"));
+        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
 
-        //songsList.setItems(songModel.getSongs());
+        songsList.setItems(songModel.getSongs());
+        songModel.loadSongs();
     }
 
     @FXML
