@@ -83,10 +83,7 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
-    @FXML
-    private TableColumn<Song, String> tableColumnSongId;
-    @FXML
-    private TableColumn<Song, String> tableColumnPath;
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -97,10 +94,10 @@ public class BrugerFladeMainController implements Initializable
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
         tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Catergory"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
-        tableColumnSongId.setCellValueFactory(new PropertyValueFactory("SongId"));
-        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
+//        tableColumnSongId.setCellValueFactory(new PropertyValueFactory("SongId"));
+//        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
 
-        //songsList.setItems(songModel.getSongs());
+        songsList.setItems(songModel.getSongs());
     }
 
     @FXML

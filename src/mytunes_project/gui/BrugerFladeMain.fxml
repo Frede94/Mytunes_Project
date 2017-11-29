@@ -62,14 +62,12 @@
             <TableColumn prefWidth="98.0" text="Time" />
         </columns>
       </TableView>
-      <TableView fx:id="songsList" layoutX="311.0" layoutY="88.0" prefHeight="400.0" prefWidth="532.0">
+      <TableView fx:id="songsList" layoutX="459.0" layoutY="88.0" prefHeight="400.0" prefWidth="384.0">
         <columns>
-          <TableColumn fx:id="tableColumnSongId" prefWidth="82.0" text="SongId" />
-          <TableColumn fx:id="tableColumnTitle" prefWidth="106.0" text="Title" />
-            <TableColumn fx:id="tableColumnArtist" prefWidth="99.0" text="Artist" />
+          <TableColumn fx:id="tableColumnTitle" prefWidth="98.0" text="Title" />
+            <TableColumn fx:id="tableColumnArtist" prefWidth="107.0" text="Artist" />
             <TableColumn fx:id="tableColumnCategory" prefWidth="97.0" text="Category" />
             <TableColumn fx:id="tableColumnTime" prefWidth="82.0" text="Time" />
-            <TableColumn fx:id="tableColumnPath" prefWidth="106.0" text="Path" />
         </columns>
       </TableView>
       <JFXButton layoutX="701.0" layoutY="501.0" onAction="#clickLoad" text="Load Songs" />
