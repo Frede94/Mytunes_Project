@@ -33,76 +33,6 @@ public class SongDAO
 
     DataBaseConnector dbc = new DataBaseConnector();
 
-//    public Song createSong(String title, String artistId, String categoryId, float time, String path) throws SQLServerException, SQLException
-//    {
-//        try (Connection con = dbConnector.getConnection())
-//        {
-//            String sql = "INSERT INTO Song VALUES (?,?,?,?,?);";
-//
-//            PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//
-//            statement.setString(1, title);
-//            statement.setString(2, artistId);
-//            statement.setString(3, categoryId);
-//            statement.setFloat(4, time);
-//            statement.setString(5, path);
-//
-//            if (statement.executeUpdate() == 1)
-//            {
-//                ResultSet rs = statement.getGeneratedKeys();
-//                rs.next();
-//                int SongId = rs.getInt(1);
-//                Song s = new Song(SongId, title, artistId, categoryId, time, path);
-//                return s;
-//            }
-//            throw new RuntimeException("Can't create Song");
-//        }
-//
-//    }
-    /**
-     * Gets a list of Songs with given title.
-     *
-     * @param title The title to search for.
-     * @return the List of Songs that match the search.
-     */
-//    public List<Song> getSongsInAnSqlInjectionInsecureWay(String title) throws SQLException
-//    {
-//        try (Connection con = dbConnector.getConnection())
-//        {
-//            Statement st = con.createStatement();
-//            String sql = "SELECT * FROM Song WHERE title = '" + title + "';";
-//            ResultSet rs = st.getResultSet();
-//            List<Song> allSongs = new ArrayList<>();
-//            while (rs.next())
-//            {
-//                allSongs.add(getSongFromResultSetRow(rs));
-//            }
-//            return allSongs;
-//        }
-//    }
-//    /**
-//     * This method gets all songs from the database.
-//     * @return
-//     * @throws SQLException 
-//     */
-//    public List<Song> getAllSongs() throws SQLException
-//    {
-//        try (Connection con = dbConnector.getConnection())
-//        {
-//            String sql = "SELECT * FROM Song";
-//
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
-//
-//            List<Song> allSongs = new ArrayList<>();
-//            while (rs.next())
-//            {
-//                Song song = getSongFromResultSetRow(rs);
-//                allSongs.add(song);
-//            }
-//            return allSongs;
-//        }
-//    }
     public List<Song> getAllSongs()
     {
 
@@ -132,6 +62,30 @@ public class SongDAO
         return songs;
     }
 
+    public void search(String searchText)
+    {
+
+        List<Song> allSongs = songDao.getAllSongs();
+        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+        songsInSearch.clear();
+        songsInSearch.addAll(searchResults);
+
+    }
+
+    public void remove(Song selectedSong)
+    {
+
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            stmt.execute("DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     /**
      * Extracts a single song from the ResultSet at the current row
      *
@@ -151,27 +105,79 @@ public class SongDAO
 //        //Song song = new Song(SongId, title, artistId, categoryId, time, path);
 //        return song;
 //    }
-    public void search(String searchText)
-    {
 
-        List<Song> allSongs = songDao.getAllSongs();
-        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-        songsInSearch.clear();
-        songsInSearch.addAll(searchResults);
-
-    }
-
-    public void remove(Song selectedSong)
-    {
-        
-        
-        try (Connection con = dbc.getConnection())
-        {
-            Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public Song createSong(String title, String artistId, String categoryId, float time, String path) throws SQLServerException, SQLException
+//    {
+//        try (Connection con = dbConnector.getConnection())
+//        {
+//            String sql = "INSERT INTO Song VALUES (?,?,?,?,?);";
+//
+//            PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//
+//            statement.setString(1, title);
+//            statement.setString(2, artistId);
+//            statement.setString(3, categoryId);
+//            statement.setFloat(4, time);
+//            statement.setString(5, path);
+//
+//            if (statement.executeUpdate() == 1)
+//            {
+//                ResultSet rs = statement.getGeneratedKeys();
+//                rs.next();
+//                int SongId = rs.getInt(1);
+//                Song s = new Song(SongId, title, artistId, categoryId, time, path);
+//                return s;
+//            }
+//            throw new RuntimeException("Can't create Song");
+//        }
+//
+//    }
+    
+    
+    /**
+     * Gets a list of Songs with given title.
+     *
+     * @param title The title to search for.
+     * @return the List of Songs that match the search.
+     */
+//    public List<Song> getSongsInAnSqlInjectionInsecureWay(String title) throws SQLException
+//    {
+//        try (Connection con = dbConnector.getConnection())
+//        {
+//            Statement st = con.createStatement();
+//            String sql = "SELECT * FROM Song WHERE title = '" + title + "';";
+//            ResultSet rs = st.getResultSet();
+//            List<Song> allSongs = new ArrayList<>();
+//            while (rs.next())
+//            {
+//                allSongs.add(getSongFromResultSetRow(rs));
+//            }
+//            return allSongs;
+//        }
+//    }
+    
+    
+//    /**
+//     * This method gets all songs from the database.
+//     * @return
+//     * @throws SQLException 
+//     */
+//    public List<Song> getAllSongs() throws SQLException
+//    {
+//        try (Connection con = dbConnector.getConnection())
+//        {
+//            String sql = "SELECT * FROM Song";
+//
+//            Statement st = con.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//
+//            List<Song> allSongs = new ArrayList<>();
+//            while (rs.next())
+//            {
+//                Song song = getSongFromResultSetRow(rs);
+//                allSongs.add(song);
+//            }
+//            return allSongs;
+//        }
+//    }
 }
