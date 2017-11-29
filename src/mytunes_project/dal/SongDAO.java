@@ -117,11 +117,11 @@ public class SongDAO
             while (rs.next())
             {
                 Song currentSong = new Song();
-                currentSong.setSongId(rs.getInt("id"));
-                currentSong.setTitle(rs.getString("title"));
-                currentSong.setArtistId(rs.getString("artistid"));
-                currentSong.setCategoryId(rs.getString("Catergoryid"));
-                currentSong.setTime(rs.getFloat("year"));
+                currentSong.setSongId(rs.getInt("Id"));
+                currentSong.setTitle(rs.getString("Title"));
+                currentSong.setArtistId(rs.getString("ArtistId"));
+                currentSong.setCategoryId(rs.getString("CatergoryId"));
+                currentSong.setTime(rs.getFloat("Time"));
 
                 songs.add(currentSong);
 
