@@ -25,7 +25,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes_project.be.Song;
 
@@ -88,8 +87,6 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnCategory;
     @FXML
     private TableColumn<Song, String> tableColumnTime;
-    @FXML
-    private JFXButton addSongToPlaylistBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -98,18 +95,14 @@ public class BrugerFladeMainController implements Initializable
         //songsList.setItems(songModel.getSongs());
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
-        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Category"));
+        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Catergory"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
-//        tableColumnSongId.setCellValueFactory(new PropertyValueFactory("SongId"));
-//        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
 
-        songsList.setItems(songModel.getSongs());
-
-        clickLoad();
+        //songsList.setItems(songModel.getSongs());
     }
 
     @FXML
-    private void clickLoad()
+    private void clickLoad(ActionEvent event)
     {
         songModel.loadSongs();
     }
@@ -138,7 +131,6 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -160,7 +152,6 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -181,7 +172,6 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Playlist");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
@@ -205,13 +195,13 @@ public class BrugerFladeMainController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit Playlist");
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
 
     @FXML
 
@@ -241,5 +231,6 @@ public class BrugerFladeMainController implements Initializable
 //
 //        songModel.remove(selectedSong);
     }
+
 
 }

@@ -5,13 +5,9 @@
  */
 package mytunes_project.gui;
 
-import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -21,9 +17,6 @@ import javafx.stage.Stage;
 public class EditWindowController implements Initializable
 {
 
-    @FXML
-    private JFXButton btnCancelSong;
-
     /**
      * Initializes the controller class.
      */
@@ -31,13 +24,6 @@ public class EditWindowController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }
-
-    @FXML
-    private void closeAddSongBox(ActionEvent event)
-    {
-        Stage stage = (Stage)btnCancelSong.getScene().getWindow();
-        stage.close();
-    }
-
+    }    
+    
 }

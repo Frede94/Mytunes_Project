@@ -5,8 +5,6 @@
  */
 package mytunes_project.bll;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import mytunes_project.be.Song;
 import mytunes_project.dal.SongDAO;
@@ -18,12 +16,7 @@ import mytunes_project.dal.SongDAO;
 public class SongManager
 {
 
-    private static SongDAO songDAO = new SongDAO();
-
-    public static void remove(Song selectedSong)
-    {
-        songDAO.remove(selectedSong);
-    }
+    private SongDAO songDAO = new SongDAO();
 
     public SongManager()
     {
@@ -42,6 +35,14 @@ public class SongManager
     public void search(String searchText)
     {
         songDAO.search(searchText);
+    }
+
+    public void remove(Song selectedSong)
+    {
+
+        statement stmt con.createStatement();
+        stmt.execute(" DELETE FROM Song WHERE SongId = " + selectedSong.getSongId())
+  
     }
 
 }
