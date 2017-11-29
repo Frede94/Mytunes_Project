@@ -42,16 +42,5 @@ public class SongManager
         songDAO.search(searchText);
     }
 
-<<<<<<< HEAD
-    
-=======
-    public void remove(Song selectedSong)
-    {
-
-//        statement stmt con.createStatement();
-//        stmt.execute(" DELETE FROM Song WHERE SongId = " + selectedSong.getSongId())
-  
-    }
->>>>>>> 88b8a0429712bf9dd76b3547af3dfe5984189abb
 
 }
