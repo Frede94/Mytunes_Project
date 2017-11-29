@@ -163,4 +163,16 @@ public class SongDAO
         songsInSearch.addAll(searchResults);
 
     }
+
+    public void remove(Song selectedSong)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            stmt.execute("DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

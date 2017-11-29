@@ -201,4 +201,12 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
+    @FXML
+    private void clickDelete(ActionEvent event)
+    {
+        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
+        
+        songModel.remove(selectedSong);
+    }
+
 }
