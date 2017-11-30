@@ -139,6 +139,8 @@ public class BrugerFladeMainController implements Initializable
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            EditWindowController ewc = fxmlLoader.getController();
+            ewc.setSongModel(songModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
@@ -161,6 +163,8 @@ public class BrugerFladeMainController implements Initializable
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            EditWindowController ewc = fxmlLoader.getController();
+            ewc.setSongModel(songModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");

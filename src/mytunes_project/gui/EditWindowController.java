@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import mytunes_project.be.Category;
 
 /**
  * FXML Controller class
@@ -30,11 +31,13 @@ public class EditWindowController implements Initializable
     @FXML
     private TextField txtArtist;
     @FXML
-    private ComboBox<?> comboCategory;
+    private ComboBox<Category> comboCategory;
     @FXML
     private TextField txtTime;
     @FXML
     private TextField txtFile;
+    
+    private SongModel songModel;
 
     /**
      * Initializes the controller class.
@@ -42,7 +45,7 @@ public class EditWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        
 
     }
 
@@ -53,9 +56,12 @@ public class EditWindowController implements Initializable
         stage.close();
     }
 
-
-       
-
+    public void setSongModel(SongModel songModel)
+    {
+        this.songModel = songModel;
+        comboCategory.setItems(songModel.getCategories());
+    }
+ 
     private void closeSongWindow(ActionEvent event)
     {
     Stage stage = (Stage) btnCancelSong.getScene().getWindow();
@@ -65,6 +71,7 @@ public class EditWindowController implements Initializable
     @FXML
     private void btnChooseFile(ActionEvent event)
     {
+        
     }
    
 

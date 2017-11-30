@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mytunes_project.be.Category;
 import mytunes_project.be.Song;
 import mytunes_project.bll.SongManager;
 
@@ -20,9 +21,17 @@ import mytunes_project.bll.SongManager;
 public class SongModel
 {
 
+    private ObservableList<Category> categories;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
 
     SongManager songManager = new SongManager();
+
+    public SongModel()
+    {
+        this.categories = FXCollections.observableArrayList();
+        categories.addAll(songManager.getAllCategories());
+        loadSongs();
+    }
 
     static void remove(Song selectedSong)
     {
@@ -30,14 +39,7 @@ public class SongModel
         SongManager.remove(selectedSong);
     }
 
-//    private SongManager songManager2;
-//    private final ObservableList<Song> songsInView;
-//    public SongModel()
-//    {
-//        this.songsInView = FXCollections.observableArrayList();
-//        songManager = new SongManager();
-//        songsInView.addAll(songManager.getAllSongs());
-//    }
+
     public ObservableList<Song> getSongs()
     {
         //return songsInView;
@@ -61,6 +63,24 @@ public class SongModel
     {
 
     }
+
+
+
+    ObservableList<Category> getCategories()
+    {
+        return categories;
+    }
+}
+
+
+//    private SongManager songManager2;
+//    private final ObservableList<Song> songsInView;
+//    public SongModel()
+//    {
+//        this.songsInView = FXCollections.observableArrayList();
+//        songManager = new SongManager();
+//        songsInView.addAll(songManager.getAllSongs());
+//    }
 
 //    private ObservableList<Song> songsInSearch;
 //    private SongDAO songDao;
@@ -104,4 +124,3 @@ public class SongModel
 //            Logger.getLogger(SongModel.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-}
