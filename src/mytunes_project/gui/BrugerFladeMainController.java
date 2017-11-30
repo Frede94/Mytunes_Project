@@ -95,18 +95,15 @@ public class BrugerFladeMainController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         //Binding list in model with ListView
-        //songsList.setItems(songModel.getSongs());
+
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
         tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Category"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
-//        tableColumnSongId.setCellValueFactory(new PropertyValueFactory("SongId"));
-//        tableColumnPath.setCellValueFactory(new PropertyValueFactory("Path"));
 
         songsList.setItems(songModel.getSongs());
 
         songModel.loadSongs();
-
 
         clickLoad();
 
@@ -247,7 +244,5 @@ public class BrugerFladeMainController implements Initializable
             // ... user chose CANCEL or closed the dialog
         }
 
-
     }
 }
-
