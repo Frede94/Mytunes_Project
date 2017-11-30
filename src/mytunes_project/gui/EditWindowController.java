@@ -81,7 +81,9 @@ public class EditWindowController implements Initializable
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
-        {           
+        {          
+            
+            songModel.addCategory();
             System.out.println("Your name: " + result.get());
         }
 

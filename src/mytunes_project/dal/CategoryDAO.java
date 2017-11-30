@@ -47,4 +47,20 @@ public class CategoryDAO
         return categories;
     }
 
+    public void addCategory()
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("INSERT INTO Category");
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // create a Statement from the connection
+        // insert the data
+    }
+
 }

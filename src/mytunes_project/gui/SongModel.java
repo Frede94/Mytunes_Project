@@ -6,6 +6,7 @@
 package mytunes_project.gui;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -39,7 +40,6 @@ public class SongModel
         SongManager.remove(selectedSong);
     }
 
-
     public ObservableList<Song> getSongs()
     {
         //return songsInView;
@@ -64,14 +64,17 @@ public class SongModel
 
     }
 
-
-
     ObservableList<Category> getCategories()
     {
         return categories;
     }
-}
 
+    void addCategory()
+    {
+        songManager.addCategory();
+    }
+
+}
 
 //    private SongManager songManager2;
 //    private final ObservableList<Song> songsInView;
@@ -81,7 +84,6 @@ public class SongModel
 //        songManager = new SongManager();
 //        songsInView.addAll(songManager.getAllSongs());
 //    }
-
 //    private ObservableList<Song> songsInSearch;
 //    private SongDAO songDao;
 //    private SearchFilter searchFilter;
