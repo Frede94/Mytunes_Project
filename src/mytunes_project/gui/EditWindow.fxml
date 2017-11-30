@@ -71,7 +71,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="343.0" layoutY="278.0" onAction="#clickSaveAction" text="Save">
+      <JFXButton fx:id="btnSaveSong" layoutX="343.0" layoutY="278.0" onAction="#clickSaveAction" text="Save">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

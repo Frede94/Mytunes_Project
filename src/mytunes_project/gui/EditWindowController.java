@@ -47,10 +47,13 @@ public class EditWindowController implements Initializable
     private TextField txtTime;
     @FXML
     private TextField txtFile;
+    @FXML
+    private JFXButton btnSaveSong;
 
     private SongModel songModel;
-   
+
     DataBaseConnector dbc = new DataBaseConnector();
+
     /**
      * Initializes the controller class.
      */
@@ -79,6 +82,11 @@ public class EditWindowController implements Initializable
         stage.close();
     }
 
+    /*
+    Detter skal flyttes ned i DAL laget.
+    tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
+     så det kommer frem i comboBoxen
+     */
     @FXML
     private void clickMoreAction(ActionEvent event)
     {
@@ -93,27 +101,23 @@ public class EditWindowController implements Initializable
         {
 
             try (Connection con = dbc.getConnection())
-        {
-            Statement stmt = con.createStatement();
-            String sql = "INSERT INTO Category (CategoryName) VALUES (?)";
-            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-            st.setString(1, result.get());
-            st.executeUpdate();
-            ResultSet rs = st.getGeneratedKeys();
-            
-            
-            rs.next();
-            System.out.println(rs.getString(1));
-            
-            
-            //comboCategory.setItems(SongModel.getCategories());
-            
-           // ResultSet rs = stmt.executeQuery1
+            {
+                Statement stmt = con.createStatement();
+                String sql = "INSERT INTO Category (CategoryName) VALUES (?)";
+                PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+                st.setString(1, result.get());
+                st.executeUpdate();
+                ResultSet rs = st.getGeneratedKeys();
 
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                rs.next();
+                System.out.println(rs.getString(1));
+
+                //comboCategory.setItems(SongModel.getCategories());
+                // ResultSet rs = stmt.executeQuery1
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.out.println("Your name: " + result.get());
         }
 
@@ -126,11 +130,36 @@ public class EditWindowController implements Initializable
     {
 
     }
-
+    /*
+    Kan ikke teste hjemme fra forset i skolen.
+    Når man trykker save gemme den de tastede data ind i databasen
+    link til hjælp: https://stackoverflow.com/questions/5752307/how-to-retrieve-value-from-jtextfield-in-java-swing
+    */    
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Song (CategoryName) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+            st.setString(1, txtArtist.getText());
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
 
+            rs.next();
+            System.out.println(rs.getString(1));
+
+            //comboCategory.setItems(SongModel.getCategories());
+            // ResultSet rs = stmt.executeQuery1
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(txtArtist.getText());
+        System.out.println(txtFile.getText());
+        System.out.println(txtTime.getText());
+        System.out.println(txtTitel.getText());
     }
 
 }
