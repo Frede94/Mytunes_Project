@@ -50,10 +50,10 @@ public class SongManager
          return categoryDAO.getAllCategories();
     }
 
-    public void addCategory()
-    {
-        categoryDAO.addCategory();
-    }
+//    public void addCategory()
+//    {
+//        categoryDAO.addCategory();
+//    }
 
 
 }

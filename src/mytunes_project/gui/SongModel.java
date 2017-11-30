@@ -69,10 +69,10 @@ public class SongModel
         return categories;
     }
 
-    void addCategory()
-    {
-        songManager.addCategory();
-    }
+//    void addCategory()
+//    {
+//        songManager.addCategory();
+//    }
 
 }
 

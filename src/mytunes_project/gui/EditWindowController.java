@@ -7,9 +7,15 @@ package mytunes_project.gui;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import mytunes_project.be.Category;
+import mytunes_project.dal.CategoryDAO;
+import mytunes_project.dal.DataBaseConnector;
 
 /**
  * FXML Controller class
@@ -41,7 +49,8 @@ public class EditWindowController implements Initializable
     private TextField txtFile;
 
     private SongModel songModel;
-
+   
+    DataBaseConnector dbc = new DataBaseConnector();
     /**
      * Initializes the controller class.
      */
@@ -73,17 +82,38 @@ public class EditWindowController implements Initializable
     @FXML
     private void clickMoreAction(ActionEvent event)
     {
-        TextInputDialog dialog = new TextInputDialog("walter");
-        dialog.setTitle("Text Input Dialog");
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Add Category");
         dialog.setHeaderText("Look, a Text Input Dialog");
         dialog.setContentText("Please enter your name:");
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
-        {          
+        {
+
+            try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Category (CategoryName) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+            st.setString(1, result.get());
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
             
-            songModel.addCategory();
+            
+            rs.next();
+            System.out.println(rs.getString(1));
+            
+            
+            //comboCategory.setItems(SongModel.getCategories());
+            
+           // ResultSet rs = stmt.executeQuery1
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
             System.out.println("Your name: " + result.get());
         }
 
