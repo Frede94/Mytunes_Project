@@ -14,7 +14,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="99.0" layoutY="44.0">
+      <TextField fx:id="txtTitel" layoutX="99.0" layoutY="44.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -24,7 +24,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="99.0" layoutY="89.0">
+      <TextField fx:id="txtArtist" layoutX="99.0" layoutY="89.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -34,7 +34,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox layoutX="99.0" layoutY="138.0" prefWidth="150.0" />
+      <ComboBox fx:id="comboCategory" layoutX="99.0" layoutY="138.0" prefWidth="150.0" />
       <JFXButton layoutX="255.0" layoutY="131.0" text="More...">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -44,7 +44,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="99.0" layoutY="173.0" prefHeight="39.0" prefWidth="150.0">
+      <TextField fx:id="txtTime" layoutX="99.0" layoutY="173.0" prefHeight="39.0" prefWidth="150.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -54,12 +54,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="99.0" layoutY="217.0">
+      <TextField fx:id="txtFile" layoutX="99.0" layoutY="217.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="343.0" layoutY="217.0" text="Choose...">
+      <JFXButton layoutX="343.0" layoutY="217.0" onAction="#btnChooseFile" text="Choose...">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

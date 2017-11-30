@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +25,16 @@ public class EditWindowController implements Initializable
 
     @FXML
     private JFXButton btnCancelSong;
+    @FXML
+    private TextField txtTitel;
+    @FXML
+    private TextField txtArtist;
+    @FXML
+    private ComboBox<?> comboCategory;
+    @FXML
+    private TextField txtTime;
+    @FXML
+    private TextField txtFile;
 
     /**
      * Initializes the controller class.
@@ -44,12 +56,16 @@ public class EditWindowController implements Initializable
 
        
 
-    @FXML
     private void closeSongWindow(ActionEvent event)
     {
     Stage stage = (Stage) btnCancelSong.getScene().getWindow();
     stage.close();
     }
-    
+
+    @FXML
+    private void btnChooseFile(ActionEvent event)
+    {
+    }
+   
 
 }
