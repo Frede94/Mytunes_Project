@@ -131,6 +131,7 @@ public class EditWindowController implements Initializable
 
     }
     /*
+    SKAL FLYTTES NED I DAL!
     Kan ikke teste hjemme fra forset i skolen.
     Når man trykker save gemme den de tastede data ind i databasen
     link til hjælp: https://stackoverflow.com/questions/5752307/how-to-retrieve-value-from-jtextfield-in-java-swing
@@ -140,8 +141,27 @@ public class EditWindowController implements Initializable
     {
         try (Connection con = dbc.getConnection())
         {
+            System.out.println(txtTitel.getText());
             Statement stmt = con.createStatement();
-            String sql = "INSERT INTO Song (CategoryName) VALUES (?)";
+            String sql = "INSERT INTO Song (Title) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+            st.setString(1, txtTitel.getText());
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+
+            rs.next();
+            System.out.println(rs.getString(1));
+
+            //comboCategory.setItems(SongModel.getCategories());
+            // ResultSet rs = stmt.executeQuery1
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Song (Artist) VALUES (?)";
             PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
             st.setString(1, txtArtist.getText());
             st.executeUpdate();
@@ -156,10 +176,46 @@ public class EditWindowController implements Initializable
         {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(txtArtist.getText());
-        System.out.println(txtFile.getText());
-        System.out.println(txtTime.getText());
-        System.out.println(txtTitel.getText());
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Song (Path) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+            st.setString(1, txtFile.getText());
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+
+            rs.next();
+            System.out.println(rs.getString(1));
+
+            //comboCategory.setItems(SongModel.getCategories());
+            // ResultSet rs = stmt.executeQuery1
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Song (Time) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+            st.setString(1, txtTime.getText());
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+
+            rs.next();
+            System.out.println(rs.getString(1));
+
+            //comboCategory.setItems(SongModel.getCategories());
+            // ResultSet rs = stmt.executeQuery1
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        System.out.println(txtArtist.getText());
+//        System.out.println(txtFile.getText());
+//        System.out.println(txtTime.getText());
+//        System.out.println(txtTitel.getText());
     }
 
 }
