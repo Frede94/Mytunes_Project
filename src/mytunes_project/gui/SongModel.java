@@ -33,7 +33,10 @@ public class SongModel
         categories.addAll(songManager.getAllCategories());
         loadSongs();
     }
-
+/**
+ * Removes the selected song from the list.
+ * @param selectedSong 
+ */
     static void remove(Song selectedSong)
     {
         songs.remove(selectedSong);
@@ -51,6 +54,9 @@ public class SongModel
         songManager.search(searchText);
     }
 
+    /**
+     * Clears the list, and loads the songs from the database. "getAllSongs".
+     */
     void loadSongs()
     {
         List<Song> loadedSongs = songManager.getAllSongs(); //undgå og throw
