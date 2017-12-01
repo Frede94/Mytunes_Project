@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import mytunes_project.be.Song;
 import mytunes_project.bll.SearchFilter;
 
 /**
- * 
+ *
  * @author Mikkel
  */
 public class SongDAO
@@ -33,10 +33,12 @@ public class SongDAO
 
     DataBaseConnector dbc = new DataBaseConnector();
 
-/**
- *  Gets a list from the "Song" database with the songs, id, title, Artist, Category, Time & Path.
- * @return 
- */
+    /**
+     * Gets a list from the "Song" database with the songs, id, title, Artist,
+     * Category, Time & Path.
+     *
+     * @return
+     */
     public List<Song> getAllSongs()
     {
 
@@ -68,9 +70,10 @@ public class SongDAO
 
     /**
      * Searches in the list of songs.
-    */
+     */
     public void search(String searchText)
     {
+        
 
         List<Song> allSongs = songDao.getAllSongs();
         List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
@@ -78,13 +81,15 @@ public class SongDAO
         songsInSearch.addAll(searchResults);
 
     }
-/**
- * Removes the selected song from the program, and the database.
- * @param selectedSong 
- */
+
+    /**
+     * Removes the selected song from the program, and the database.
+     *
+     * @param selectedSong
+     */
     public void remove(Song selectedSong)
     {
-        
+
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
@@ -95,8 +100,6 @@ public class SongDAO
         }
     }
 }
-
-
 
 //    public Song createSong(String title, String artistId, String categoryId, float time, String path) throws SQLServerException, SQLException
 //    {
@@ -124,12 +127,12 @@ public class SongDAO
 //        }
 //
 //    }
-    /**
-     * Gets a list of Songs with given title.
-     *
-     * @param title The title to search for.
-     * @return the List of Songs that match the search.
-     */
+/**
+ * Gets a list of Songs with given title.
+ *
+ * @param title The title to search for.
+ * @return the List of Songs that match the search.
+ */
 //    public List<Song> getSongsInAnSqlInjectionInsecureWay(String title) throws SQLException
 //    {
 //        try (Connection con = dbConnector.getConnection())
@@ -168,14 +171,13 @@ public class SongDAO
 //            return allSongs;
 //        }
 //    }
-
 /**
-     * Extracts a single song from the ResultSet at the current row
-     *
-     * @param rs The result set to work with
-     * @return The Song represented at the current row
-     * @throws SQLException
-     */
+ * Extracts a single song from the ResultSet at the current row
+ *
+ * @param rs The result set to work with
+ * @return The Song represented at the current row
+ * @throws SQLException
+ */
 //    private Song getSongFromResultSetRow(ResultSet rs) throws SQLException
 //    {
 //        int SongId = rs.getInt("SongId");
