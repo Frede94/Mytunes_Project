@@ -6,6 +6,7 @@
 package mytunes_project.gui;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import mytunes_project.be.Category;
 import mytunes_project.dal.CategoryDAO;
@@ -128,13 +131,17 @@ public class EditWindowController implements Initializable
     @FXML
     private void clickChooseFile(ActionEvent event)
     {
-
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open File");
+        chooser.getExtensionFilters().addAll(new ExtensionFilter("Audio Files", "*.mp3"));
+        File file = chooser.showOpenDialog(new Stage());
     }
+
     /*
     Kan ikke teste hjemme fra forset i skolen.
     Når man trykker save gemme den de tastede data ind i databasen
     link til hjælp: https://stackoverflow.com/questions/5752307/how-to-retrieve-value-from-jtextfield-in-java-swing
-    */    
+     */
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
