@@ -21,6 +21,10 @@ public class SongManager
     private static SongDAO songDAO = new SongDAO();
     private CategoryDAO categoryDAO;
 
+    /**
+     * Removes the selected song.
+     * @param selectedSong 
+     */
     public static void remove(Song selectedSong)
     {
         songDAO.remove(selectedSong);
@@ -32,19 +36,28 @@ public class SongManager
         songDAO = new SongDAO();
 
     }
-
+/**
+ * 
+ * @return a list of all songs in the database.
+ */
     public List<Song> getAllSongs()
     {
 
         return songDAO.getAllSongs();
 
     }
-
+/**
+ * Searches in the songDAO.
+ * @param searchText 
+ */
     public void search(String searchText)
     {
         songDAO.search(searchText);
     }
-
+/**
+ * 
+ * @return All Categories from the database.
+ */
     public List<Category> getAllCategories()
     {
          return categoryDAO.getAllCategories();

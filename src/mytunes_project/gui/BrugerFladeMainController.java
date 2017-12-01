@@ -115,6 +115,13 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
     }
 
+    
+    /*
+    Links til Hjælp   
+    http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
+    https://stackoverflow.com/questions/44317837/create-search-textfield-field-to-search-in-a-javafx-tableview
+    http://www.swtestacademy.com/database-operations-javafx/
+    */
     @FXML
     private void searchAction(ActionEvent event)
     {
