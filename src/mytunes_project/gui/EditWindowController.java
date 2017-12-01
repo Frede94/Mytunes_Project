@@ -127,13 +127,18 @@ public class EditWindowController implements Initializable
         // The Java 8 way to get the response value (with lambda expression).
         result.ifPresent(name -> System.out.println("Your name: " + name));
     }
-
+    
+    /**
+     * This opens a FIleChooser window that will allow you to add
+     * either a .mp3 or a .wav file.
+     * @param event 
+     */
     @FXML
     private void clickChooseFile(ActionEvent event)
     {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open File");
-        chooser.getExtensionFilters().addAll(new ExtensionFilter("Audio Files", "*.mp3"));
+        chooser.getExtensionFilters().addAll(new ExtensionFilter("Audio Files", "*.mp3", "*.wav"));
         File file = chooser.showOpenDialog(new Stage());
     }
 
