@@ -20,7 +20,7 @@ import mytunes_project.be.Song;
 import mytunes_project.bll.SearchFilter;
 
 /**
- *
+ * 
  * @author Mikkel
  */
 public class SongDAO
@@ -33,7 +33,10 @@ public class SongDAO
 
     DataBaseConnector dbc = new DataBaseConnector();
 
-
+/**
+ *  Gets a list from the "Song" database with the songs, id, title, Artist, Category, Time & Path.
+ * @return 
+ */
     public List<Song> getAllSongs()
     {
 
@@ -63,7 +66,9 @@ public class SongDAO
         return songs;
     }
 
-    
+    /**
+     * Searches in the list of songs.
+    */
     public void search(String searchText)
     {
 
@@ -73,7 +78,10 @@ public class SongDAO
         songsInSearch.addAll(searchResults);
 
     }
-
+/**
+ * Removes the selected song from the program, and the database.
+ * @param selectedSong 
+ */
     public void remove(Song selectedSong)
     {
         
