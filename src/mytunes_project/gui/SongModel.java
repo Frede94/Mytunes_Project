@@ -89,6 +89,18 @@ public class SongModel
         categories.addAll(loadedCategories);
     }
 
+    void saveSong(Song s)
+    {
+        songs.add(s);
+        songManager.saveSong(s);
+    }
+
+    void saveEdit(Song editSong)
+    {
+        songs.add(editSong);
+        songManager.saveEdit(editSong);
+    }
+
 }
 
 //    private SongManager songManager2;

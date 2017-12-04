@@ -68,6 +68,16 @@ public class SongManager
 //        categoryDAO.addCategory();
 //    }
 
+    public void saveSong(Song s)
+    {
+        songDAO.saveSong(s);
+    }
+
+    public void saveEdit(Song editSong)
+    {
+        songDAO.saveEdit(editSong);
+    }
+
     
 
 

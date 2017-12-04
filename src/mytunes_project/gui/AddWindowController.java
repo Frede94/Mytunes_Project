@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +28,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import mytunes_project.be.Category;
+import mytunes_project.be.Song;
 import mytunes_project.dal.CategoryDAO;
 import mytunes_project.dal.DataBaseConnector;
 
@@ -58,6 +58,8 @@ public class AddWindowController implements Initializable
     private SongModel songModel;
 
     DataBaseConnector dbc = new DataBaseConnector();
+
+    private Song editSong;
 
     /**
      * Initializes the controller class.
@@ -168,30 +170,23 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
-        try (Connection con = dbc.getConnection())
+        if (editSong == null)
         {
-
-            Statement stmt = con.createStatement();
-            String sql = "INSERT INTO Song (Title, Artist, Category, Time, Path) VALUES (?,?,?,?,?)";
-            PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
-
-            st.setString(1, txtTitel.getText());
-            st.setString(2, txtArtist.getText());
-            st.setInt(3, 1);
-            st.setString(4, txtTime.getText());
-            st.setString(5, txtFile.getText());
-
-            st.execute();
-
-//            ResultSet rs = st.getGeneratedKeys();
-//
-//            rs.next();
-//            System.out.println(rs.getString(1));
-            //comboCategory.setItems(SongModel.getCategories());
-            // ResultSet rs = stmt.executeQuery1
-        } catch (SQLException ex)
+            Song s = new Song();
+            s.setArtist(txtArtist.getText());
+            s.setTime(Integer.parseInt(txtTime.getText()));
+            s.setTitle(txtTitel.getText());
+            s.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
+            s.setPath(txtFile.getText());
+            songModel.saveSong(s);
+        } else
         {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            editSong.setArtist(txtArtist.getText());
+            editSong.setTime(Integer.parseInt(txtTime.getText()));
+            editSong.setTitle(txtTitel.getText());
+            editSong.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
+            editSong.setPath(txtFile.getText());
+            songModel.saveEdit(editSong);
         }
         Stage stage = (Stage) btnCancelSong.getScene().getWindow();
         stage.close();
@@ -200,6 +195,16 @@ public class AddWindowController implements Initializable
 //        System.out.println(txtFile.getText());
 //        System.out.println(txtTime.getText());
 //        System.out.println(txtTitel.getText());
+    }
+
+    public void setEditSong(Song selectedItem)
+    {
+        editSong = selectedItem;
+        txtTitel.setText(editSong.getTitle());
+        txtArtist.setText(editSong.getArtist());
+        
+        //editSong.setTime(Float.parseFloat(txtTime.getText()));
+        txtFile.setText(editSong.getPath());
     }
 
 }

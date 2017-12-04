@@ -6,6 +6,7 @@
 package mytunes_project.dal;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -107,6 +108,64 @@ public class SongDAO
     public void getAllCategories()
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void saveSong(Song s)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Song (Title, Artist, Category, Time, Path) VALUES (?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
+
+            st.setString(1, s.getTitle());
+            st.setString(2, s.getArtist());
+            st.setInt(3, 1);
+            st.setFloat(4, s.getTime());
+            st.setString(5, s.getPath());
+
+            st.execute();
+
+//            ResultSet rs = st.getGeneratedKeys();
+//
+//            rs.next();
+//            System.out.println(rs.getString(1));
+            //comboCategory.setItems(SongModel.getCategories());
+            // ResultSet rs = stmt.executeQuery1
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void saveEdit(Song editSong)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Song (Title, Artist, Category, Time, Path) VALUES (?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
+
+            st.setString(1, editSong.getTitle());
+            st.setString(2, editSong.getArtist());
+            st.setInt(3, 1);
+            st.setFloat(4, editSong.getTime());
+            st.setString(5, editSong.getPath());
+
+            st.execute();
+
+//            ResultSet rs = st.getGeneratedKeys();
+//
+//            rs.next();
+//            System.out.println(rs.getString(1));
+            //comboCategory.setItems(SongModel.getCategories());
+            // ResultSet rs = stmt.executeQuery1
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 
