@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.media.Media;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes_project.be.Song;
@@ -90,6 +93,10 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnTime;
     @FXML
     private JFXButton addSongToPlaylistBtn;
+    
+    private MediaPlayer mp;
+    
+    private Media me;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -106,7 +113,10 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
 
         clickLoad();
-
+        
+        me = new Media(new File(path))
+        
+        volumeSlider();
     }
 
     @FXML
@@ -115,13 +125,12 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
     }
 
-    
     /*
     Links til Hjælp   
     http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
     https://stackoverflow.com/questions/44317837/create-search-textfield-field-to-search-in-a-javafx-tableview
     http://www.swtestacademy.com/database-operations-javafx/
-    */
+     */
     @FXML
     private void searchAction(ActionEvent event)
     {
@@ -252,4 +261,22 @@ public class BrugerFladeMainController implements Initializable
         }
 
     }
+
+    public void volumeSlider()
+    {
+        volumeSlider.valueProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if (volumeSlider.isValueChanging())
+                {
+                    mp.setVolume(volumeSlider.getValue() / 100);
+                }
+            }
+        });
+
+    }
+    
+    
 }
