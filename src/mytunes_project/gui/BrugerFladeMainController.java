@@ -8,6 +8,7 @@ package mytunes_project.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes_project.be.Song;
@@ -113,12 +115,32 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
 
         clickLoad();
-        
-        me = new Media(new File(path))
-        
-        volumeSlider();
+                
+//        String path = new File ("MediaPlayer/media/Test.mp4").getAbsolutePath();
+//        
+//        me = new Media (new File(path).toURI().toString());
+//        mp = new MediaPlayer(me);
+//        mp.setAutoPlay(true);
+//                
+       
+
     }
 
+     @FXML
+    private void clickedPlayButton(ActionEvent event)
+    {
+       mp.play();
+       
+    }
+    
+    public void pause (ActionEvent event)
+    {
+        mp.pause();
+        // MANGLER NOGET HER!!!
+    }
+    
+    
+    
     @FXML
     private void clickLoad()
     {
@@ -278,5 +300,7 @@ public class BrugerFladeMainController implements Initializable
 
     }
     
+
+   
     
 }

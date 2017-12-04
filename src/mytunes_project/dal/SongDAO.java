@@ -73,7 +73,6 @@ public class SongDAO
      */
     public void search(String searchText)
     {
-        
 
         List<Song> allSongs = songDao.getAllSongs();
         List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
@@ -102,7 +101,7 @@ public class SongDAO
 
     public void loadCategories()
     {
-        
+
     }
 
     public void getAllCategories()

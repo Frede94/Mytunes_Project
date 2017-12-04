@@ -74,7 +74,7 @@ public class AddWindowController implements Initializable
         Stage stage = (Stage) btnCancelSong.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     private void clickLoadCatsAction(ActionEvent event)
     {
@@ -104,7 +104,7 @@ public class AddWindowController implements Initializable
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Add Category");
         dialog.setHeaderText("Click Load Categories when done");
-        dialog.setContentText("Please enter your category of your choice");
+        dialog.setContentText("Please enter the category of your choice");
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
@@ -135,12 +135,12 @@ public class AddWindowController implements Initializable
         // The Java 8 way to get the response value (with lambda expression).
         result.ifPresent(name -> System.out.println("Your name: " + name));
     }
-    
+
     /**
-     * This opens a FIleChooser window that will allow you to add
-     * either a .mp3 or a .wav file. It will also display the path of the file 
-     * in a textbox.
-     * @param event 
+     * This opens a FIleChooser window that will allow you to add either a .mp3
+     * or a .wav file. It will also display the path of the file in a textbox.
+     *
+     * @param event
      */
     @FXML
     private void clickChooseFile(ActionEvent event)
@@ -187,74 +187,19 @@ public class AddWindowController implements Initializable
 //
 //            rs.next();
 //            System.out.println(rs.getString(1));
-
             //comboCategory.setItems(SongModel.getCategories());
             // ResultSet rs = stmt.executeQuery1
         } catch (SQLException ex)
         {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Stage stage = (Stage) btnCancelSong.getScene().getWindow();
+        stage.close();
 
-//        try (Connection con = dbc.getConnection())
-//        {
-//            Statement stmt = con.createStatement();
-//            String sql = "INSERT INTO Song (Artist) VALUES (?)";
-//            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-//            st.setString(1, txtArtist.getText());
-//            st.executeUpdate();
-//            ResultSet rs = st.getGeneratedKeys();
-//
-//            rs.next();
-//            System.out.println(rs.getString(1));
-//
-//            //comboCategory.setItems(SongModel.getCategories());
-//            // ResultSet rs = stmt.executeQuery1
-//        } catch (SQLException ex)
-//        {
-//            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try (Connection con = dbc.getConnection())
-//        {
-//            Statement stmt = con.createStatement();
-//            String sql = "INSERT INTO Song (Path) VALUES (?)";
-//            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-//            st.setString(1, txtFile.getText());
-//            st.executeUpdate();
-//            ResultSet rs = st.getGeneratedKeys();
-//
-//            rs.next();
-//            System.out.println(rs.getString(1));
-//
-//            //comboCategory.setItems(SongModel.getCategories());
-//            // ResultSet rs = stmt.executeQuery1
-//        } catch (SQLException ex)
-//        {
-//            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try (Connection con = dbc.getConnection())
-//        {
-//            Statement stmt = con.createStatement();
-//            String sql = "INSERT INTO Song (Time) VALUES (?)";
-//            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-//            st.setString(1, txtTime.getText());
-//            st.executeUpdate();
-//            ResultSet rs = st.getGeneratedKeys();
-//
-//            rs.next();
-//            System.out.println(rs.getString(1));
-//
-//            //comboCategory.setItems(SongModel.getCategories());
-//            // ResultSet rs = stmt.executeQuery1
-//        } catch (SQLException ex)
-//        {
-//            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 //        System.out.println(txtArtist.getText());
 //        System.out.println(txtFile.getText());
 //        System.out.println(txtTime.getText());
 //        System.out.println(txtTitel.getText());
     }
-
-    
 
 }
