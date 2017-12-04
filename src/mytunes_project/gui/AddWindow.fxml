@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="331.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.EditWindowController">
+<AnchorPane id="AnchorPane" prefHeight="331.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.AddWindowController">
    <children>
       <Label layoutX="40.0" layoutY="50.0" prefWidth="59.0" text="Title:">
          <font>
@@ -72,6 +72,11 @@
          </font>
       </JFXButton>
       <JFXButton fx:id="btnSaveSong" layoutX="343.0" layoutY="278.0" onAction="#clickSaveAction" text="Save">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="87.0" layoutY="278.0" onAction="#clickLoadCatsAction" prefHeight="39.0" prefWidth="160.0" text="Load Categories">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
