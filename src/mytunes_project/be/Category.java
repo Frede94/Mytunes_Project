@@ -22,6 +22,11 @@ public class Category
         this.CatergoryName = CatergoryName;
     }
 
+    public Category()
+    {
+        
+    }
+
     /**
      * Get the value of CatergoryName
      *

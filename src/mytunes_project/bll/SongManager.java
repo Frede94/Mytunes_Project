@@ -78,6 +78,11 @@ public class SongManager
         songDAO.saveEdit(editSong);
     }
 
+    public void clickMore(Category c)
+    {
+        categoryDAO.clickMore(c);
+    }
+
     
 
 

@@ -103,39 +103,8 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickMoreAction(ActionEvent event)
     {
-        TextInputDialog dialog = new TextInputDialog("");
-        dialog.setTitle("Add Category");
-        dialog.setHeaderText("Click Load Categories when done");
-        dialog.setContentText("Please enter the category of your choice");
-
-        // Traditional way to get the response value.
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent())
-        {
-
-            try (Connection con = dbc.getConnection())
-            {
-                Statement stmt = con.createStatement();
-                String sql = "INSERT INTO Category (CategoryName) VALUES (?)";
-                PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-                st.setString(1, result.get());
-                st.executeUpdate();
-                ResultSet rs = st.getGeneratedKeys();
-
-                rs.next();
-                System.out.println(rs.getString(1));
-
-                //comboCategory.setItems(SongModel.getCategories());
-                // ResultSet rs = stmt.executeQuery1
-            } catch (SQLException ex)
-            {
-                Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println("Your name: " + result.get());
-        }
-
-        // The Java 8 way to get the response value (with lambda expression).
-        result.ifPresent(name -> System.out.println("Your name: " + name));
+        Category c = new Category();            
+        songModel.clickMore(c);       
     }
 
     /**

@@ -101,6 +101,12 @@ public class SongModel
         songManager.saveEdit(editSong);
     }
 
+    void clickMore(Category c)
+    {
+        categories.add(c);
+        songManager.clickMore(c);
+    }
+
 }
 
 //    private SongManager songManager2;
