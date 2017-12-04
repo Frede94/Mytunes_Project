@@ -132,7 +132,8 @@ public class EditWindowController implements Initializable
     
     /**
      * This opens a FIleChooser window that will allow you to add
-     * either a .mp3 or a .wav file.
+     * either a .mp3 or a .wav file. It will also display the path of the file 
+     * in a textbox.
      * @param event 
      */
     @FXML
