@@ -99,6 +99,16 @@ public class SongDAO
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void loadCategories()
+    {
+        
+    }
+
+    public void getAllCategories()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 
 //    public Song createSong(String title, String artistId, String categoryId, float time, String path) throws SQLServerException, SQLException

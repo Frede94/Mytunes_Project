@@ -24,6 +24,7 @@ public class SongModel
 
     private ObservableList<Category> categories;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
+    
 
     SongManager songManager = new SongManager();
 
@@ -79,6 +80,14 @@ public class SongModel
 //    {
 //        songManager.addCategory();
 //    }
+
+    void loadCategories()
+    {
+        List<Category> loadedCategories = songManager.getAllCategories(); //undgå og throw
+
+        categories.clear();
+        categories.addAll(loadedCategories);
+    }
 
 }
 

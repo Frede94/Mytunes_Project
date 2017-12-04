@@ -76,5 +76,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
+      <JFXButton layoutX="87.0" layoutY="278.0" onAction="#clickLoadCatsAction" prefHeight="39.0" prefWidth="160.0" text="Load Categories">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

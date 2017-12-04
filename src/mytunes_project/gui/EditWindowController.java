@@ -74,6 +74,12 @@ public class EditWindowController implements Initializable
         Stage stage = (Stage) btnCancelSong.getScene().getWindow();
         stage.close();
     }
+    
+    @FXML
+    private void clickLoadCatsAction(ActionEvent event)
+    {
+        songModel.loadCategories();
+    }
 
     public void setSongModel(SongModel songModel)
     {
@@ -97,8 +103,8 @@ public class EditWindowController implements Initializable
     {
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Add Category");
-        dialog.setHeaderText("Look, a Text Input Dialog");
-        dialog.setContentText("Please enter your name:");
+        dialog.setHeaderText("Click Load Categories when done");
+        dialog.setContentText("Please enter your category of your choice");
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
@@ -248,5 +254,7 @@ public class EditWindowController implements Initializable
 //        System.out.println(txtTime.getText());
 //        System.out.println(txtTitel.getText());
     }
+
+    
 
 }
