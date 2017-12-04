@@ -96,9 +96,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private JFXButton addSongToPlaylistBtn;
     
-//    private MediaPlayer mp;
-//    
-//    private Media me;
+    private MediaPlayer mp;
+    
+    private Media me;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -116,15 +116,31 @@ public class BrugerFladeMainController implements Initializable
 
         clickLoad();
                 
-//        String path = new File ("Adding volume Slider to MediaPlayer/media/Test.mp4").getAbsolutePath();
+//        String path = new File ("MediaPlayer/media/Test.mp4").getAbsolutePath();
 //        
 //        me = new Media (new File(path).toURI().toString());
 //        mp = new MediaPlayer(me);
-        
-        
-        
+//        mp.setAutoPlay(true);
+//                
+       
+
     }
 
+     @FXML
+    private void clickedPlayButton(ActionEvent event)
+    {
+       mp.play();
+       
+    }
+    
+    public void pause (ActionEvent event)
+    {
+        mp.pause();
+        // MANGLER NOGET HER!!!
+    }
+    
+    
+    
     @FXML
     private void clickLoad()
     {
@@ -268,27 +284,23 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-//    public void volumeSlider()
-//    {
-//        volumeSlider.valueProperty().addListener(new InvalidationListener()
-//        {
-//            @Override
-//            public void invalidated(Observable observable)
-//            {
-//                if (volumeSlider.isValueChanging())
-//                {
-//                    mp.setVolume(volumeSlider.getValue() / 100);
-//                }
-//            }
-//        });
-//
-//    }
-//    
-
-    @FXML
-    private void clickedPlayButton(ActionEvent event)
+    public void volumeSlider()
     {
-        
+        volumeSlider.valueProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if (volumeSlider.isValueChanging())
+                {
+                    mp.setVolume(volumeSlider.getValue() / 100);
+                }
+            }
+        });
+
     }
+    
+
+   
     
 }
