@@ -7,7 +7,9 @@ package mytunes_project.gui;
 
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -140,6 +142,14 @@ public class EditWindowController implements Initializable
         chooser.setTitle("Open File");
         chooser.getExtensionFilters().addAll(new ExtensionFilter("Audio Files", "*.mp3", "*.wav"));
         File file = chooser.showOpenDialog(new Stage());
+        try
+        {
+            String fullPath = file.getCanonicalPath();
+            txtFile.setText(fullPath);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(EditWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /*
