@@ -104,7 +104,7 @@ public class AddWindowController implements Initializable
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Add Category");
         dialog.setHeaderText("Click Load Categories when done");
-        dialog.setContentText("Please enter your category of your choice");
+        dialog.setContentText("Please enter the category of your choice");
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
