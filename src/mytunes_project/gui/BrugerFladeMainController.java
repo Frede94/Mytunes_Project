@@ -150,9 +150,9 @@ public class BrugerFladeMainController implements Initializable
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            EditWindowController ewc = fxmlLoader.getController();
+            AddWindowController ewc = fxmlLoader.getController();
             ewc.setSongModel(songModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -174,9 +174,9 @@ public class BrugerFladeMainController implements Initializable
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            EditWindowController ewc = fxmlLoader.getController();
+            AddWindowController ewc = fxmlLoader.getController();
             ewc.setSongModel(songModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));

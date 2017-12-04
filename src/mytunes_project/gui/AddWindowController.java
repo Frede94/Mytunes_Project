@@ -37,7 +37,7 @@ import mytunes_project.dal.DataBaseConnector;
  *
  * @author Frederik Bærbar
  */
-public class EditWindowController implements Initializable
+public class AddWindowController implements Initializable
 {
 
     @FXML
@@ -155,7 +155,7 @@ public class EditWindowController implements Initializable
             txtFile.setText(fullPath);
         } catch (IOException ex)
         {
-            Logger.getLogger(EditWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
