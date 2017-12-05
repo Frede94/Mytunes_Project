@@ -81,7 +81,6 @@ public class SongDAO
 //        songsInSearch.addAll(searchResults);
 //
 //    }
-
     /**
      * Removes the selected song from the program, and the database.
      *
@@ -105,11 +104,9 @@ public class SongDAO
 
     }
 
-    public void getAllCategories()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /*
+    gemmer sangen man taster i databasen.
+     */
     public void saveSong(Song s)
     {
         try (Connection con = dbc.getConnection())
@@ -139,6 +136,9 @@ public class SongDAO
         }
     }
 
+    /*
+    updatere sange som allerede er i databasen så de kan få nye oplysninger.
+     */
     public void saveEdit(Song editSong)
     {
         try (Connection con = dbc.getConnection())

@@ -85,12 +85,18 @@ public class SongModel
         categories.addAll(loadedCategories);
     }
 
+    /*
+    Gemmer sange i databasen.
+     */
     void saveSong(Song s)
     {
         songs.add(s);
         songManager.saveSong(s);
     }
 
+    /*
+    updatere sange som allerede er i databasen så de kan få nye oplysninger.
+     */
     void saveEdit(Song editSong)
     {
         songs.add(editSong);

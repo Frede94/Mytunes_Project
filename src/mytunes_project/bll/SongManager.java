@@ -67,11 +67,17 @@ public class SongManager
         return categoryDAO.getAllCategories();
     }
 
+    /*
+    gemmer sangen man taster i databasen.
+     */
     public void saveSong(Song s)
     {
         songDAO.saveSong(s);
     }
 
+    /*
+    updatere sange som allerede er i databasen så de kan få nye oplysninger.
+     */
     public void saveEdit(Song editSong)
     {
         songDAO.saveEdit(editSong);
