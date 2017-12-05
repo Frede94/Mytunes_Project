@@ -140,8 +140,14 @@ public class BrugerFladeMainController implements Initializable
     {
        mp.play();
        
-        System.out.println("test");
+      
        
+    }
+    
+    @FXML
+    private void clickStopPlaying(ActionEvent event)
+    {
+        mp.stop();
     }
     
 //    public void play (ActionEvent event)
@@ -312,6 +318,8 @@ public class BrugerFladeMainController implements Initializable
 //
 //    }
 //    
+
+    
 
    
     
