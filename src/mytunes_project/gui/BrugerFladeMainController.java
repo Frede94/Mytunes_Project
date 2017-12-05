@@ -140,7 +140,7 @@ public class BrugerFladeMainController implements Initializable
     {
        mp.play();
        
-      
+        System.out.println("test");
        
     }
     
