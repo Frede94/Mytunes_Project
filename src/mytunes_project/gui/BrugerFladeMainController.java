@@ -127,6 +127,7 @@ public class BrugerFladeMainController implements Initializable
 //        });
     
         String path = new File("C:\\Users\\morte\\Desktop\\EasyLover.mp3").getAbsolutePath();
+        
         me = new Media(new File(path).toURI().toString());
         mp = new MediaPlayer(me);
 //        mp.setAutoPlay(true);
