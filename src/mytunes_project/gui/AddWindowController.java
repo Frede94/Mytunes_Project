@@ -70,6 +70,9 @@ public class AddWindowController implements Initializable
 
     }
 
+    /*
+    Lukker AddSong.Fxml vinduet
+     */
     @FXML
     private void closeAddSongBox(ActionEvent event)
     {
@@ -77,18 +80,27 @@ public class AddWindowController implements Initializable
         stage.close();
     }
 
+    /*
+    Loader categorierne i vores combobox
+     */
     @FXML
     private void clickLoadCatsAction(ActionEvent event)
     {
         songModel.loadCategories();
     }
 
+    /*
+    sætter SongModel i denne klasse, og henter kategorier
+     */
     public void setSongModel(SongModel songModel)
     {
         this.songModel = songModel;
         comboCategory.setItems(songModel.getCategories());
     }
 
+    /*
+    Lukker vinduet
+     */
     private void closeSongWindow(ActionEvent event)
     {
         Stage stage = (Stage) btnCancelSong.getScene().getWindow();
@@ -96,15 +108,15 @@ public class AddWindowController implements Initializable
     }
 
     /*
-    Detter skal flyttes ned i DAL laget.
+   
     tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
      så det kommer frem i comboBoxen
      */
     @FXML
     private void clickMoreAction(ActionEvent event)
     {
-        Category c = new Category();            
-        songModel.clickMore(c);       
+        Category c = new Category();
+        songModel.clickMore(c);
     }
 
     /**
@@ -131,8 +143,7 @@ public class AddWindowController implements Initializable
     }
 
     /*
-    SKAL FLYTTES NED I DAL!
-    Kan ikke teste hjemme fra forset i skolen.
+    
     Når man trykker save gemme den de tastede data ind i databasen
     link til hjælp: https://stackoverflow.com/questions/5752307/how-to-retrieve-value-from-jtextfield-in-java-swing
      */
@@ -160,18 +171,17 @@ public class AddWindowController implements Initializable
         Stage stage = (Stage) btnCancelSong.getScene().getWindow();
         stage.close();
 
-//        System.out.println(txtArtist.getText());
-//        System.out.println(txtFile.getText());
-//        System.out.println(txtTime.getText());
-//        System.out.println(txtTitel.getText());
     }
 
+    /*
+    tager teksten fra den valgte sang og sætter det ind i tekstfelterne
+     */
     public void setEditSong(Song selectedItem)
     {
         editSong = selectedItem;
         txtTitel.setText(editSong.getTitle());
         txtArtist.setText(editSong.getArtist());
-        
+
         //editSong.setTime(Float.parseFloat(txtTime.getText()));
         txtFile.setText(editSong.getPath());
     }

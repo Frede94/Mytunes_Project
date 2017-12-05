@@ -100,9 +100,9 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Song, String> tableColumnTime;
     @FXML
     private JFXButton addSongToPlaylistBtn;
-    
+
     private MediaPlayer mp;
-    
+
     private Media me;
 
     @Override
@@ -120,7 +120,7 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
 
         clickLoad();
-                
+
 //        volumeSlider.setValue(mp.getVolume()*100);
 //        volumeSlider.valueProperty().addListener(new InvalidationListener()
 //        {
@@ -130,46 +130,50 @@ public class BrugerFladeMainController implements Initializable
 //                mp.setVolume(volumeSlider.getValue()/100);
 //            }
 //        });
-    
 //        String path = new File("C:\\Users\\Frederik Bærbar\\Desktop\\Musik\\End.mp3").getAbsolutePath();
 //        
 //        me = new Media(new File(path).toURI().toString());
 //        mp = new MediaPlayer(me);
 //        mp.setAutoPlay(true);
-                
     }
 
-    
-    
-     @FXML
+    /*
+    starter den musiken når man trykker på knappen
+     */
+    @FXML
     private void clickedPlayButton(ActionEvent event)
     {
         new BrugerFladeMainController().start();
 //       mp.play();
 //       
 //        System.out.println("test");
-       
+
     }
-    
 
 
-    public void start() 
+    /*
+    når du trykker play åbner et filechooser vindue hvor man kan finde den sang
+    man vil afspille.
+    DENNE METODE SKAL IKKE BRUGES HER, DET ER KUN MIDLERTIDIGT!
+     */
+    public void start()
     {
 
         String fileName = null;
         URL url;
         final CountDownLatch latch = new CountDownLatch(1);
-        SwingUtilities.invokeLater(new Runnable() 
+        SwingUtilities.invokeLater(new Runnable()
         {
-            public void run() 
+            public void run()
             {
                 new JFXPanel(); // initializes JavaFX environment
                 latch.countDown();
             }
         });
-        try {
+        try
+        {
             latch.await();
-        } catch (InterruptedException ex) 
+        } catch (InterruptedException ex)
         {
             Logger.getLogger(BrugerFladeMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,21 +182,25 @@ public class BrugerFladeMainController implements Initializable
                 "MP3 Files", "mp3");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) 
+        if (returnVal == JFileChooser.APPROVE_OPTION)
         {
             fileName = chooser.getSelectedFile().toURI().toString();
         }
-        
+
         mp = new MediaPlayer(new Media(fileName));
         mp.play();
     }
-    
+
+    /*
+    CRASHER NÅR MAN TRYKKER STOP!!
+    stopper medieafspilleren.
+     */
     @FXML
     private void clickStopPlaying(ActionEvent event)
     {
         mp.stop();
     }
-    
+
 //    public void play (ActionEvent event)
 //    {
 //        mp.pause();
@@ -200,7 +208,9 @@ public class BrugerFladeMainController implements Initializable
 //    }
 //    
 //    
-    
+    /*
+    Loader sange fra databasen, når man trykker på knappen
+     */
     @FXML
     private void clickLoad()
     {
@@ -221,6 +231,12 @@ public class BrugerFladeMainController implements Initializable
         {
             songModel.search(searchText);
         }
+
+//        String searchText = filterField.getText().trim();
+//        if (!searchText.isEmpty())
+//        {
+//            songModel.search(searchText);
+//        }
     }
 
 
@@ -317,12 +333,20 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
+    /*
+    lukker programmet
+    */
     @FXML
     private void closeApp(ActionEvent event)
     {
         System.exit(0);
     }
 
+    /*
+    Når man trykker delete åbner programmet en dialog box som spørger 
+    om du er sikker på om du vil slette sangen, hvis man trykker ok
+    så sletter den sangen hvis man trykker cancel gør den ingenting.
+    */
     @FXML
     private void clickDelete(ActionEvent event)
     {
@@ -361,9 +385,4 @@ public class BrugerFladeMainController implements Initializable
 //
 //    }
 //    
-
-    
-
-   
-    
 }

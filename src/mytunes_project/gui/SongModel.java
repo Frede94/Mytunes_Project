@@ -6,14 +6,13 @@
 package mytunes_project.gui;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
+import mytunes_project.bll.SearchFilter;
 import mytunes_project.bll.SongManager;
+import mytunes_project.dal.SongDAO;
 
 /**
  *
@@ -22,22 +21,29 @@ import mytunes_project.bll.SongManager;
 public class SongModel
 {
 
+    private ObservableList<Song> songsInSearch;
+    private SearchFilter searchFilter;
+
+    private SongDAO songDao; // FY FY skal flyttes
+
     private ObservableList<Category> categories;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
-    
 
     SongManager songManager = new SongManager();
 
     public SongModel()
     {
+        songsInSearch = FXCollections.observableArrayList();
         this.categories = FXCollections.observableArrayList();
         categories.addAll(songManager.getAllCategories());
         loadSongs();
     }
-/**
- * Removes the selected song from the list.
- * @param selectedSong 
- */
+
+    /**
+     * Removes the selected song from the list.
+     *
+     * @param selectedSong
+     */
     static void remove(Song selectedSong)
     {
         songs.remove(selectedSong);
@@ -48,11 +54,6 @@ public class SongModel
     {
         //return songsInView;
         return songs;
-    }
-
-    public void search(String searchText)
-    {
-        songManager.search(searchText);
     }
 
     /**
@@ -76,11 +77,6 @@ public class SongModel
         return categories;
     }
 
-//    void addCategory()
-//    {
-//        songManager.addCategory();
-//    }
-
     void loadCategories()
     {
         List<Category> loadedCategories = songManager.getAllCategories(); //undgå og throw
@@ -101,10 +97,27 @@ public class SongModel
         songManager.saveEdit(editSong);
     }
 
+    /*
+    tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
+     så det kommer frem i comboBoxen
+     */
     void clickMore(Category c)
     {
         categories.add(c);
         songManager.clickMore(c);
+    }
+
+    /*
+    Søger på det der er skrevet i søgefeltet
+    skal flyttes til dal laget
+     */
+    void search(String searchText)
+    {
+        List<Song> allSongs = songDao.getAllSongs();
+        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+        songsInSearch.addAll(searchResults);
+        songsInSearch.clear();
+
     }
 
 }

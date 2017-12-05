@@ -72,15 +72,15 @@ public class SongDAO
     /**
      * Searches in the list of songs.
      */
-    public void search(String searchText)
-    {
-
-        List<Song> allSongs = songDao.getAllSongs();
-        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-        songsInSearch.clear();
-        songsInSearch.addAll(searchResults);
-
-    }
+//    public void search(String searchText)
+//    {
+//
+//        List<Song> allSongs = songDao.getAllSongs();
+//        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+//        songsInSearch.clear();
+//        songsInSearch.addAll(searchResults);
+//
+//    }
 
     /**
      * Removes the selected song from the program, and the database.

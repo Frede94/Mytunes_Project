@@ -23,7 +23,8 @@ public class SongManager
 
     /**
      * Removes the selected song.
-     * @param selectedSong 
+     *
+     * @param selectedSong
      */
     public static void remove(Song selectedSong)
     {
@@ -36,37 +37,35 @@ public class SongManager
         songDAO = new SongDAO();
 
     }
-/**
- * 
- * @return a list of all songs in the database.
- */
+
+    /**
+     *
+     * @return a list of all songs in the database.
+     */
     public List<Song> getAllSongs()
     {
 
         return songDAO.getAllSongs();
 
     }
-/**
- * Searches in the songDAO.
- * @param searchText 
- */
-    public void search(String searchText)
-    {
-        songDAO.search(searchText);
-    }
-/**
- * 
- * @return All Categories from the database.
- */
+
+    /**
+     * Searches in the songDAO.
+     *
+     * @param searchText
+     */
+//    public void search(String searchText)
+//    {
+//        songDAO.search(searchText);
+//    }
+    /**
+     *
+     * @return All Categories from the database.
+     */
     public List<Category> getAllCategories()
     {
-         return categoryDAO.getAllCategories();
+        return categoryDAO.getAllCategories();
     }
-
-//    public void addCategory()
-//    {
-//        categoryDAO.addCategory();
-//    }
 
     public void saveSong(Song s)
     {
@@ -78,12 +77,13 @@ public class SongManager
         songDAO.saveEdit(editSong);
     }
 
+    /*
+    tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
+     så det kommer frem i comboBoxen
+     */
     public void clickMore(Category c)
     {
         categoryDAO.clickMore(c);
     }
-
-    
-
 
 }

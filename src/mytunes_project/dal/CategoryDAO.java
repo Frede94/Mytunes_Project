@@ -64,6 +64,11 @@ public class CategoryDAO
 //        // create a Statement from the connection
 //        // insert the data
 //    }
+    
+    /*
+    tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
+    så det kommer frem i comboBoxen
+    */
     public void clickMore(Category c)
     {
         TextInputDialog dialog = new TextInputDialog("");
