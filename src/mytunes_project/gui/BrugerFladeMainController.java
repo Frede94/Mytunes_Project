@@ -12,8 +12,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import mytunes_project.be.Song;
 
 /**
@@ -126,10 +131,10 @@ public class BrugerFladeMainController implements Initializable
 //            }
 //        });
     
-        String path = new File("C:\\Users\\morte\\Desktop\\EasyLover.mp3").getAbsolutePath();
-        
-        me = new Media(new File(path).toURI().toString());
-        mp = new MediaPlayer(me);
+//        String path = new File("C:\\Users\\Frederik Bærbar\\Desktop\\Musik\\End.mp3").getAbsolutePath();
+//        
+//        me = new Media(new File(path).toURI().toString());
+//        mp = new MediaPlayer(me);
 //        mp.setAutoPlay(true);
                 
     }
@@ -139,10 +144,47 @@ public class BrugerFladeMainController implements Initializable
      @FXML
     private void clickedPlayButton(ActionEvent event)
     {
-       mp.play();
+        new BrugerFladeMainController().start();
+//       mp.play();
+//       
+//        System.out.println("test");
        
-        System.out.println("test");
-       
+    }
+    
+
+
+    public void start() 
+    {
+
+        String fileName = null;
+        URL url;
+        final CountDownLatch latch = new CountDownLatch(1);
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                new JFXPanel(); // initializes JavaFX environment
+                latch.countDown();
+            }
+        });
+        try {
+            latch.await();
+        } catch (InterruptedException ex) 
+        {
+            Logger.getLogger(BrugerFladeMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "MP3 Files", "mp3");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) 
+        {
+            fileName = chooser.getSelectedFile().toURI().toString();
+        }
+        
+        mp = new MediaPlayer(new Media(fileName));
+        mp.play();
     }
     
     @FXML
