@@ -65,7 +65,7 @@
             <TableColumn prefWidth="98.0" text="Time" />
         </columns>
       </TableView>
-      <TableView fx:id="songsList" layoutX="459.0" layoutY="88.0" prefHeight="400.0" prefWidth="384.0">
+      <TableView fx:id="songsList" layoutX="459.0" layoutY="88.0" onMouseClicked="#clickSpecificSong" prefHeight="400.0" prefWidth="384.0">
         <columns>
           <TableColumn fx:id="tableColumnTitle" prefWidth="98.0" text="Title" />
             <TableColumn fx:id="tableColumnArtist" prefWidth="107.0" text="Artist" />

@@ -30,6 +30,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
@@ -148,6 +149,13 @@ public class BrugerFladeMainController implements Initializable
 //       
 //        System.out.println("test");
 
+    }
+
+    
+    @FXML
+    private void clickSpecificSong(MouseEvent event)
+    {
+        mp.play();
     }
 
 
@@ -385,4 +393,5 @@ public class BrugerFladeMainController implements Initializable
 //
 //    }
 //    
+
 }
