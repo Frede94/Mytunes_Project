@@ -9,7 +9,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
@@ -144,8 +146,8 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickedPlayButton(ActionEvent event)
     {
-        new BrugerFladeMainController().start();
-//       mp.play();
+        new BrugerFladeMainController();
+       mp.play();
 //       
 //        System.out.println("test");
 
@@ -153,9 +155,16 @@ public class BrugerFladeMainController implements Initializable
 
     
     @FXML
-    private void clickSpecificSong(MouseEvent event)
+    private void clickSpecificSong(MouseEvent event) throws MalformedURLException
     {
-        mp.play();
+        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
+        String path = selectedSong.getPath();
+        System.out.println(path);
+        
+        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+        Media musicFile = new Media(url.toString());
+        mp = new MediaPlayer(musicFile);
+        mp.setVolume(0.9);
     }
 
 
@@ -206,16 +215,10 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickStopPlaying(ActionEvent event)
     {
-        mp.stop();
+        mp.pause();
     }
 
-//    public void play (ActionEvent event)
-//    {
-//        mp.pause();
-//        // MANGLER NOGET HER!!!
-//    }
-//    
-//    
+
     /*
     Loader sange fra databasen, når man trykker på knappen
      */
