@@ -147,20 +147,19 @@ public class BrugerFladeMainController implements Initializable
     private void clickedPlayButton(ActionEvent event)
     {
         new BrugerFladeMainController();
-       mp.play();
+        mp.play();
 //       
 //        System.out.println("test");
 
     }
 
-    
     @FXML
     private void clickSpecificSong(MouseEvent event) throws MalformedURLException
     {
         Song selectedSong = songsList.getSelectionModel().getSelectedItem();
         String path = selectedSong.getPath();
         System.out.println(path);
-        
+
         URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
         Media musicFile = new Media(url.toString());
         mp = new MediaPlayer(musicFile);
@@ -287,7 +286,6 @@ public class BrugerFladeMainController implements Initializable
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
             ewc.setSongModel(songModel);
-            ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");
@@ -346,7 +344,7 @@ public class BrugerFladeMainController implements Initializable
 
     /*
     lukker programmet
-    */
+     */
     @FXML
     private void closeApp(ActionEvent event)
     {
@@ -357,7 +355,7 @@ public class BrugerFladeMainController implements Initializable
     Når man trykker delete åbner programmet en dialog box som spørger 
     om du er sikker på om du vil slette sangen, hvis man trykker ok
     så sletter den sangen hvis man trykker cancel gør den ingenting.
-    */
+     */
     @FXML
     private void clickDelete(ActionEvent event)
     {
@@ -396,5 +394,4 @@ public class BrugerFladeMainController implements Initializable
 //
 //    }
 //    
-
 }

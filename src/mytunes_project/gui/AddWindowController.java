@@ -156,7 +156,6 @@ public class AddWindowController implements Initializable
         if (editSong == null)
         {
             Song s = new Song();
-            s.setArtist(txtArtist.getText());
             s.setTime(Integer.parseInt(txtTime.getText()));
             s.setTitle(txtTitel.getText());
             s.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
@@ -165,7 +164,6 @@ public class AddWindowController implements Initializable
             songModel.saveSong(s);
         } else
         {
-            editSong.setArtist(txtArtist.getText());
             editSong.setTime(Integer.parseInt(txtTime.getText()));
             editSong.setTitle(txtTitel.getText());
             editSong.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
@@ -185,7 +183,6 @@ public class AddWindowController implements Initializable
     {
         editSong = selectedItem;
         txtTitel.setText(editSong.getTitle());
-        txtArtist.setText(editSong.getArtist());
 
         //editSong.setTime(Float.parseFloat(txtTime.getText()));
         txtFile.setText(editSong.getPath());
