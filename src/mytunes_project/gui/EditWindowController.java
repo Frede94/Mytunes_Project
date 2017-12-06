@@ -34,8 +34,7 @@ public class EditWindowController implements Initializable
     private JFXButton btnCancelEdit;
     @FXML
     private JFXButton btnSaveEdit;
-    @FXML
-    private ComboBox<?> comboArtist;
+
 
     /**
      * Initializes the controller class.
@@ -71,9 +70,6 @@ public class EditWindowController implements Initializable
     {
     }
 
-    @FXML
-    private void clickAddEditAction(ActionEvent event)
-    {
-    }
+  
     
 }

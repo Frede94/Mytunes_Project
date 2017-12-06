@@ -44,7 +44,6 @@ public class AddWindowController implements Initializable
     private JFXButton btnCancelSong;
     @FXML
     private TextField txtTitel;
-    @FXML
     private TextField txtArtist;
     @FXML
     private ComboBox<Category> comboCategory;
@@ -60,6 +59,8 @@ public class AddWindowController implements Initializable
     DataBaseConnector dbc = new DataBaseConnector();
 
     private Song editSong;
+    @FXML
+    private ComboBox<?> comboArtist;
 
     /**
      * Initializes the controller class.
@@ -184,6 +185,11 @@ public class AddWindowController implements Initializable
 
         //editSong.setTime(Float.parseFloat(txtTime.getText()));
         txtFile.setText(editSong.getPath());
+    }
+
+    @FXML
+    private void clickAddAction(ActionEvent event)
+    {
     }
 
 }
