@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="331.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.EditWindowController">
+<AnchorPane id="AnchorPane" prefHeight="331.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.EditWindowController">
    <children>
       <Label layoutX="40.0" layoutY="50.0" text="Title:">
          <font>
@@ -30,7 +30,6 @@
             <Font name="System Bold" size="18.0" />
          </font></Label>
       <TextField fx:id="txtTitle" layoutX="99.0" layoutY="44.0" prefHeight="39.0" prefWidth="240.0" />
-      <TextField fx:id="txtArtist" layoutX="99.0" layoutY="89.0" prefHeight="39.0" prefWidth="240.0" />
       <TextField fx:id="txtTime" layoutX="99.0" layoutY="173.0" prefHeight="39.0" prefWidth="150.0" />
       <TextField fx:id="txtFile" layoutX="99.0" layoutY="217.0" prefHeight="39.0" prefWidth="240.0" />
       <ComboBox fx:id="comboCategory" layoutX="99.0" layoutY="138.0" prefWidth="150.0" />
@@ -54,5 +53,11 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></JFXButton>
+      <ComboBox fx:id="comboArtist" layoutX="99.0" layoutY="96.0" prefWidth="150.0" />
+      <JFXButton layoutX="250.0" layoutY="89.0" onAction="#clickAddEditAction" text="Add...">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

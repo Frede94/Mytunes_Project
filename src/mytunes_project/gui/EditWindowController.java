@@ -25,8 +25,6 @@ public class EditWindowController implements Initializable
     @FXML
     private TextField txtTitle;
     @FXML
-    private TextField txtArtist;
-    @FXML
     private TextField txtTime;
     @FXML
     private TextField txtFile;
@@ -36,6 +34,8 @@ public class EditWindowController implements Initializable
     private JFXButton btnCancelEdit;
     @FXML
     private JFXButton btnSaveEdit;
+    @FXML
+    private ComboBox<?> comboArtist;
 
     /**
      * Initializes the controller class.
@@ -68,6 +68,11 @@ public class EditWindowController implements Initializable
 
     @FXML
     private void clickChooseFileEdit(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void clickAddEditAction(ActionEvent event)
     {
     }
     
