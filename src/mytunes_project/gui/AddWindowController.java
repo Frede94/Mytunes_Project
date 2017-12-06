@@ -27,6 +27,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import mytunes_project.be.Artist;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
 import mytunes_project.dal.CategoryDAO;
@@ -60,7 +61,7 @@ public class AddWindowController implements Initializable
 
     private Song editSong;
     @FXML
-    private ComboBox<?> comboArtist;
+    private ComboBox<Artist> comboArtist;
 
     /**
      * Initializes the controller class.
@@ -97,6 +98,7 @@ public class AddWindowController implements Initializable
     {
         this.songModel = songModel;
         comboCategory.setItems(songModel.getCategories());
+        comboArtist.setItems(songModel.getArtists());
     }
 
     /*
@@ -158,6 +160,7 @@ public class AddWindowController implements Initializable
             s.setTime(Integer.parseInt(txtTime.getText()));
             s.setTitle(txtTitel.getText());
             s.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
+            s.setArtist(comboArtist.getSelectionModel().getSelectedItem().getArtistName());
             s.setPath(txtFile.getText());
             songModel.saveSong(s);
         } else
@@ -166,6 +169,7 @@ public class AddWindowController implements Initializable
             editSong.setTime(Integer.parseInt(txtTime.getText()));
             editSong.setTitle(txtTitel.getText());
             editSong.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
+            editSong.setArtist(comboArtist.getSelectionModel().getSelectedItem().getArtistName());
             editSong.setPath(txtFile.getText());
             songModel.saveEdit(editSong);
         }
@@ -190,6 +194,10 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickAddAction(ActionEvent event)
     {
+        Artist d = new Artist();
+             
+        songModel.clickAdd(d);
     }
 
+        
 }

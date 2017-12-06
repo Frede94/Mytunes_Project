@@ -9,17 +9,22 @@ package mytunes_project.be;
  *
  * @author Frederik Bærbar
  */
-public class Artists
+public class Artist
 {
     
     private int ArtistId;
 
     private String ArtistName;
 
-    public Artists(int ArtistId, String ArtistName)
+    public Artist(int ArtistId, String ArtistName)
     {
         this.ArtistId = ArtistId;
         this.ArtistName = ArtistName;
+    }
+
+    public Artist()
+    {
+        
     }
     
     /**
@@ -65,7 +70,8 @@ public class Artists
     @Override
     public String toString()
     {
-        return "Artists{" + "ArtistId=" + ArtistId + ", ArtistName=" + ArtistName + '}';
+        return ArtistName;
+                //"Artists{" + "ArtistId=" + ArtistId + ", ArtistName=" + ArtistName + '}';
     }
     
 

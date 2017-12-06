@@ -8,6 +8,7 @@ package mytunes_project.gui;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mytunes_project.be.Artist;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
 import mytunes_project.bll.SearchFilter;
@@ -27,6 +28,7 @@ public class SongModel
     private SongDAO songDao; // FY FY skal flyttes
 
     private ObservableList<Category> categories;
+    public ObservableList<Artist> artists;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
 
     SongManager songManager = new SongManager();
@@ -36,6 +38,9 @@ public class SongModel
         songsInSearch = FXCollections.observableArrayList();
         this.categories = FXCollections.observableArrayList();
         categories.addAll(songManager.getAllCategories());
+        
+        this.artists = FXCollections.observableArrayList();
+        artists.addAll(songManager.getAllArtists());
         loadSongs();
     }
 
@@ -76,6 +81,12 @@ public class SongModel
     {
         return categories;
     }
+    
+    ObservableList<Artist> getArtists()
+    {
+        
+        return artists;
+    }
 
     void loadCategories()
     {
@@ -83,6 +94,14 @@ public class SongModel
 
         categories.clear();
         categories.addAll(loadedCategories);
+    }
+    
+    void loadArtists()
+    {
+        List<Artist> loadedArtists = songManager.getAllArtists();
+        
+        artists.clear();
+        artists.addAll(loadedArtists);
     }
 
     /*
@@ -113,6 +132,11 @@ public class SongModel
         songManager.clickMore(c);
     }
 
+    void clickAdd(Artist d)
+    {
+        artists.add(d);
+        songManager.clickAdd(d);
+    }
     /*
     Søger på det der er skrevet i søgefeltet
     skal flyttes til dal laget
