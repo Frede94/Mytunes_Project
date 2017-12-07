@@ -430,9 +430,17 @@ public class BrugerFladeMainController implements Initializable
                 }
             }
         });
-
-
-
 //volumeSlider.setValue(50);
     }
+
+    @FXML
+    private void addSongToPlaylist(ActionEvent event)
+    {
+       
+    }
+    
+    
+    
+    
+    
 }
