@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import mytunes_project.be.Artist;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
-//import mytunes_project.bll.SearchFilter;
+import mytunes_project.bll.SearchFilter;
 import mytunes_project.bll.SongManager;
 import mytunes_project.dal.SongDAO;
 
@@ -23,9 +23,10 @@ public class SongModel
 {
 
     private ObservableList<Song> songsInSearch;
-//    private SearchFilter searchFilter;
 
-    private SongDAO songDao; // FY FY skal flyttes
+    private SearchFilter searchFilter = new SearchFilter();
+
+    private SongDAO songDao = new SongDAO(); // FY FY skal flyttes
 
     private ObservableList<Category> categories;
     public ObservableList<Artist> artists;
@@ -38,7 +39,7 @@ public class SongModel
         songsInSearch = FXCollections.observableArrayList();
         this.categories = FXCollections.observableArrayList();
         categories.addAll(songManager.getAllCategories());
-        
+
         this.artists = FXCollections.observableArrayList();
         artists.addAll(songManager.getAllArtists());
         loadSongs();
@@ -81,10 +82,10 @@ public class SongModel
     {
         return categories;
     }
-    
+
     ObservableList<Artist> getArtists()
     {
-        
+
         return artists;
     }
 
@@ -95,11 +96,11 @@ public class SongModel
         categories.clear();
         categories.addAll(loadedCategories);
     }
-    
+
     void loadArtists()
     {
         List<Artist> loadedArtists = songManager.getAllArtists();
-        
+
         artists.clear();
         artists.addAll(loadedArtists);
     }
@@ -137,6 +138,7 @@ public class SongModel
         artists.add(d);
         songManager.clickAdd(d);
     }
+
     /*
     Søger på det der er skrevet i søgefeltet
     skal flyttes til dal laget
@@ -144,9 +146,9 @@ public class SongModel
     void search(String searchText)
     {
         List<Song> allSongs = songDao.getAllSongs();
-//        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-//        songsInSearch.addAll(searchResults);
-//        songsInSearch.clear();
+        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+        songsInSearch.addAll(searchResults);
+        songsInSearch.clear();
 
     }
 
