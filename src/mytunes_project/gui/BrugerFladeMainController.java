@@ -239,6 +239,7 @@ public class BrugerFladeMainController implements Initializable
         String searchText = filterField.getText().trim();
         if (!searchText.isEmpty())
         {
+            System.out.println("hello");
             songModel.search(searchText);
         }
 

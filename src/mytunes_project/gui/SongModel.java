@@ -22,7 +22,6 @@ import mytunes_project.dal.SongDAO;
 public class SongModel
 {
 
-    private ObservableList<Song> songsInSearch;
 
     private SearchFilter searchFilter = new SearchFilter();
 
@@ -36,7 +35,7 @@ public class SongModel
 
     public SongModel()
     {
-        songsInSearch = FXCollections.observableArrayList();
+        
         this.categories = FXCollections.observableArrayList();
         categories.addAll(songManager.getAllCategories());
 
@@ -147,8 +146,9 @@ public class SongModel
     {
         List<Song> allSongs = songDao.getAllSongs();
         List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-        songsInSearch.addAll(searchResults);
-        songsInSearch.clear();
+        songs.clear();
+        songs.addAll(searchResults);
+        
 
     }
 
