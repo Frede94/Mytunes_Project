@@ -22,9 +22,9 @@ public class SongModel
 {
 
     private ObservableList<Song> songsInSearch;
-    private SearchFilter searchFilter;
+    private SearchFilter searchFilter = new SearchFilter();
 
-    private SongDAO songDao; // FY FY skal flyttes
+    private SongDAO songDao = new SongDAO(); // FY FY skal flyttes
 
     private ObservableList<Category> categories;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
