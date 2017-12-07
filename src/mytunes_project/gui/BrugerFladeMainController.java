@@ -8,7 +8,6 @@ package mytunes_project.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -17,6 +16,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +33,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -107,6 +109,8 @@ public class BrugerFladeMainController implements Initializable
     private MediaPlayer mp;
 
     private Media me;
+    
+  
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -123,6 +127,9 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
 
         clickLoad();
+        
+        
+      
 
 //        volumeSlider.setValue(mp.getVolume()*100);
 //        volumeSlider.valueProperty().addListener(new InvalidationListener()
@@ -379,6 +386,13 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    public void volumeSlider()
+    {
+      
+        
+    }
+    
+    
 //    public void volumeSlider()
 //    {
 //        volumeSlider.valueProperty().addListener(new InvalidationListener()
@@ -395,4 +409,29 @@ public class BrugerFladeMainController implements Initializable
 //
 //    }
 //    
+
+  
+/**
+ * changes volume when the slider is dragged.
+ * @param event 
+ */
+    @FXML
+    private void setNewVolume(MouseEvent event)
+    {
+        this.volumeSlider.valueProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if( volumeSlider.isValueChanging())
+                {
+                    mp.setVolume(volumeSlider.getValue()/100.0);
+                }
+            }
+        });
+
+
+
+//volumeSlider.setValue(50);
+    }
 }

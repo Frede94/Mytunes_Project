@@ -57,7 +57,7 @@
          </font>
       </JFXButton>
       <Label layoutX="29.0" layoutY="16.0" text="Volume:" />
-      <Slider fx:id="volumeSlider" layoutX="29.0" layoutY="42.0" />
+      <Slider fx:id="volumeSlider" layoutX="29.0" layoutY="42.0" onMouseDragged="#setNewVolume" />
       <TableView fx:id="playlistView" layoutX="12.0" layoutY="88.0" prefHeight="400.0" prefWidth="217.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Name" />
