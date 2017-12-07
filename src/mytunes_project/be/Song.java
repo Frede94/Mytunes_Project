@@ -13,14 +13,13 @@ import java.io.Serializable;
  */
 public class Song implements Serializable
 {
+
     private String title;
-    private String artist;
-    private String category;
+    private Artist artist;
+    private Category category;
     private float time;
     private String path;
     private int songId;
-
-    
 
 //    /**
 //     * Constructs a new Song object
@@ -49,6 +48,16 @@ public class Song implements Serializable
     public String getPath()
     {
         return path;
+    }
+
+    public String getCategoryName()
+    {
+        return category.getCatergoryName();
+    }
+
+    public String getArtistName()
+    {
+        return artist.getArtistName();
     }
 
     /**
@@ -81,44 +90,24 @@ public class Song implements Serializable
         this.time = time;
     }
 
-    /**
-     * Get the value of category
-     *
-     * @return the value of category
-     */
-    public String getCategory()
-    {
-        return category;
-    }
-
-    /**
-     * Set the value of category
-     *
-     * @param category new value of category
-     */
-    public void setCategory(String category)
-    {
-        this.category = category;
-    }
-
-    /**
-     * Get the value of artist
-     *
-     * @return the value of artist
-     */
-    public String getArtist()
+    public Artist getArtist()
     {
         return artist;
     }
 
-    /**
-     * Set the value of artist
-     *
-     * @param artist new value of artist
-     */
-    public void setArtist(String artist)
+    public void setArtist(Artist artist)
     {
         this.artist = artist;
+    }
+
+    public Category getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(Category category)
+    {
+        this.category = category;
     }
 
     /**

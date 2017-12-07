@@ -158,16 +158,16 @@ public class AddWindowController implements Initializable
             Song s = new Song();
             s.setTime(Integer.parseInt(txtTime.getText()));
             s.setTitle(txtTitel.getText());
-            s.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
-            s.setArtist(comboArtist.getSelectionModel().getSelectedItem().getArtistName());
+            s.setCategory(comboCategory.getSelectionModel().getSelectedItem());
+            s.setArtist(comboArtist.getSelectionModel().getSelectedItem());
             s.setPath(txtFile.getText());
             songModel.saveSong(s);
         } else
         {
             editSong.setTime(Integer.parseInt(txtTime.getText()));
             editSong.setTitle(txtTitel.getText());
-            editSong.setCategory(comboCategory.getSelectionModel().getSelectedItem().getCatergoryName());
-            editSong.setArtist(comboArtist.getSelectionModel().getSelectedItem().getArtistName());
+            editSong.setCategory(comboCategory.getSelectionModel().getSelectedItem());
+            editSong.setArtist(comboArtist.getSelectionModel().getSelectedItem());
             editSong.setPath(txtFile.getText());
             songModel.saveEdit(editSong);
         }

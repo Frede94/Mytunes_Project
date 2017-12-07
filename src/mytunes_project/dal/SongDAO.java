@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import mytunes_project.be.Artist;
+import mytunes_project.be.Category;
 import mytunes_project.be.Song;
 import mytunes_project.bll.SearchFilter;
 
@@ -54,8 +56,8 @@ public class SongDAO
                 Song currentSong = new Song();
                 currentSong.setSongId(rs.getInt("SongId"));
                 currentSong.setTitle(rs.getString("Title"));
-                currentSong.setArtist(rs.getString("Artist"));
-                currentSong.setCategory(rs.getString("Category"));
+                currentSong.setArtist(getArtist(rs.getInt("ArtistId")));
+                currentSong.setCategory(getCategory(rs.getInt("CategoryId")));
                 currentSong.setTime(rs.getFloat("Time"));
                 currentSong.setPath(rs.getString("Path"));
 
@@ -67,6 +69,50 @@ public class SongDAO
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return songs;
+    }
+
+    public Artist getArtist(int artistId)
+    {
+        Artist artist = null;
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Artist");
+            while (rs.next())
+            {
+
+                artist = new Artist();
+                artist.setArtistId(rs.getInt("ArtistId"));
+                artist.setArtistName("ArtistName");
+
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return artist;
+    }
+
+    public Category getCategory(int categoryId)
+    {
+        Category category = null;
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Category");
+            while (rs.next())
+            {
+
+                category = new Category();
+                category.setCategoryId(rs.getInt("CategoryId"));
+                category.setCatergoryName("CategoryName");
+
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return category;
     }
 
     /**
@@ -113,12 +159,12 @@ public class SongDAO
         {
 
             Statement stmt = con.createStatement();
-            String sql = "INSERT INTO Song (Title, Artist, Category, Time, Path) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO Song (Title, ArtistId, CategoryId, Time, Path) VALUES (?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
 
             st.setString(1, s.getTitle());
-            st.setInt(2, 1);
-            st.setInt(3, 1);
+            st.setInt(2, s.getArtist().getArtistId());
+            st.setInt(3, s.getCategory().getCategoryId());
             st.setFloat(4, s.getTime());
             st.setString(5, s.getPath());
 
@@ -149,8 +195,8 @@ public class SongDAO
             PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
 
             st.setString(1, editSong.getTitle());
-            st.setString(2, editSong.getArtist());
-            st.setInt(3, 1);
+            st.setInt(2, editSong.getArtist().getArtistId());
+            st.setInt(3, editSong.getCategory().getCategoryId());
             st.setFloat(4, editSong.getTime());
             st.setString(5, editSong.getPath());
 

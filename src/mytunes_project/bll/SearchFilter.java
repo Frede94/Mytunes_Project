@@ -25,10 +25,10 @@ public class SearchFilter
             if (song.getTitle().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(song);
-            } else if (song.getArtist().toLowerCase().contains(query.toLowerCase()))
+            } else if (song.getArtistName().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(song);
-            } else if (song.getCategory().toLowerCase().contains(query.toLowerCase()))
+            } else if (song.getCategoryName().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(song);
             }

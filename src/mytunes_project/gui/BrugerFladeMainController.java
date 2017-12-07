@@ -114,8 +114,8 @@ public class BrugerFladeMainController implements Initializable
         //Binding list in model with ListView
 
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
-        tableColumnArtist.setCellValueFactory(new PropertyValueFactory("Artist"));
-        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("Category"));
+        tableColumnArtist.setCellValueFactory(new PropertyValueFactory("ArtistName"));
+        tableColumnCategory.setCellValueFactory(new PropertyValueFactory("CategoryName"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
 
         songsList.setItems(songModel.getSongs());
