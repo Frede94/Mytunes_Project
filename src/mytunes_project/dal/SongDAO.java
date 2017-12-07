@@ -76,15 +76,15 @@ public class SongDAO
         Artist artist = null;
         try (Connection con = dbc.getConnection())
         {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Artist");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Artist WHERE ArtistId = ?");
+            stmt.setInt(1, artistId);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next())
             {
 
                 artist = new Artist();
                 artist.setArtistId(rs.getInt("ArtistId"));
-                artist.setArtistName("ArtistName");
-
+                artist.setArtistName(rs.getString("ArtistName"));
             }
         } catch (SQLException ex)
         {
@@ -98,14 +98,15 @@ public class SongDAO
         Category category = null;
         try (Connection con = dbc.getConnection())
         {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Category");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Category WHERE CategoryId = ?");
+            stmt.setInt(1, categoryId);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next())
             {
 
                 category = new Category();
                 category.setCategoryId(rs.getInt("CategoryId"));
-                category.setCatergoryName("CategoryName");
+                category.setCatergoryName(rs.getString("CategoryName"));
 
             }
         } catch (SQLException ex)
