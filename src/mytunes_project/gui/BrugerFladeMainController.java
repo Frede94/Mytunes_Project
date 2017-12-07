@@ -294,6 +294,7 @@ public class BrugerFladeMainController implements Initializable
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
             ewc.setSongModel(songModel);
+            ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit/add Songs");

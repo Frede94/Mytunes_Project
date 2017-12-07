@@ -9,12 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,14 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import mytunes_project.be.Artist;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
-import mytunes_project.dal.CategoryDAO;
 import mytunes_project.dal.DataBaseConnector;
 
 /**
@@ -181,20 +173,26 @@ public class AddWindowController implements Initializable
      */
     public void setEditSong(Song selectedItem)
     {
-        editSong = selectedItem;
-        txtTitel.setText(editSong.getTitle());
 
-        //editSong.setTime(Float.parseFloat(txtTime.getText()));
+        
+        
+        editSong = selectedItem;
+        comboArtist.getSelectionModel().select(editSong.getArtist());
+        comboCategory.getSelectionModel().select(editSong.getCategory());
+        txtTitel.setText(editSong.getTitle());
         txtFile.setText(editSong.getPath());
+        txtTime.setText(String.valueOf(editSong.getTime()));
+
+//        String output = comboArtist.getSelectionModel().getSelectedItem().toString(); 
+//        System.out.println(output);
     }
 
     @FXML
     private void clickAddAction(ActionEvent event)
     {
         Artist d = new Artist();
-             
+
         songModel.clickAdd(d);
     }
 
-        
 }
