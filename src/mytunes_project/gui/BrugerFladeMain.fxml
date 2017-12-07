@@ -74,7 +74,7 @@
         </columns>
       </TableView>
       <JFXButton layoutX="701.0" layoutY="501.0" onAction="#clickLoad" text="Load Songs" />
-      <JFXButton fx:id="addSongToPlaylistBtn" layoutX="417.0" layoutY="88.0" prefHeight="37.0" prefWidth="44.0" text="🢀">
+      <JFXButton fx:id="addSongToPlaylistBtn" layoutX="417.0" layoutY="88.0" onAction="#addSongToPlaylist" prefHeight="37.0" prefWidth="44.0" text="🢀">
          <font>
             <Font size="16.0" />
          </font>
