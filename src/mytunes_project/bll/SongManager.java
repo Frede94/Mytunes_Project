@@ -6,8 +6,10 @@
 package mytunes_project.bll;
 
 import java.util.List;
+import mytunes_project.be.Artist;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
+import mytunes_project.dal.ArtistDAO;
 import mytunes_project.dal.CategoryDAO;
 import mytunes_project.dal.SongDAO;
 
@@ -20,6 +22,7 @@ public class SongManager
 
     private static SongDAO songDAO = new SongDAO();
     private CategoryDAO categoryDAO;
+    private ArtistDAO artistDAO;
 
     /**
      * Removes the selected song.
@@ -35,6 +38,7 @@ public class SongManager
     {
         categoryDAO = new CategoryDAO();
         songDAO = new SongDAO();
+        artistDAO = new ArtistDAO();
 
     }
 
@@ -66,6 +70,11 @@ public class SongManager
     {
         return categoryDAO.getAllCategories();
     }
+    
+    public List<Artist> getAllArtists()
+    {
+        return artistDAO.getAllArtists();
+    }
 
     /*
     gemmer sangen man taster i databasen.
@@ -92,4 +101,8 @@ public class SongManager
         categoryDAO.clickMore(c);
     }
 
+    public void clickAdd (Artist d)
+    {
+        artistDAO.clickAdd(d);
+    }
 }

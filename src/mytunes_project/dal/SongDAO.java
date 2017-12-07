@@ -117,7 +117,7 @@ public class SongDAO
             PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
 
             st.setString(1, s.getTitle());
-            st.setString(2, s.getArtist());
+            st.setInt(2, 1);
             st.setInt(3, 1);
             st.setFloat(4, s.getTime());
             st.setString(5, s.getPath());
