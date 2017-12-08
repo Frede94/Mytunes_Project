@@ -147,9 +147,7 @@ public class SongModel
         List<Song> allSongs = songDao.getAllSongs();
         List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
         songs.clear();
-        songs.addAll(searchResults);
-        
-
+        songs.addAll(searchResults);        
     }
 
 }

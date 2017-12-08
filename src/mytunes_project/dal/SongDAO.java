@@ -190,19 +190,52 @@ public class SongDAO
     {
         try (Connection con = dbc.getConnection())
         {
+            // create the java mysql update preparedstatement
+            String queryTitle = "update Song set Title = ? where SongId ="+ editSong.getSongId();
+            String queryArtist = "update Song set ArtistId = ? where SongId ="+ editSong.getSongId();
+            String queryCat = "update Song set CategoryId = ? where SongId ="+ editSong.getSongId();
+            String queryTime = "update Song set Time = ? where SongId ="+ editSong.getSongId();
+            String queryPath = "update Song set Path = ? where SongId ="+ editSong.getSongId();
+            
+            PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
+            PreparedStatement preparedStmtArtist = con.prepareStatement(queryArtist);
+            PreparedStatement preparedStmtCat = con.prepareStatement(queryCat);
+            PreparedStatement preparedStmtTime = con.prepareStatement(queryTime);
+            PreparedStatement preparedStmtPath = con.prepareStatement(queryPath);
+            
+            preparedStmtTitle.setString(1, editSong.getTitle());
+            preparedStmtArtist.setInt(1, editSong.getArtist().getArtistId());
+            preparedStmtCat.setInt(1, editSong.getCategory().getCategoryId());
+            preparedStmtTime.setFloat(1, editSong.getTime());
+            preparedStmtPath.setString(1, editSong.getPath());
+            
 
-            Statement stmt = con.createStatement();
-            String sql = "INSERT INTO Song (Title, Artist, Category, Time, Path) VALUES (?,?,?,?,?)";
-            PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
+            // execute the java preparedstatement
+            preparedStmtTitle.executeUpdate();
+            preparedStmtArtist.executeUpdate();
+            preparedStmtCat.executeUpdate();
+            preparedStmtTime.executeUpdate();
+            preparedStmtPath.executeUpdate();
 
-            st.setString(1, editSong.getTitle());
-            st.setInt(2, editSong.getArtist().getArtistId());
-            st.setInt(3, editSong.getCategory().getCategoryId());
-            st.setFloat(4, editSong.getTime());
-            st.setString(5, editSong.getPath());
+            
 
-            st.execute();
-
+//            Statement stmt = con.createStatement();
+//            String sql = "UPDATE Song SET Title = ?"
+//                    + "SET ArtistId = ?"
+//                    + "SET CategoryId = ?"
+//                    + "SET Time = ?"
+//                    + "Set Path = ?"
+//                    + "WHERE Title = " + editSong.getTitle();
+//                        //"UPDATE Song (Title, ArtistId, CategoryId, Time, Path) VALUES (?,?,?,?,?)";
+//            PreparedStatement st = con.prepareStatement(sql);     //, stmt.RETURN_GENERATED_KEYS 
+//
+//            st.setString(1, editSong.getTitle());
+//            st.setInt(2, editSong.getArtist().getArtistId());
+//            st.setInt(3, editSong.getCategory().getCategoryId());
+//            st.setFloat(4, editSong.getTime());
+//            st.setString(5, editSong.getPath());
+//
+//            st.execute();
 //            ResultSet rs = st.getGeneratedKeys();
 //
 //            rs.next();
@@ -215,6 +248,11 @@ public class SongDAO
         }
     }
 }
+//"UPDATE Song set Title = ? Where Title = ?"
+//                    + " set ArtistId = ? Where ArtistID = ?"
+//                    + " set CategoryId = ? Where CategoryId = ?"
+//                    + " set Time = ? Where Time = ?"
+//                    + " set Path = ? Where Path = ?"
 
 //    public Song createSong(String title, String artistId, String categoryId, float time, String path) throws SQLServerException, SQLException
 //    {

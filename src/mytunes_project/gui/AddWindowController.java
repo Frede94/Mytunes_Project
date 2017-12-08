@@ -156,7 +156,7 @@ public class AddWindowController implements Initializable
             songModel.saveSong(s);
         } else
         {
-            editSong.setTime(Integer.parseInt(txtTime.getText()));
+            editSong.setTime(Float.parseFloat(txtTime.getText()));
             editSong.setTitle(txtTitel.getText());
             editSong.setCategory(comboCategory.getSelectionModel().getSelectedItem());
             editSong.setArtist(comboArtist.getSelectionModel().getSelectedItem());
