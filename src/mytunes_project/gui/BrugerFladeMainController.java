@@ -209,7 +209,6 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /*
-    CRASHER NÅR MAN TRYKKER STOP!!
     stopper medieafspilleren.
      */
     @FXML
