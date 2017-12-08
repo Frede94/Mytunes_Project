@@ -111,7 +111,17 @@ public class BrugerFladeMainController implements Initializable
 
     private Media me;
 
+    @FXML
+    private TableView<?> playlistView;
+    @FXML
+    private TableColumn<Playlist, String> tableColumnPlaylistName;
+    @FXML
+    private TableColumn<Playlist, String> tableColumnPlaylistSongs;
+    @FXML
+    private TableColumn<Playlist, String> tableColumnPlaylistTime;
+
     @Override
+
     public void initialize(URL url, ResourceBundle rb)
     {
         //Binding list in model with ListView
@@ -122,10 +132,12 @@ public class BrugerFladeMainController implements Initializable
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
 
         songsList.setItems(songModel.getSongs());
-
         songModel.loadSongs();
-
         clickLoad();
+
+        tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("Name"));
+        tableColumnPlaylistSongs.setCellValueFactory(new PropertyValueFactory("Songs"));
+        tableColumnPlaylistTime.setCellValueFactory(new PropertyValueFactory("Time"));
 
     }
 

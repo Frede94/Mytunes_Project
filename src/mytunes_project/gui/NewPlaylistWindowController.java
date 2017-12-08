@@ -33,8 +33,6 @@ public class NewPlaylistWindowController implements Initializable
     private JFXButton btnCancelPlaylist;
     @FXML
     private JFXButton btnSavePlaylist;
-    @FXML
-    private TableView<Playlist> playlistView;
 
     /**
      * Initializes the controller class.
@@ -54,13 +52,18 @@ public class NewPlaylistWindowController implements Initializable
     stage.close();
     }
 
+    
+    /**
+     * Skal kunne gemme navnet som en liste, der kan smides sange ind i :-) :-) :-) ..?????
+     * @param event 
+     */
     @FXML
     private void buttonSavePlaylist(ActionEvent event)
     {
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList("Name", "Song", "Time"); 
         //List.(items);
-        System.out.println("test");
+        
     }
     
 }
