@@ -90,8 +90,8 @@ public class BrugerFladeMainController implements Initializable
     private JFXButton nextSongBtn;
     @FXML
     private Slider volumeSlider;
-    @FXML
-    private TableView<Playlist> playlistView;
+//    @FXML
+//    private TableView<Playlist> playlistView;
 
     private SongModel songModel = new SongModel();
 

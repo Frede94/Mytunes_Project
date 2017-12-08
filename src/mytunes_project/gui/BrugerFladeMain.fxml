@@ -60,9 +60,9 @@
       <Slider fx:id="volumeSlider" layoutX="29.0" layoutY="42.0" onMouseDragged="#setNewVolume" />
       <TableView fx:id="playlistView" layoutX="12.0" layoutY="88.0" prefHeight="400.0" prefWidth="217.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="52.0" text="Songs" />
-            <TableColumn prefWidth="98.0" text="Time" />
+          <TableColumn fx:id="tableColumnPlaylistName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="tableColumnPlaylistSongs" prefWidth="52.0" text="Songs" />
+            <TableColumn fx:id="tableColumnPlaylistTime" prefWidth="98.0" text="Time" />
         </columns>
       </TableView>
       <TableView fx:id="songsList" layoutX="459.0" layoutY="88.0" onMouseClicked="#clickSpecificSong" prefHeight="400.0" prefWidth="384.0">
