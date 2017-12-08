@@ -42,6 +42,7 @@ import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import mytunes_project.be.Playlist;
 import mytunes_project.be.Song;
 
 /**
@@ -90,7 +91,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Slider volumeSlider;
     @FXML
-    private TableView<?> playlistView;
+    private TableView<Playlist> playlistView;
 
     private SongModel songModel = new SongModel();
 
@@ -435,8 +436,10 @@ public class BrugerFladeMainController implements Initializable
 
     @FXML
     private void addSongToPlaylist(ActionEvent event)
-    {
+    {   
        
+        
+        
     }
     
     

@@ -44,5 +44,10 @@ public class NewPlaylistWindowController implements Initializable
     Stage stage = (Stage) btnCancelPlaylist.getScene().getWindow();
     stage.close();
     }
+
+    @FXML
+    private void buttonSavePlaylist(ActionEvent event)
+    {
+    }
     
 }
