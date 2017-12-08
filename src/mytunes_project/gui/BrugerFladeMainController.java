@@ -110,8 +110,6 @@ public class BrugerFladeMainController implements Initializable
     private MediaPlayer mp;
 
     private Media me;
-    
-  
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -128,24 +126,7 @@ public class BrugerFladeMainController implements Initializable
         songModel.loadSongs();
 
         clickLoad();
-        
-        
-      
 
-//        volumeSlider.setValue(mp.getVolume()*100);
-//        volumeSlider.valueProperty().addListener(new InvalidationListener()
-//        {
-//            @Override
-//            public void invalidated(Observable observable)
-//            {
-//                mp.setVolume(volumeSlider.getValue()/100);
-//            }
-//        });
-//        String path = new File("C:\\Users\\Frederik Bærbar\\Desktop\\Musik\\End.mp3").getAbsolutePath();
-//        
-//        me = new Media(new File(path).toURI().toString());
-//        mp = new MediaPlayer(me);
-//        mp.setAutoPlay(true);
     }
 
     /*
@@ -251,11 +232,6 @@ public class BrugerFladeMainController implements Initializable
             songModel.search(searchText);
         }
 
-//        String searchText = filterField.getText().trim();
-//        if (!searchText.isEmpty())
-//        {
-//            songModel.search(searchText);
-//        }
     }
 
 
@@ -390,11 +366,9 @@ public class BrugerFladeMainController implements Initializable
 
     public void volumeSlider()
     {
-      
-        
+
     }
-    
-    
+
 //    public void volumeSlider()
 //    {
 //        volumeSlider.valueProperty().addListener(new InvalidationListener()
@@ -411,12 +385,11 @@ public class BrugerFladeMainController implements Initializable
 //
 //    }
 //    
-
-  
-/**
- * changes volume when the slider is dragged.
- * @param event 
- */
+    /**
+     * changes volume when the slider is dragged.
+     *
+     * @param event
+     */
     @FXML
     private void setNewVolume(MouseEvent event)
     {
@@ -425,9 +398,9 @@ public class BrugerFladeMainController implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-                if( volumeSlider.isValueChanging())
+                if (volumeSlider.isValueChanging())
                 {
-                    mp.setVolume(volumeSlider.getValue()/100.0);
+                    mp.setVolume(volumeSlider.getValue() / 100.0);
                 }
             }
         });
@@ -436,14 +409,8 @@ public class BrugerFladeMainController implements Initializable
 
     @FXML
     private void addSongToPlaylist(ActionEvent event)
-    {   
-       
-        
-        
+    {
+
     }
-    
-    
-    
-    
-    
+
 }
