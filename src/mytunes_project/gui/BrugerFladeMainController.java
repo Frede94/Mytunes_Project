@@ -110,6 +110,14 @@ public class BrugerFladeMainController implements Initializable
     private MediaPlayer mp;
 
     private Media me;
+    @FXML
+    private TableView<?> playlistView;
+    @FXML
+    private TableColumn<Playlist, String> tableColumnPlaylistName;
+    @FXML
+    private TableColumn<Playlist, String> tableColumnPlaylistSongs;
+    @FXML
+    private TableColumn<Playlist, String> tableColumnPlaylistTime;
     
   
 
@@ -123,11 +131,15 @@ public class BrugerFladeMainController implements Initializable
         tableColumnCategory.setCellValueFactory(new PropertyValueFactory("CategoryName"));
         tableColumnTime.setCellValueFactory(new PropertyValueFactory("Time"));
 
+               
         songsList.setItems(songModel.getSongs());
-
         songModel.loadSongs();
-
         clickLoad();
+        
+        tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("Name"));
+        tableColumnPlaylistSongs.setCellValueFactory(new PropertyValueFactory("Songs"));
+        tableColumnPlaylistTime.setCellValueFactory(new PropertyValueFactory("Time"));
+        
         
         
       
