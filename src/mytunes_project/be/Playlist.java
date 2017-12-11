@@ -11,5 +11,27 @@ package mytunes_project.be;
  */
 public class Playlist
 {
+    private int PlaylistId;
+    private String PlaylistName;
+
+    public int getPlaylistId()
+    {
+        return PlaylistId;
+    }
+
+    public void setPlaylistId(int PlaylistId)
+    {
+        this.PlaylistId = PlaylistId;
+    }
+
+    public String getPlaylistName()
+    {
+        return PlaylistName;
+    }
+
+    public void setPlaylistName(String PlaylistName)
+    {
+        this.PlaylistName = PlaylistName;
+    }
     
 }
