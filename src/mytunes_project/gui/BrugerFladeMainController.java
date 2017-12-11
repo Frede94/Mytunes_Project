@@ -110,6 +110,7 @@ public class BrugerFladeMainController implements Initializable
     private MediaPlayer mp;
 
     private Media me;
+    private Song selectedSong;
 
     @FXML
     private TableView<?> playlistView;
@@ -145,10 +146,31 @@ public class BrugerFladeMainController implements Initializable
     starter den musiken når man trykker på knappen
      */
     @FXML
-    private void clickedPlayButton(ActionEvent event)
+    private void clickedPlayButton(ActionEvent event) throws MalformedURLException
     {
         new BrugerFladeMainController();
-        mp.play();
+
+        String path = selectedSong.getPath();
+        System.out.println(path);
+
+        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+//        mp.getMedia().getSource();
+        if (selectedSong.equals(selectedSong))
+        {
+            Media musicFile = new Media(url.toString());
+            mp = new MediaPlayer(musicFile);
+            mp.setVolume(volumeSlider.getValue() / 100);
+            mp.getMedia().getSource();
+            mp.play();
+
+        } else
+        {
+            mp.stop();
+        }
+//        Media musicFile = new Media(url.toString());
+//        mp = new MediaPlayer(musicFile);
+//        mp.setVolume(volumeSlider.getValue() / 100);
+//        mp.play();
 //       
 //        System.out.println("test");
 
@@ -157,55 +179,15 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickSpecificSong(MouseEvent event) throws MalformedURLException
     {
-        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
-        String path = selectedSong.getPath();
-        System.out.println(path);
-
-        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
-        Media musicFile = new Media(url.toString());
-        mp = new MediaPlayer(musicFile);
-        mp.setVolume(0.9);
-    }
-
-
-    /*
-    når du trykker play åbner et filechooser vindue hvor man kan finde den sang
-    man vil afspille.
-    DENNE METODE SKAL IKKE BRUGES HER, DET ER KUN MIDLERTIDIGT!
-     */
-    public void start()
-    {
-
-        String fileName = null;
-        URL url;
-        final CountDownLatch latch = new CountDownLatch(1);
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new JFXPanel(); // initializes JavaFX environment
-                latch.countDown();
-            }
-        });
-        try
-        {
-            latch.await();
-        } catch (InterruptedException ex)
-        {
-            Logger.getLogger(BrugerFladeMainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "MP3 Files", "mp3");
-        chooser.setFileFilter(filter);
-        int returnVal = chooser.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            fileName = chooser.getSelectedFile().toURI().toString();
-        }
-
-        mp = new MediaPlayer(new Media(fileName));
-        mp.play();
+        selectedSong = songsList.getSelectionModel().getSelectedItem();
+//        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
+//        String path = selectedSong.getPath();
+//        System.out.println(path);
+//
+//        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+//        Media musicFile = new Media(url.toString());
+//        mp = new MediaPlayer(musicFile);
+//        mp.setVolume(volumeSlider.getValue()/100);
     }
 
     /*
@@ -380,22 +362,6 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-//    public void volumeSlider()
-//    {
-//        volumeSlider.valueProperty().addListener(new InvalidationListener()
-//        {
-//            @Override
-//            public void invalidated(Observable observable)
-//            {
-//                if (volumeSlider.isValueChanging())
-//                {
-//                    mp.setVolume(volumeSlider.getValue() / 100);
-//                }
-//            }
-//        });
-//
-//    }
-//    
     /**
      * changes volume when the slider is dragged.
      *
