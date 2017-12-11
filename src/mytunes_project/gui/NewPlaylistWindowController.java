@@ -33,6 +33,8 @@ public class NewPlaylistWindowController implements Initializable
     private JFXButton btnCancelPlaylist;
     @FXML
     private JFXButton btnSavePlaylist;
+    
+    private PlaylistModel playlistModel;
 
     /**
      * Initializes the controller class.
@@ -63,7 +65,8 @@ public class NewPlaylistWindowController implements Initializable
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList("Name", "Song", "Time"); 
         //List.(items);
-        
+//        Playlist p = new Playlist();
+//        playlistModel.clickMore(p);
     }
     
 }
