@@ -110,6 +110,9 @@ public class BrugerFladeMainController implements Initializable
     private MediaPlayer mp;
 
     private Media me;
+
+    private Song songPlaying;
+
     private Song selectedSong;
 
     @FXML
@@ -134,6 +137,7 @@ public class BrugerFladeMainController implements Initializable
 
         songsList.setItems(songModel.getSongs());
         songModel.loadSongs();
+        volumeSlider.setValue(50);
         clickLoad();
 
         tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("Name"));
@@ -148,32 +152,48 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickedPlayButton(ActionEvent event) throws MalformedURLException
     {
-        new BrugerFladeMainController();
 
-        String path = selectedSong.getPath();
-        System.out.println(path);
-
-        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
-//        mp.getMedia().getSource();
-        if (selectedSong.equals(selectedSong))
+        if (selectedSong.equals(songPlaying))
         {
-            Media musicFile = new Media(url.toString());
-            mp = new MediaPlayer(musicFile);
-            mp.setVolume(volumeSlider.getValue() / 100);
-            mp.getMedia().getSource();
-            mp.play();
+            if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
+            {
+                System.out.println("hello det virker!!");
+                mp.pause();
 
+            } else
+            {
+                System.out.println("hello det virker ikke!!");
+                mp.play();
+
+            }
         } else
         {
-            mp.stop();
-        }
-//        Media musicFile = new Media(url.toString());
-//        mp = new MediaPlayer(musicFile);
-//        mp.setVolume(volumeSlider.getValue() / 100);
-//        mp.play();
-//       
-//        System.out.println("test");
+            if (mp != null)
+            {
+                mp.stop();
+            }
 
+            String path = selectedSong.getPath();
+            System.out.println(path);
+
+            URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+            Media musicFile = new Media(url.toString());
+            mp = new MediaPlayer(musicFile);
+            songPlaying = selectedSong;
+            mp.setVolume(volumeSlider.getValue() / 100);
+            mp.play();
+
+        }
+
+    }
+
+    /*
+    stopper medieafspilleren.
+     */
+    @FXML
+    private void clickStopPlaying(ActionEvent event)
+    {
+        mp.stop();
     }
 
     @FXML
@@ -189,16 +209,6 @@ public class BrugerFladeMainController implements Initializable
 //        mp = new MediaPlayer(musicFile);
 //        mp.setVolume(volumeSlider.getValue()/100);
     }
-
-    /*
-    stopper medieafspilleren.
-     */
-    @FXML
-    private void clickStopPlaying(ActionEvent event)
-    {
-        mp.pause();
-    }
-
 
     /*
     Loader sange fra databasen, når man trykker på knappen
@@ -370,6 +380,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void setNewVolume(MouseEvent event)
     {
+        
         this.volumeSlider.valueProperty().addListener(new InvalidationListener()
         {
             @Override
@@ -381,7 +392,7 @@ public class BrugerFladeMainController implements Initializable
                 }
             }
         });
-//volumeSlider.setValue(50);
+
     }
 
     @FXML
