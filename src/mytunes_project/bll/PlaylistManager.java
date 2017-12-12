@@ -5,6 +5,7 @@
  */
 package mytunes_project.bll;
 
+import java.util.List;
 import mytunes_project.be.Playlist;
 import mytunes_project.dal.PlaylistDAO;
 
@@ -14,12 +15,16 @@ import mytunes_project.dal.PlaylistDAO;
  */
 public class PlaylistManager
 {
-    
+
     private PlaylistDAO playlistDAO = new PlaylistDAO();
- 
+
     public void save(Playlist p)
     {
         playlistDAO.save(p);
     }
-    
+
+    public List<Playlist> getAllPlaylists()
+    {
+        return playlistDAO.getAllPlaylists();
+    }
 }

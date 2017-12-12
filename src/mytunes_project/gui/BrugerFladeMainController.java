@@ -117,7 +117,7 @@ public class BrugerFladeMainController implements Initializable
     private Song selectedSong;
 
     @FXML
-    private TableView<?> playlistView;
+    private TableView<Playlist> playlistView;
     @FXML
     private TableColumn<Playlist, String> tableColumnPlaylistName;
     @FXML
@@ -141,9 +141,12 @@ public class BrugerFladeMainController implements Initializable
         volumeSlider.setValue(50);
         clickLoad();
 
-        tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("Name"));
-        tableColumnPlaylistSongs.setCellValueFactory(new PropertyValueFactory("Songs"));
-        tableColumnPlaylistTime.setCellValueFactory(new PropertyValueFactory("Time"));
+        tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("PlaylistName"));
+        tableColumnPlaylistSongs.setCellValueFactory(new PropertyValueFactory("NumberofSongs"));
+        tableColumnPlaylistTime.setCellValueFactory(new PropertyValueFactory("TotalTime"));
+
+        playlistView.setItems(playlistModel.getPlaylists());
+        playlistModel.loadPlaylists();
 
     }
 
@@ -215,6 +218,7 @@ public class BrugerFladeMainController implements Initializable
     {
 
         songModel.loadSongs();
+        playlistModel.loadPlaylists();
 
     }
 
@@ -393,19 +397,23 @@ public class BrugerFladeMainController implements Initializable
     {
 
     }
-/**
- *  Tilføjer en sang til playlisten
- * @param event 
- */
+
+    /**
+     * Tilføjer en sang til playlisten
+     *
+     * @param event
+     */
     @FXML
     private void addSongToPlaylist(ActionEvent event)
     {
 
     }
-/**
- *  Afspiller den forrige sang
- * @param event 
- */
+
+    /**
+     * Afspiller den forrige sang
+     *
+     * @param event
+     */
     @FXML
     private void clikedPrevSong(ActionEvent event)
     {
@@ -413,7 +421,8 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * Afspiller den næste sang i rækken
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void clikedNextsSong(ActionEvent event)

@@ -17,6 +17,7 @@ public class Playlist implements Serializable
     private int PlaylistId;
     private String PlaylistName;
     private int NumberofSongs;
+    private float TotalTime;
 
 //    public Playlist(int PlaylistId, String PlaylistName, int NumberofSongs)
 //    {
@@ -29,8 +30,15 @@ public class Playlist implements Serializable
 //    {
 //        
 //    }
+    public float getTotalTime()
+    {
+        return TotalTime;
+    }
 
-
+    public void setTotalTime(float TotalTime)
+    {
+        this.TotalTime = TotalTime;
+    }
 
     public int getNumberofSongs()
     {
@@ -65,8 +73,7 @@ public class Playlist implements Serializable
     @Override
     public String toString()
     {
-        return "Playlist{" + "PlaylistId=" + PlaylistId + ", PlaylistName=" + PlaylistName + ", NumberofSongs=" + NumberofSongs + '}';
+        return "Playlist{" + "PlaylistId=" + PlaylistId + ", PlaylistName=" + PlaylistName + ", NumberofSongs=" + NumberofSongs + ", TotalTime=" + TotalTime + '}';
     }
-    
-    
+
 }

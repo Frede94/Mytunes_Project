@@ -7,8 +7,11 @@ package mytunes_project.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytunes_project.be.Playlist;
@@ -36,6 +39,31 @@ public class PlaylistDAO
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
 
         }
+    }
+
+    public List<Playlist> getAllPlaylists()
+    {
+        List<Playlist> playlists = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Playlists");
+            while (rs.next())
+            {
+                Playlist currentPlaylist = new Playlist();
+                currentPlaylist.setPlaylistId(rs.getInt("PlaylistId"));
+                currentPlaylist.setPlaylistName(rs.getString("PlaylistName"));
+                currentPlaylist.setNumberofSongs(rs.getInt("NumberofSongs"));
+                currentPlaylist.setTotalTime(rs.getFloat("TotalTime"));
+
+                playlists.add(currentPlaylist);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return playlists;
     }
 
 }
