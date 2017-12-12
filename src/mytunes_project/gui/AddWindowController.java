@@ -139,8 +139,7 @@ public class AddWindowController implements Initializable
 
     /*
     
-    Når man trykker save gemme den de tastede data ind i databasen
-    link til hjælp: https://stackoverflow.com/questions/5752307/how-to-retrieve-value-from-jtextfield-in-java-swing
+    Når man trykker save gemme den de tastede data ind i databasen   
      */
     @FXML
     private void clickSaveAction(ActionEvent event)
