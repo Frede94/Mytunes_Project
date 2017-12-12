@@ -45,7 +45,10 @@ public class NewPlaylistWindowController implements Initializable
      
     }    
 
-    
+    public void setPlaylistModel(PlaylistModel playlistModel)
+    {
+        this.playlistModel = playlistModel;
+    }
     
     @FXML
     private void closePlaylistBox(ActionEvent event)
@@ -62,11 +65,13 @@ public class NewPlaylistWindowController implements Initializable
     @FXML
     private void buttonSavePlaylist(ActionEvent event)
     {
-        ListView<String> list = new ListView<String>();
-        ObservableList<String> items = FXCollections.observableArrayList("Name", "Song", "Time"); 
+//        ListView<String> list = new ListView<String>();
+//        ObservableList<String> items = FXCollections.observableArrayList("Name", "Song", "Time"); 
         //List.(items);
-//        Playlist p = new Playlist();
-//        playlistModel.clickMore(p);
+        Playlist p = new Playlist();
+        p.setPlaylistName(playlistName.getText());
+        playlistModel.savePlaylist(p);
+        
     }
     
 }

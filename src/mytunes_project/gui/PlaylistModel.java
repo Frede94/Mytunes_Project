@@ -5,6 +5,7 @@
  */
 package mytunes_project.gui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes_project.be.Playlist;
 import mytunes_project.bll.PlaylistManager;
@@ -16,12 +17,13 @@ import mytunes_project.bll.PlaylistManager;
 public class PlaylistModel
 {
     PlaylistManager playlistManager = new PlaylistManager();
-    private ObservableList<Playlist> playlists;
+    private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
     
-    void clickMore(Playlist p)
+
+    void savePlaylist(Playlist p)
     {
         playlists.add(p);
-        playlistManager.clickMore(p);
+        playlistManager.save(p);
     }
     
 }

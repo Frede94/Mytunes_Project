@@ -15,11 +15,11 @@ import mytunes_project.dal.PlaylistDAO;
 public class PlaylistManager
 {
     
-    private PlaylistDAO playlistDAO;
-
-    public void clickMore(Playlist p)
+    private PlaylistDAO playlistDAO = new PlaylistDAO();
+ 
+    public void save(Playlist p)
     {
-        playlistDAO.clickMore(p);
+        playlistDAO.save(p);
     }
     
 }
