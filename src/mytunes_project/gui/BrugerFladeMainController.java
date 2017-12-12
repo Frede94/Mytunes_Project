@@ -94,6 +94,7 @@ public class BrugerFladeMainController implements Initializable
 //    private TableView<Playlist> playlistView;
 
     private SongModel songModel = new SongModel();
+    private PlaylistModel playlistModel = new PlaylistModel();
 
     //private SongModel songModel = new SongModel();
     @FXML
@@ -292,6 +293,8 @@ public class BrugerFladeMainController implements Initializable
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewPlaylistWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            NewPlaylistWindowController playlistController = fxmlLoader.getController();
+            playlistController.setPlaylistModel(playlistModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Playlist");
@@ -395,6 +398,16 @@ public class BrugerFladeMainController implements Initializable
     private void addSongToPlaylist(ActionEvent event)
     {
 
+    }
+
+    @FXML
+    private void clikedPrevSong(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void clikedNextsSong(ActionEvent event)
+    {
     }
 
 }

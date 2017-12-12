@@ -5,28 +5,32 @@
  */
 package mytunes_project.be;
 
+import java.io.Serializable;
+
 /**
  *
  * @author morte
  */
-public class Playlist
+public class Playlist implements Serializable
 {
 
     private int PlaylistId;
     private String PlaylistName;
     private int NumberofSongs;
 
-    public Playlist(int PlaylistId, String PlaylistName, int NumberofSongs)
-    {
-        this.PlaylistId = PlaylistId;
-        this.PlaylistName = PlaylistName;
-        this.NumberofSongs = NumberofSongs;
-    }
+//    public Playlist(int PlaylistId, String PlaylistName, int NumberofSongs)
+//    {
+//        this.PlaylistId = PlaylistId;
+//        this.PlaylistName = PlaylistName;
+//        this.NumberofSongs = NumberofSongs;
+//    }
+//
+//    public Playlist()
+//    {
+//        
+//    }
 
-    public Playlist()
-    {
-        
-    }
+
 
     public int getNumberofSongs()
     {
@@ -58,4 +62,11 @@ public class Playlist
         this.PlaylistName = PlaylistName;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Playlist{" + "PlaylistId=" + PlaylistId + ", PlaylistName=" + PlaylistName + ", NumberofSongs=" + NumberofSongs + '}';
+    }
+    
+    
 }

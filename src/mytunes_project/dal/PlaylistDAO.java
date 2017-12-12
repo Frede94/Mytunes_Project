@@ -22,13 +22,15 @@ public class PlaylistDAO
 
     DataBaseConnector dbc = new DataBaseConnector();
 
-    public void clickMore(Playlist p)
+    public void save(Playlist p)
     {
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            String sql = "INSERT INTO Playlist (PlaylistName, NumberofSongs) VALUES (?)";
-            PreparedStatement st = con.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+            String sql = "INSERT INTO Playlists (PlaylistName) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql); //,stmt.RETURN_GENERATED_KEYS
+            st.setString(1, p.getPlaylistName());
+            st.execute();
         } catch (SQLException ex)
         {
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
