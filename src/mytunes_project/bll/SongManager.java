@@ -6,6 +6,8 @@
 package mytunes_project.bll;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import mytunes_project.be.Artist;
 import mytunes_project.be.Category;
 import mytunes_project.be.Song;
@@ -23,6 +25,8 @@ public class SongManager
     private static SongDAO songDAO = new SongDAO();
     private CategoryDAO categoryDAO;
     private ArtistDAO artistDAO;
+    private static ObservableList<Song> songs = FXCollections.observableArrayList();
+    private SearchFilter searchFilter = new SearchFilter();
 
     /**
      * Removes the selected song.
@@ -105,4 +109,13 @@ public class SongManager
     {
         artistDAO.clickAdd(d);
     }
+
+//    public void search(String searchText)
+//    {
+//        List<Song> allSongs = songDAO.getAllSongs();
+//        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
+//        songs.clear();
+//        songs.addAll(searchResults);
+//        
+//    }
 }
