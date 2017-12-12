@@ -400,4 +400,14 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    @FXML
+    private void clikedPrevSong(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void clikedNextsSong(ActionEvent event)
+    {
+    }
+
 }

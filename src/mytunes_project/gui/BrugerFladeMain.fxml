@@ -51,7 +51,7 @@
             <Font size="30.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="nextSongBtn" layoutX="407.0" layoutY="5.0" onAction="#clikedNextsSong" text="⏭">
+      <JFXButton fx:id="nextSongBtn" layoutX="407.0" layoutY="5.0" onAction="#clikedNextSong" text="⏭">
          <font>
             <Font size="30.0" />
          </font>
