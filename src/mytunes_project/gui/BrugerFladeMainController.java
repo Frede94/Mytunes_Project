@@ -393,18 +393,28 @@ public class BrugerFladeMainController implements Initializable
     {
 
     }
-
+/**
+ *  Tilføjer en sang til playlisten
+ * @param event 
+ */
     @FXML
     private void addSongToPlaylist(ActionEvent event)
     {
 
     }
-
+/**
+ *  Afspiller den forrige sang
+ * @param event 
+ */
     @FXML
     private void clikedPrevSong(ActionEvent event)
     {
     }
 
+    /**
+     * Afspiller den næste sang i rækken
+     * @param event 
+     */
     @FXML
     private void clikedNextsSong(ActionEvent event)
     {
