@@ -234,6 +234,9 @@ public class BrugerFladeMainController implements Initializable
 
             songModel.search(searchText);
 
+        }else
+        {
+            clickLoad();
         }
 
     }

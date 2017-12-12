@@ -22,7 +22,6 @@ import mytunes_project.dal.SongDAO;
 public class SongModel
 {
 
-
     private SearchFilter searchFilter = new SearchFilter();
 
     private SongDAO songDao = new SongDAO(); // FY FY skal flyttes
@@ -35,7 +34,7 @@ public class SongModel
 
     public SongModel()
     {
-        
+
         this.categories = FXCollections.observableArrayList();
         categories.addAll(songManager.getAllCategories());
 
@@ -147,58 +146,9 @@ public class SongModel
         List<Song> allSongs = songDao.getAllSongs();
         List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
         songs.clear();
-        songs.addAll(searchResults);        
+        songs.addAll(searchResults);
+        
+//        songManager.search(searchText);
     }
 
 }
-
-//    private SongManager songManager2;
-//    private final ObservableList<Song> songsInView;
-//    public SongModel()
-//    {
-//        this.songsInView = FXCollections.observableArrayList();
-//        songManager = new SongManager();
-//        songsInView.addAll(songManager.getAllSongs());
-//    }
-//    private ObservableList<Song> songsInSearch;
-//    private SongDAO songDao;
-//    private SearchFilter searchFilter;
-//
-//    public SongModel() throws IOException
-//    {
-//        try
-//        {
-//            searchFilter = new SearchFilter();
-//            songsInSearch = FXCollections.observableArrayList();
-//            songDao = new SongDAO();
-//            songsInSearch.addAll(songDao.getAllSongs());
-//        } catch (SQLException ex)
-//        {
-//            Logger.getLogger(SongModel.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//
-//    /**
-//     * Gets the observable list of all the companies in view. The list responds
-//     * to changes made by the search method.
-//     *
-//     * @return The list of companies.
-//     */
-//    public ObservableList<Song> getSongList()
-//    {
-//        return songsInSearch;
-//    }
-//
-//    public void search(String searchText)
-//    {
-//        try
-//        {
-//            List<Song> allSongs = songDao.getAllSongs();
-//            List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-//            songsInSearch.clear();
-//            songsInSearch.addAll(searchResults);
-//        } catch (SQLException ex)
-//        {
-//            Logger.getLogger(SongModel.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
