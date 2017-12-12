@@ -193,21 +193,17 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickStopPlaying(ActionEvent event)
     {
+
         mp.stop();
+
     }
 
     @FXML
     private void clickSpecificSong(MouseEvent event) throws MalformedURLException
     {
+
         selectedSong = songsList.getSelectionModel().getSelectedItem();
-//        Song selectedSong = songsList.getSelectionModel().getSelectedItem();
-//        String path = selectedSong.getPath();
-//        System.out.println(path);
-//
-//        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
-//        Media musicFile = new Media(url.toString());
-//        mp = new MediaPlayer(musicFile);
-//        mp.setVolume(volumeSlider.getValue()/100);
+
     }
 
     /*
@@ -216,7 +212,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickLoad()
     {
+
         songModel.loadSongs();
+
     }
 
     /*
@@ -231,8 +229,9 @@ public class BrugerFladeMainController implements Initializable
         String searchText = filterField.getText().trim();
         if (!searchText.isEmpty())
         {
-            System.out.println("hello");
+
             songModel.search(searchText);
+
         }
 
     }
@@ -367,11 +366,6 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    public void volumeSlider()
-    {
-
-    }
-
     /**
      * changes volume when the slider is dragged.
      *
@@ -380,7 +374,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void setNewVolume(MouseEvent event)
     {
-        
+
         this.volumeSlider.valueProperty().addListener(new InvalidationListener()
         {
             @Override
@@ -392,6 +386,11 @@ public class BrugerFladeMainController implements Initializable
                 }
             }
         });
+
+    }
+
+    public void volumeSlider()
+    {
 
     }
 
