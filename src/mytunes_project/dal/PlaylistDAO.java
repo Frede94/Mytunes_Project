@@ -78,4 +78,21 @@ public class PlaylistDAO
         return playlists;
     }
 
+    public void saveEdit(Playlist editPlaylist)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            String queryPlaylistName = "update Playlists set PlaylistName = ? where PlaylistId=" + editPlaylist.getPlaylistId();
+
+            PreparedStatement preparedStmtPlaylistName = con.prepareStatement(queryPlaylistName);
+
+            preparedStmtPlaylistName.setString(1, editPlaylist.getPlaylistName());
+
+            preparedStmtPlaylistName.executeUpdate();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

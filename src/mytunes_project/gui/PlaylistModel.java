@@ -47,6 +47,12 @@ public class PlaylistModel
         playlistManager.remove(selectedPlaylist);
     }
 
+    void saveEdit(Playlist editPlaylist)
+    {
+        playlists.add(editPlaylist);
+        playlistManager.saveEdit(editPlaylist);
+    }
+
 
 
 }
