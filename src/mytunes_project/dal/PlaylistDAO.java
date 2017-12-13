@@ -22,7 +22,12 @@ import mytunes_project.be.Playlist;
  */
 public class PlaylistDAO
 {
-
+    
+    
+    /**
+     * Removes a plislist from the application and the database.
+     * @param selectedPlaylist 
+     */
     public void remove(Playlist selectedPlaylist)
     {
         try (Connection con = dbc.getConnection())
@@ -77,7 +82,11 @@ public class PlaylistDAO
         }
         return playlists;
     }
-
+    
+    /**
+     * Updates the database with the new name for a playlist.
+     * @param editPlaylist 
+     */
     public void saveEdit(Playlist editPlaylist)
     {
         try (Connection con = dbc.getConnection())

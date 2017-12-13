@@ -59,9 +59,7 @@ public class NewPlaylistWindowController implements Initializable
     }
 
     /**
-     * Skal kunne gemme navnet som en liste, der kan smides sange ind i :-) :-)
-     * :-) ..?????
-     *
+     *This allows the user to create a new playlist or edit the name of a existing playlist.
      * @param event
      */
     @FXML
