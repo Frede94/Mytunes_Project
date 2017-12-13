@@ -34,4 +34,9 @@ public class PlaylistManager
     {
         playlistDAO.remove(selectedPlaylist);
     }
+
+    public void saveEdit(Playlist editPlaylist)
+    {
+        playlistDAO.saveEdit(editPlaylist);
+    }
 }

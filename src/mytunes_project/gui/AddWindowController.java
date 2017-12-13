@@ -173,8 +173,6 @@ public class AddWindowController implements Initializable
     public void setEditSong(Song selectedItem)
     {
 
-        
-        
         editSong = selectedItem;
         comboArtist.getSelectionModel().select(editSong.getArtist());
         comboCategory.getSelectionModel().select(editSong.getCategory());

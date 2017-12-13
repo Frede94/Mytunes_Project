@@ -33,8 +33,9 @@ public class NewPlaylistWindowController implements Initializable
     private JFXButton btnCancelPlaylist;
     @FXML
     private JFXButton btnSavePlaylist;
-    
+
     private PlaylistModel playlistModel;
+    private Playlist editPlaylist;
 
     /**
      * Initializes the controller class.
@@ -42,36 +43,49 @@ public class NewPlaylistWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-     
-    }    
+
+    }
 
     public void setPlaylistModel(PlaylistModel playlistModel)
     {
         this.playlistModel = playlistModel;
     }
-    
+
     @FXML
     private void closePlaylistBox(ActionEvent event)
     {
-    Stage stage = (Stage) btnCancelPlaylist.getScene().getWindow();
-    stage.close();
+        Stage stage = (Stage) btnCancelPlaylist.getScene().getWindow();
+        stage.close();
     }
 
-    
     /**
-     * Skal kunne gemme navnet som en liste, der kan smides sange ind i :-) :-) :-) ..?????
-     * @param event 
+     *This allows the user to create a new playlist or edit the name of a existing playlist.
+     * @param event
      */
     @FXML
     private void buttonSavePlaylist(ActionEvent event)
     {
-//        ListView<String> list = new ListView<String>();
-//        ObservableList<String> items = FXCollections.observableArrayList("Name", "Song", "Time"); 
-        //List.(items);
-        Playlist p = new Playlist();
-        p.setPlaylistName(playlistName.getText());
-        playlistModel.savePlaylist(p);
-        
+        if (editPlaylist == null)
+        {
+            Playlist p = new Playlist();
+            p.setPlaylistName(playlistName.getText());
+            playlistModel.savePlaylist(p);
+        } else
+        {
+            editPlaylist.setPlaylistName(playlistName.getText());
+            playlistModel.saveEdit(editPlaylist);
+        }
+
     }
     
+    /**
+     * Gets the Playlist name from the selcted playlist.
+     * @param selectetedItem 
+     */
+    public void setEditPlaylist(Playlist selectetedItem)
+    {
+        editPlaylist = selectetedItem;
+        playlistName.setText(editPlaylist.getPlaylistName());
+    }
+
 }
