@@ -115,7 +115,7 @@ public class BrugerFladeMainController implements Initializable
     private Song songPlaying;
 
     private Song selectedSong;
-    
+
     private Playlist selectedPlaylist;
 
     @FXML
@@ -380,6 +380,25 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    @FXML
+    private void clickDeletePlaylist(ActionEvent event)
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Playlist selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+            playlistModel.remove(selectedPlaylist);
+        } else
+        {
+            
+        }
+    }
+
     /**
      * changes volume when the slider is dragged.
      *
@@ -436,11 +455,6 @@ public class BrugerFladeMainController implements Initializable
      */
     @FXML
     private void clikedNextsSong(ActionEvent event)
-    {
-    }
-
-    @FXML
-    private void clickDeletePlaylist(ActionEvent event)
     {
     }
 

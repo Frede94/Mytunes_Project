@@ -16,6 +16,8 @@ import mytunes_project.dal.PlaylistDAO;
 public class PlaylistManager
 {
 
+
+
     private PlaylistDAO playlistDAO = new PlaylistDAO();
 
     public void save(Playlist p)
@@ -26,5 +28,10 @@ public class PlaylistManager
     public List<Playlist> getAllPlaylists()
     {
         return playlistDAO.getAllPlaylists();
+    }
+
+    public void remove(Playlist selectedPlaylist)
+    {
+        playlistDAO.remove(selectedPlaylist);
     }
 }
