@@ -13,12 +13,9 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.concurrent.CountDownLatch;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.embed.swing.JFXPanel;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,15 +30,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.media.Track;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javax.swing.JFileChooser;
-import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import mytunes_project.be.Playlist;
 import mytunes_project.be.Song;
 
@@ -58,6 +53,8 @@ public class BrugerFladeMainController implements Initializable
     private JFXListView<?> songsOnPlaylistList;
     @FXML
     private TableView<Song> songsList;
+
+    private ObservableList<Track> observableTracksView;
     @FXML
     private JFXButton newPlaylistBtn;
     @FXML
@@ -90,13 +87,10 @@ public class BrugerFladeMainController implements Initializable
     private JFXButton nextSongBtn;
     @FXML
     private Slider volumeSlider;
-//    @FXML
-//    private TableView<Playlist> playlistView;
 
     private SongModel songModel = new SongModel();
-    private PlaylistModel playlistModel = new PlaylistModel();
 
-    //private SongModel songModel = new SongModel();
+    private PlaylistModel playlistModel = new PlaylistModel();
     @FXML
     private TableColumn<Song, String> tableColumnTitle;
     @FXML
@@ -127,8 +121,13 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableColumn<Playlist, String> tableColumnPlaylistTime;
 
-    @Override
+    private MediaPlayer player;
+    private Track currentTrack;
+    private Track prevTrack;
+    private Track nextTrack;
+    private Media currentMedia;
 
+    @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         //Binding list in model with ListView
@@ -190,6 +189,76 @@ public class BrugerFladeMainController implements Initializable
             mp.play();
 
         }
+
+    }
+
+    /**
+     * Afspiller den forrige sang
+     *
+     * @param event
+     */
+    @FXML
+    private void clikedPrevSong(ActionEvent event)
+    {
+    }
+
+    /**
+     * Afspiller den næste sang i rækken
+     *https://github.com/statickidz/Trackio/blob/master/src/com/statickidz/trackio/view/PlayerController.java
+     * @param event
+     */
+    @FXML
+    private void clikedNextsSong(ActionEvent event) throws MalformedURLException
+    {
+        if (nextTrack != null)
+        {
+            playSong(nextTrack);
+        }
+    }
+
+    /**
+     * Play track on player.
+     *
+     * @param track
+     */
+    private void playSong(Track track) throws MalformedURLException
+    {
+        currentTrack = track;
+        int totalTracks = observableTracksView.size();
+        int currentTrackNumber = observableTracksView.indexOf(currentTrack);
+        int nextTrackNumber = currentTrackNumber + 1;
+        int prevTrackNumber = currentTrackNumber - 1;
+        if (prevTrackNumber >= 0)
+        {
+            prevTrack = observableTracksView.get(prevTrackNumber);
+        } else
+        {
+            prevTrack = observableTracksView.get(totalTracks - 1);
+        }
+        if (nextTrackNumber < totalTracks)
+        {
+            nextTrack = observableTracksView.get(nextTrackNumber);
+        } else
+        {
+            nextTrack = observableTracksView.get(0);
+        }
+
+        songsList.getSelectionModel().select(songPlaying);
+
+        if (mp != null)
+        {
+            mp.stop();
+            mp = null;
+        }
+        String path = selectedSong.getPath();
+        System.out.println(path);
+
+        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+        Media musicFile = new Media(url.toString());
+        mp = new MediaPlayer(musicFile);
+        songPlaying = selectedSong;
+        mp.setVolume(volumeSlider.getValue() / 100);
+        mp.play();
 
     }
 
@@ -395,7 +464,7 @@ public class BrugerFladeMainController implements Initializable
             playlistModel.remove(selectedPlaylist);
         } else
         {
-            
+
         }
     }
 
@@ -436,26 +505,6 @@ public class BrugerFladeMainController implements Initializable
     private void addSongToPlaylist(ActionEvent event)
     {
 
-    }
-
-    /**
-     * Afspiller den forrige sang
-     *
-     * @param event
-     */
-    @FXML
-    private void clikedPrevSong(ActionEvent event)
-    {
-    }
-
-    /**
-     * Afspiller den næste sang i rækken
-     *
-     * @param event
-     */
-    @FXML
-    private void clikedNextsSong(ActionEvent event)
-    {
     }
 
 }
