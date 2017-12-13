@@ -23,6 +23,18 @@ import mytunes_project.be.Playlist;
 public class PlaylistDAO
 {
 
+    public void remove(Playlist selectedPlaylist)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            stmt.execute("DELETE FROM Playlists WHERE PlaylistId=" + selectedPlaylist.getPlaylistId());
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     DataBaseConnector dbc = new DataBaseConnector();
 
     public void save(Playlist p)

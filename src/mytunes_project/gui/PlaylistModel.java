@@ -41,4 +41,12 @@ public class PlaylistModel
         return playlists;
     }
 
+    void remove(Playlist selectedPlaylist)
+    {
+        playlists.remove(selectedPlaylist);
+        playlistManager.remove(selectedPlaylist);
+    }
+
+
+
 }

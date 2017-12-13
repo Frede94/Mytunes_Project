@@ -116,6 +116,8 @@ public class BrugerFladeMainController implements Initializable
 
     private Song selectedSong;
 
+    private Playlist selectedPlaylist;
+
     @FXML
     private TableView<Playlist> playlistView;
     @FXML
@@ -210,6 +212,11 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    private void clickSpecificPlaylist(MouseEvent event)
+    {
+        selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+    }
+
     /*
     Loader sange fra databasen, når man trykker på knappen
      */
@@ -234,7 +241,7 @@ public class BrugerFladeMainController implements Initializable
 
             songModel.search(searchText);
 
-        }else
+        } else
         {
             clickLoad();
         }
@@ -371,6 +378,25 @@ public class BrugerFladeMainController implements Initializable
             // ... user chose CANCEL or closed the dialog
         }
 
+    }
+
+    @FXML
+    private void clickDeletePlaylist(ActionEvent event)
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Playlist selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+            playlistModel.remove(selectedPlaylist);
+        } else
+        {
+            
+        }
     }
 
     /**
