@@ -115,6 +115,8 @@ public class BrugerFladeMainController implements Initializable
     private Song songPlaying;
 
     private Song selectedSong;
+    
+    private Playlist selectedPlaylist;
 
     @FXML
     private TableView<Playlist> playlistView;
@@ -210,6 +212,11 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    private void clickSpecificPlaylist(MouseEvent event)
+    {
+        selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+    }
+
     /*
     Loader sange fra databasen, når man trykker på knappen
      */
@@ -234,7 +241,7 @@ public class BrugerFladeMainController implements Initializable
 
             songModel.search(searchText);
 
-        }else
+        } else
         {
             clickLoad();
         }
@@ -429,6 +436,11 @@ public class BrugerFladeMainController implements Initializable
      */
     @FXML
     private void clikedNextsSong(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void clickDeletePlaylist(ActionEvent event)
     {
     }
 
