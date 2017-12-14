@@ -11,10 +11,15 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,9 +39,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.media.MediaView;
 import javafx.scene.media.Track;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import mytunes_project.be.Playlist;
 import mytunes_project.be.Song;
 
@@ -121,11 +128,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableColumn<Playlist, String> tableColumnPlaylistTime;
 
-    private MediaPlayer player;
-    private Song currentSong;
-    private Song prevSong;
-    private Song nextSong;
-    private Media currentMedia;
+    private ChangeListener<Duration> progressChangeListener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -139,7 +142,7 @@ public class BrugerFladeMainController implements Initializable
 
         songsList.setItems(songModel.getSongs());
         songModel.loadSongs();
-        volumeSlider.setValue(50);
+        volumeSlider.setValue(100);
         clickLoad();
 
         //Initializere Playlists tableView
@@ -430,7 +433,7 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * Afspiller den næste sang i rækken
-     * 
+     *
      * @param event
      */
     @FXML
@@ -440,6 +443,33 @@ public class BrugerFladeMainController implements Initializable
         selectedSong = songsList.getSelectionModel().getSelectedItem();
         playSelectedSong();
     }
+
+//    private void autoPlay()
+//    {
+//
+//        final List<MediaPlayer> players = new ArrayList<MediaPlayer>();
+//        final MediaView mediaView = new MediaView(players.get(0));
+//
+//        if (songPlaying.equals(mp.getStatus().STOPPED))
+//        {
+//            for (int i = 0; i < players.size(); i++)
+//            {
+//                final MediaPlayer player = players.get(i);
+//                final MediaPlayer nextPlayer = players.get((i + 1) % players.size());
+//                player.setOnEndOfMedia(new Runnable()
+//                {
+//                    @Override
+//                    public void run()
+//                    {
+//                        System.out.println("next Song");
+//                        player.currentTimeProperty().removeListener(progressChangeListener);
+//                        mediaView.setMediaPlayer(nextPlayer);
+//                        nextPlayer.play();
+//                    }
+//                });
+//            }
+//        }
+//    }
 
     /*
     Tager den sang som er selected, og gør den klar til brug.
@@ -462,22 +492,76 @@ public class BrugerFladeMainController implements Initializable
             }
         } else
         {
-            if (mp != null)
+            playRepeat();
+        }
+    }
+
+    private void playRepeat() throws MalformedURLException
+    {
+        if (mp != null)
+        {
+            mp.stop();
+        }
+        
+        String path = selectedSong.getPath();
+        System.out.println(path);
+        
+        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+        Media musicFile = new Media(url.toString());
+        mp = new MediaPlayer(musicFile);
+        songPlaying = selectedSong;
+        mp.setVolume(volumeSlider.getValue() / 100);
+        mp.play();
+        mp.setOnEndOfMedia(new Runnable()
+        {
+            @Override
+            public void run()
             {
-                mp.stop();
+                repeatPlaySong();
             }
 
-            String path = selectedSong.getPath();
-            System.out.println(path);
-
-            URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
-            Media musicFile = new Media(url.toString());
-            mp = new MediaPlayer(musicFile);
-            songPlaying = selectedSong;
-            mp.setVolume(volumeSlider.getValue() / 100);
-            mp.play();
-
-        }
+            private void repeatPlaySong()
+            {
+                mp.stop();
+                int index = songsList.getItems().indexOf(songPlaying);
+                
+                if (index > -1)
+                {
+                    try
+                    {
+                        index++;
+                        Song nextSong = songsList.getItems().get(index);
+                        String path = nextSong.getPath();
+                        System.out.println(path);
+                        
+                        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+                        Media musicFile = new Media(url.toString());
+                        mp = new MediaPlayer(musicFile);
+                        songPlaying = nextSong;
+                        mp.setVolume(volumeSlider.getValue() / 100);
+                        mp.play();
+                        mp.setOnEndOfMedia(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                repeatPlaySong();
+                            }
+                        });
+                                
+                    } catch (Exception ex)
+                    {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Crash");
+                        alert.setHeaderText("Crash Report");
+                        alert.setContentText("This Url does not exist");
+                        
+                        alert.showAndWait();
+                    }
+                }
+                System.out.println("end of song");
+            }
+        });
     }
 
 }
