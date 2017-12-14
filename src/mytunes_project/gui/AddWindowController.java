@@ -81,6 +81,7 @@ public class AddWindowController implements Initializable
     private void clickLoadCatsAction(ActionEvent event)
     {
         songModel.loadCategories();
+        songModel.loadArtists();
     }
 
     /*

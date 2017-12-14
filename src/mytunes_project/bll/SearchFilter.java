@@ -15,7 +15,9 @@ import mytunes_project.be.Song;
  */
 public class SearchFilter
 {
-
+    /*
+    Søger efter specifikke elementer i vores Lister/Database
+    */
     public List<Song> searchBySongName(List<Song> songs, String query)
     {
         List<Song> searResult = new ArrayList<Song>();

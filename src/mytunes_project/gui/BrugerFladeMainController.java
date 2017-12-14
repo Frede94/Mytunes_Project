@@ -174,7 +174,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /*
-    
+    Vælger sangen man trykker på/ den markerede sang på Song TableView
      */
     @FXML
     private void clickSpecificSong(MouseEvent event) throws MalformedURLException
@@ -185,7 +185,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /*
-    
+    Vælger PlayListen man trykker på/ den markerede sang på PlayList TableView
      */
     private void clickSpecificPlaylist(MouseEvent event)
     {
@@ -220,9 +220,7 @@ public class BrugerFladeMainController implements Initializable
         {
             clickLoad();
         }
-
     }
-
 
     /*
     opens new window when you press the add btn
@@ -358,6 +356,11 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /*
+    Åbner en Diaglog box som spørger om man er sikker på om at man
+    gerne vil slette playlisten.
+    Man kan vælger OK, Cancel eller bare lukker dialog boxen.
+     */
     @FXML
     private void clickDeletePlaylist(ActionEvent event)
     {
@@ -371,9 +374,10 @@ public class BrugerFladeMainController implements Initializable
         {
             Playlist selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
             playlistModel.remove(selectedPlaylist);
+            // ... user chose OK
         } else
         {
-
+            // ... user chose CANCEL or closed the dialog
         }
     }
 
@@ -400,11 +404,6 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    public void volumeSlider()
-    {
-
-    }
-
     /**
      * Tilføjer en sang til playlisten
      *
@@ -426,12 +425,12 @@ public class BrugerFladeMainController implements Initializable
     {
         songsList.getSelectionModel().selectPrevious();
         selectedSong = songsList.getSelectionModel().getSelectedItem();
-        playSelectedSong();  
+        playSelectedSong();
     }
 
     /**
      * Afspiller den næste sang i rækken
-     *
+     * 
      * @param event
      */
     @FXML
@@ -439,12 +438,16 @@ public class BrugerFladeMainController implements Initializable
     {
         songsList.getSelectionModel().selectNext();
         selectedSong = songsList.getSelectionModel().getSelectedItem();
-        playSelectedSong();                
+        playSelectedSong();
     }
-    
+
+    /*
+    Tager den sang som er selected, og gør den klar til brug.
+    når en sang er valgt kan man trykke på clickedPlayButton metoden (play/pause knap(
+     */
     private void playSelectedSong() throws MalformedURLException
     {
-             if (selectedSong.equals(songPlaying))
+        if (selectedSong.equals(songPlaying))
         {
             if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
             {
@@ -476,5 +479,5 @@ public class BrugerFladeMainController implements Initializable
 
         }
     }
-            
+
 }

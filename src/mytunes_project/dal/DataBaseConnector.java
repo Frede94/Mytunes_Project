@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.sql.Connection;
 
 /**
- * This makes a connection to the Database.
- *
  * @author Mikkel
  */
 public class DataBaseConnector
@@ -20,6 +18,9 @@ public class DataBaseConnector
 
     private SQLServerDataSource ds = new SQLServerDataSource();
 
+    /*
+    Opretter forbindelse til databasen
+     */
     public DataBaseConnector()
     {
         ds.setDatabaseName("MyTunesMMEF");
