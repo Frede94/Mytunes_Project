@@ -400,10 +400,6 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    public void volumeSlider()
-    {
-
-    }
 
     /**
      * Tilføjer en sang til playlisten
