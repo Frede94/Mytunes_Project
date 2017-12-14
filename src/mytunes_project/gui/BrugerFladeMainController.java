@@ -434,7 +434,7 @@ public class BrugerFladeMainController implements Initializable
      * @param event
      */
     @FXML
-    private void clikedNextsSong(ActionEvent event) throws MalformedURLException
+    private void clikedNextSong(ActionEvent event) throws MalformedURLException
     {
         songsList.getSelectionModel().selectNext();
         selectedSong = songsList.getSelectionModel().getSelectedItem();
