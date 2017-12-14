@@ -50,7 +50,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Label label;
     @FXML
-    private JFXListView<?> songsOnPlaylistList;
+    private JFXListView<Song> songsOnPlaylistList;
     @FXML
     private TableView<Song> songsList;
 
@@ -111,6 +111,7 @@ public class BrugerFladeMainController implements Initializable
     private Song selectedSong;
 
     private Playlist selectedPlaylist;
+    private Playlist p;
 
     @FXML
     private TableView<Playlist> playlistView;
@@ -204,7 +205,8 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * Afspiller den næste sang i rækken
-     *https://github.com/statickidz/Trackio/blob/master/src/com/statickidz/trackio/view/PlayerController.java
+     * https://github.com/statickidz/Trackio/blob/master/src/com/statickidz/trackio/view/PlayerController.java
+     *
      * @param event
      */
     @FXML
@@ -284,6 +286,7 @@ public class BrugerFladeMainController implements Initializable
     private void clickSpecificPlaylist(MouseEvent event)
     {
         selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+        songsOnPlaylistList.setItems(selectedPlaylist.getSongList());
     }
 
     /*
@@ -425,10 +428,10 @@ public class BrugerFladeMainController implements Initializable
         System.exit(0);
     }
 
-    /*
-    Når man trykker delete åbner programmet en dialog box som spørger 
-    om du er sikker på om du vil slette sangen, hvis man trykker ok
-    så sletter den sangen hvis man trykker cancel gør den ingenting.
+    /**
+     * Når man trykker delete åbner programmet en dialog box som spørger om du
+     * er sikker på om du vil slette sangen, hvis man trykker ok så sletter den
+     * sangen hvis man trykker cancel gør den ingenting.
      */
     @FXML
     private void clickDelete(ActionEvent event)
@@ -507,7 +510,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void addSongToPlaylist(ActionEvent event)
     {
-
+        selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+        selectedPlaylist.getSongList().add(selectedSong);
+        playlistModel.addSong(selectedSong, selectedPlaylist);
     }
 
 }

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytunes_project.be.Playlist;
+import mytunes_project.be.Song;
 
 /**
  *
@@ -22,11 +23,11 @@ import mytunes_project.be.Playlist;
  */
 public class PlaylistDAO
 {
-    
-    
+
     /**
      * Removes a plislist from the application and the database.
-     * @param selectedPlaylist 
+     *
+     * @param selectedPlaylist
      */
     public void remove(Playlist selectedPlaylist)
     {
@@ -82,10 +83,11 @@ public class PlaylistDAO
         }
         return playlists;
     }
-    
+
     /**
      * Updates the database with the new name for a playlist.
-     * @param editPlaylist 
+     *
+     * @param editPlaylist
      */
     public void saveEdit(Playlist editPlaylist)
     {
@@ -98,6 +100,22 @@ public class PlaylistDAO
             preparedStmtPlaylistName.setString(1, editPlaylist.getPlaylistName());
 
             preparedStmtPlaylistName.executeUpdate();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addSong(Song selectedSong, Playlist selectedPlaylist)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            String sql = "INSERT INTO PLSRelation (PLId, SId) VALUES (?, ?);";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, selectedPlaylist.getPlaylistId());
+            stmt.setInt(2, selectedSong.getSongId());
+            System.out.println(stmt.toString());
+            stmt.execute();
         } catch (SQLException ex)
         {
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
