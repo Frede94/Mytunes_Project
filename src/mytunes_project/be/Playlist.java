@@ -19,17 +19,7 @@ public class Playlist implements Serializable
     private int NumberofSongs;
     private float TotalTime;
 
-//    public Playlist(int PlaylistId, String PlaylistName, int NumberofSongs)
-//    {
-//        this.PlaylistId = PlaylistId;
-//        this.PlaylistName = PlaylistName;
-//        this.NumberofSongs = NumberofSongs;
-//    }
-//
-//    public Playlist()
-//    {
-//        
-//    }
+
     public float getTotalTime()
     {
         return TotalTime;

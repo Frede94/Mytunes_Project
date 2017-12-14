@@ -76,17 +76,26 @@ public class SongModel
 
     }
 
+    /*
+    Retunere kategorier
+     */
     ObservableList<Category> getCategories()
     {
         return categories;
     }
 
+    /*
+    Retunere Kunstnere
+     */
     ObservableList<Artist> getArtists()
     {
 
         return artists;
     }
 
+    /*
+    indlæser kategorier
+     */
     void loadCategories()
     {
         List<Category> loadedCategories = songManager.getAllCategories(); //undgå og throw
@@ -95,6 +104,9 @@ public class SongModel
         categories.addAll(loadedCategories);
     }
 
+    /*
+    indlæser Kunstnere
+     */
     void loadArtists()
     {
         List<Artist> loadedArtists = songManager.getAllArtists();
@@ -131,6 +143,10 @@ public class SongModel
         songManager.clickMore(c);
     }
 
+    /*
+    tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
+     så det kommer frem i comboBoxen
+     */
     void clickAdd(Artist d)
     {
         artists.add(d);
@@ -147,7 +163,7 @@ public class SongModel
         List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
         songs.clear();
         songs.addAll(searchResults);
-        
+
 //        songManager.search(searchText);
     }
 
