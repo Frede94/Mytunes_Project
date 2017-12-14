@@ -54,7 +54,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableView<Song> songsList;
 
-    private ObservableList<Track> observableTracksView;
+    private ObservableList<Song> observableSongsView;
     @FXML
     private JFXButton newPlaylistBtn;
     @FXML
@@ -122,16 +122,16 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Playlist, String> tableColumnPlaylistTime;
 
     private MediaPlayer player;
-    private Track currentTrack;
-    private Track prevTrack;
-    private Track nextTrack;
+    private Song currentSong;
+    private Song prevSong;
+    private Song nextSong;
     private Media currentMedia;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        //Binding list in model with ListView
 
+        //Initializere Song tableView
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("ArtistName"));
         tableColumnCategory.setCellValueFactory(new PropertyValueFactory("CategoryName"));
@@ -142,6 +142,7 @@ public class BrugerFladeMainController implements Initializable
         volumeSlider.setValue(50);
         clickLoad();
 
+        //Initializere Playlists tableView
         tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("PlaylistName"));
         tableColumnPlaylistSongs.setCellValueFactory(new PropertyValueFactory("NumberofSongs"));
         tableColumnPlaylistTime.setCellValueFactory(new PropertyValueFactory("TotalTime"));
@@ -192,76 +193,6 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    /**
-     * Afspiller den forrige sang
-     *
-     * @param event
-     */
-    @FXML
-    private void clikedPrevSong(ActionEvent event)
-    {
-    }
-
-    /**
-     * Afspiller den næste sang i rækken
-     *https://github.com/statickidz/Trackio/blob/master/src/com/statickidz/trackio/view/PlayerController.java
-     * @param event
-     */
-    @FXML
-    private void clikedNextsSong(ActionEvent event) throws MalformedURLException
-    {
-        if (nextTrack != null)
-        {
-            playSong(nextTrack);
-        }
-    }
-
-    /**
-     * Play track on player.
-     *
-     * @param track
-     */
-    private void playSong(Track track) throws MalformedURLException
-    {
-        currentTrack = track;
-        int totalTracks = observableTracksView.size();
-        int currentTrackNumber = observableTracksView.indexOf(currentTrack);
-        int nextTrackNumber = currentTrackNumber + 1;
-        int prevTrackNumber = currentTrackNumber - 1;
-        if (prevTrackNumber >= 0)
-        {
-            prevTrack = observableTracksView.get(prevTrackNumber);
-        } else
-        {
-            prevTrack = observableTracksView.get(totalTracks - 1);
-        }
-        if (nextTrackNumber < totalTracks)
-        {
-            nextTrack = observableTracksView.get(nextTrackNumber);
-        } else
-        {
-            nextTrack = observableTracksView.get(0);
-        }
-
-        songsList.getSelectionModel().select(songPlaying);
-
-        if (mp != null)
-        {
-            mp.stop();
-            mp = null;
-        }
-        String path = selectedSong.getPath();
-        System.out.println(path);
-
-        URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
-        Media musicFile = new Media(url.toString());
-        mp = new MediaPlayer(musicFile);
-        songPlaying = selectedSong;
-        mp.setVolume(volumeSlider.getValue() / 100);
-        mp.play();
-
-    }
-
     /*
     stopper medieafspilleren.
      */
@@ -273,6 +204,9 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /*
+    
+     */
     @FXML
     private void clickSpecificSong(MouseEvent event) throws MalformedURLException
     {
@@ -281,6 +215,9 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /*
+    
+     */
     private void clickSpecificPlaylist(MouseEvent event)
     {
         selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
