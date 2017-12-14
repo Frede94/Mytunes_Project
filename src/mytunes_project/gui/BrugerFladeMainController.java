@@ -50,7 +50,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Label label;
     @FXML
-    private JFXListView<?> songsOnPlaylistList;
+    private JFXListView<Song> songsOnPlaylistList;
     @FXML
     private TableView<Song> songsList;
 
@@ -158,40 +158,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickedPlayButton(ActionEvent event) throws MalformedURLException
     {
-
-        if (selectedSong.equals(songPlaying))
-        {
-            if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
-            {
-                System.out.println("hello det virker!!");
-                mp.pause();
-
-            } else
-            {
-                System.out.println("hello det virker ikke!!");
-                mp.play();
-
-            }
-        } else
-        {
-            if (mp != null)
-            {
-                mp.stop();
-            }
-
-            String path = selectedSong.getPath();
-            System.out.println(path);
-
-            URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
-            Media musicFile = new Media(url.toString());
-            mp = new MediaPlayer(musicFile);
-            songPlaying = selectedSong;
-            mp.setVolume(volumeSlider.getValue() / 100);
-            mp.play();
-
-        }
-
+        playSelectedSong();
     }
+
 
     /*
     stopper medieafspilleren.
@@ -447,4 +416,65 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /**
+     * Afspiller den forrige sang
+     *
+     * @param event
+     */
+    @FXML
+    private void clikedPrevSong(ActionEvent event) throws MalformedURLException
+    {
+        songsList.getSelectionModel().selectPrevious();
+        selectedSong = songsList.getSelectionModel().getSelectedItem();
+        playSelectedSong();  
+    }
+
+    /**
+     * Afspiller den næste sang i rækken
+     *
+     * @param event
+     */
+    @FXML
+    private void clikedNextsSong(ActionEvent event) throws MalformedURLException
+    {
+        songsList.getSelectionModel().selectNext();
+        selectedSong = songsList.getSelectionModel().getSelectedItem();
+        playSelectedSong();                
+    }
+    
+    private void playSelectedSong() throws MalformedURLException
+    {
+             if (selectedSong.equals(songPlaying))
+        {
+            if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
+            {
+                System.out.println("hello det virker!!");
+                mp.pause();
+
+            } else
+            {
+                System.out.println("hello det virker ikke!!");
+                mp.play();
+
+            }
+        } else
+        {
+            if (mp != null)
+            {
+                mp.stop();
+            }
+
+            String path = selectedSong.getPath();
+            System.out.println(path);
+
+            URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
+            Media musicFile = new Media(url.toString());
+            mp = new MediaPlayer(musicFile);
+            songPlaying = selectedSong;
+            mp.setVolume(volumeSlider.getValue() / 100);
+            mp.play();
+
+        }
+    }
+            
 }
