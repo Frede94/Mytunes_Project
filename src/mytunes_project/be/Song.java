@@ -21,25 +21,7 @@ public class Song implements Serializable
     private String path;
     private int songId;
 
-//    /**
-//     * Constructs a new Song object
-//     * 
-//     * @param SongId
-//     * @param title
-//     * @param artistId
-//     * @param categoryId
-//     * @param time
-//     * @param path
-//     */
-//    public Song(int SongId, String title, String artistId, String categoryId, float time, String path)
-//    {
-//        this.SongId = SongId;
-//        this.title = title;
-//        this.artistId = artistId;
-//        this.categoryId = categoryId;
-//        this.time = time;
-//        this.path = path;
-//    }
+
     /**
      * Get the value of path
      *

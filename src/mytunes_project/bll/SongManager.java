@@ -38,6 +38,9 @@ public class SongManager
         songDAO.remove(selectedSong);
     }
 
+    /*
+    Kalder Vores BLL Songmanager Klasse
+     */
     public SongManager()
     {
         categoryDAO = new CategoryDAO();
@@ -58,15 +61,6 @@ public class SongManager
     }
 
     /**
-     * Searches in the songDAO.
-     *
-     * @param searchText
-     */
-//    public void search(String searchText)
-//    {
-//        songDAO.search(searchText);
-//    }
-    /**
      *
      * @return All Categories from the database.
      */
@@ -74,7 +68,11 @@ public class SongManager
     {
         return categoryDAO.getAllCategories();
     }
-    
+
+    /**
+     *
+     * @return All Artists from the database.
+     */
     public List<Artist> getAllArtists()
     {
         return artistDAO.getAllArtists();
@@ -98,24 +96,20 @@ public class SongManager
 
     /*
     tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
-     så det kommer frem i comboBoxen
+    så det kommer frem i comboBoxen
      */
     public void clickMore(Category c)
     {
         categoryDAO.clickMore(c);
     }
 
-    public void clickAdd (Artist d)
+    /*
+    tager teksten fra som man skriver i input diaglog og uploader det til Databasen,
+    så det kommer frem i comboBoxen
+     */
+    public void clickAdd(Artist d)
     {
         artistDAO.clickAdd(d);
     }
 
-//    public void search(String searchText)
-//    {
-//        List<Song> allSongs = songDAO.getAllSongs();
-//        List<Song> searchResults = searchFilter.searchBySongName(allSongs, searchText);
-//        songs.clear();
-//        songs.addAll(searchResults);
-//        
-//    }
 }
