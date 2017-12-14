@@ -6,6 +6,8 @@
 package mytunes_project.be;
 
 import java.io.Serializable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -18,8 +20,27 @@ public class Playlist implements Serializable
     private String PlaylistName;
     private int NumberofSongs;
     private float TotalTime;
+    private ObservableList<Song> songList = FXCollections.observableArrayList();
 
+//    public Playlist(int PlaylistId, String PlaylistName, int NumberofSongs)
+//    {
+//        this.PlaylistId = PlaylistId;
+//        this.PlaylistName = PlaylistName;
+//        this.NumberofSongs = NumberofSongs;
+//    }
+//
+//    public Playlist()
+//    {
+//        
+//    }
 
+    public ObservableList<Song> getSongList()
+    {
+        return songList;
+    }
+    
+    
+    
     public float getTotalTime()
     {
         return TotalTime;

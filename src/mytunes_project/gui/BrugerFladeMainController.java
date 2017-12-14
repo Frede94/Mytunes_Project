@@ -61,7 +61,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableView<Song> songsList;
 
-    private ObservableList<Song> observableSongsView;
+    private ObservableList<Track> observableTracksView;
     @FXML
     private JFXButton newPlaylistBtn;
     @FXML
@@ -119,6 +119,8 @@ public class BrugerFladeMainController implements Initializable
 
     private Playlist selectedPlaylist;
 
+    private Playlist p;
+
     @FXML
     private TableView<Playlist> playlistView;
     @FXML
@@ -128,13 +130,11 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableColumn<Playlist, String> tableColumnPlaylistTime;
 
-    private ChangeListener<Duration> progressChangeListener;
-
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        //Binding list in model with ListView
 
-        //Initializere Song tableView
         tableColumnTitle.setCellValueFactory(new PropertyValueFactory("Title"));
         tableColumnArtist.setCellValueFactory(new PropertyValueFactory("ArtistName"));
         tableColumnCategory.setCellValueFactory(new PropertyValueFactory("CategoryName"));
@@ -145,7 +145,6 @@ public class BrugerFladeMainController implements Initializable
         volumeSlider.setValue(100);
         clickLoad();
 
-        //Initializere Playlists tableView
         tableColumnPlaylistName.setCellValueFactory(new PropertyValueFactory("PlaylistName"));
         tableColumnPlaylistSongs.setCellValueFactory(new PropertyValueFactory("NumberofSongs"));
         tableColumnPlaylistTime.setCellValueFactory(new PropertyValueFactory("TotalTime"));
@@ -161,9 +160,10 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickedPlayButton(ActionEvent event) throws MalformedURLException
     {
-        playSelectedSong();
-    }
 
+        playSelectedSong();
+
+    }
 
     /*
     stopper medieafspilleren.
@@ -176,9 +176,6 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    /*
-    Vælger sangen man trykker på/ den markerede sang på Song TableView
-     */
     @FXML
     private void clickSpecificSong(MouseEvent event) throws MalformedURLException
     {
@@ -187,12 +184,10 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    /*
-    Vælger PlayListen man trykker på/ den markerede sang på PlayList TableView
-     */
     private void clickSpecificPlaylist(MouseEvent event)
     {
         selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+        songsOnPlaylistList.setItems(selectedPlaylist.getSongList());
     }
 
     /*
@@ -223,7 +218,9 @@ public class BrugerFladeMainController implements Initializable
         {
             clickLoad();
         }
+
     }
+
 
     /*
     opens new window when you press the add btn
@@ -332,17 +329,17 @@ public class BrugerFladeMainController implements Initializable
         System.exit(0);
     }
 
-    /*
-    Når man trykker delete åbner programmet en dialog box som spørger 
-    om du er sikker på om du vil slette sangen, hvis man trykker ok
-    så sletter den sangen hvis man trykker cancel gør den ingenting.
+    /**
+     * Når man trykker delete åbner programmet en dialog box som spørger om du
+     * er sikker på om du vil slette sangen, hvis man trykker ok så sletter den
+     * sangen hvis man trykker cancel gør den ingenting.
      */
     @FXML
     private void clickDelete(ActionEvent event)
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("You are about to delete a song ");
+        alert.setHeaderText("Look, a Confirmation Dialog");
         alert.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -359,17 +356,12 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    /*
-    Åbner en Diaglog box som spørger om man er sikker på om at man
-    gerne vil slette playlisten.
-    Man kan vælger OK, Cancel eller bare lukker dialog boxen.
-     */
     @FXML
     private void clickDeletePlaylist(ActionEvent event)
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("You are about to delete a Playlist");
+        alert.setHeaderText("Look, a Confirmation Dialog");
         alert.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -377,10 +369,9 @@ public class BrugerFladeMainController implements Initializable
         {
             Playlist selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
             playlistModel.remove(selectedPlaylist);
-            // ... user chose OK
         } else
         {
-            // ... user chose CANCEL or closed the dialog
+
         }
     }
 
@@ -413,17 +404,6 @@ public class BrugerFladeMainController implements Initializable
      * @param event
      */
     @FXML
-    private void addSongToPlaylist(ActionEvent event)
-    {
-
-    }
-
-    /**
-     * Afspiller den forrige sang
-     *
-     * @param event
-     */
-    @FXML
     private void clikedPrevSong(ActionEvent event) throws MalformedURLException
     {
         songsList.getSelectionModel().selectPrevious();
@@ -443,33 +423,6 @@ public class BrugerFladeMainController implements Initializable
         selectedSong = songsList.getSelectionModel().getSelectedItem();
         playSelectedSong();
     }
-
-//    private void autoPlay()
-//    {
-//
-//        final List<MediaPlayer> players = new ArrayList<MediaPlayer>();
-//        final MediaView mediaView = new MediaView(players.get(0));
-//
-//        if (songPlaying.equals(mp.getStatus().STOPPED))
-//        {
-//            for (int i = 0; i < players.size(); i++)
-//            {
-//                final MediaPlayer player = players.get(i);
-//                final MediaPlayer nextPlayer = players.get((i + 1) % players.size());
-//                player.setOnEndOfMedia(new Runnable()
-//                {
-//                    @Override
-//                    public void run()
-//                    {
-//                        System.out.println("next Song");
-//                        player.currentTimeProperty().removeListener(progressChangeListener);
-//                        mediaView.setMediaPlayer(nextPlayer);
-//                        nextPlayer.play();
-//                    }
-//                });
-//            }
-//        }
-//    }
 
     /*
     Tager den sang som er selected, og gør den klar til brug.
@@ -502,10 +455,10 @@ public class BrugerFladeMainController implements Initializable
         {
             mp.stop();
         }
-        
+
         String path = selectedSong.getPath();
         System.out.println(path);
-        
+
         URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
         Media musicFile = new Media(url.toString());
         mp = new MediaPlayer(musicFile);
@@ -524,7 +477,7 @@ public class BrugerFladeMainController implements Initializable
             {
                 mp.stop();
                 int index = songsList.getItems().indexOf(songPlaying);
-                
+
                 if (index > -1)
                 {
                     try
@@ -533,7 +486,7 @@ public class BrugerFladeMainController implements Initializable
                         Song nextSong = songsList.getItems().get(index);
                         String path = nextSong.getPath();
                         System.out.println(path);
-                        
+
                         URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
                         Media musicFile = new Media(url.toString());
                         mp = new MediaPlayer(musicFile);
@@ -548,20 +501,29 @@ public class BrugerFladeMainController implements Initializable
                                 repeatPlaySong();
                             }
                         });
-                                
+
                     } catch (Exception ex)
                     {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Crash");
                         alert.setHeaderText("Crash Report");
                         alert.setContentText("This Url does not exist");
-                        
+
                         alert.showAndWait();
                     }
                 }
                 System.out.println("end of song");
             }
         });
+    }
+
+    @FXML
+    private void addSongToPlaylist(ActionEvent event)
+    {
+        selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
+        selectedPlaylist.getSongList().add(selectedSong);
+        playlistModel.addSong(selectedSong, selectedPlaylist);
+
     }
 
 }

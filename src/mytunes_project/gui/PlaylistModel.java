@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes_project.be.Playlist;
+import mytunes_project.be.Song;
 import mytunes_project.bll.PlaylistManager;
 
 /**
@@ -53,6 +54,9 @@ public class PlaylistModel
         playlistManager.saveEdit(editPlaylist);
     }
 
-
+    void addSong(Song selectedSong, Playlist selctedPlaylist)
+    {
+        playlistManager.addSong(selectedSong, selctedPlaylist);
+    }
 
 }

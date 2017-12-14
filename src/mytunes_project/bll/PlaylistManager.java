@@ -7,6 +7,7 @@ package mytunes_project.bll;
 
 import java.util.List;
 import mytunes_project.be.Playlist;
+import mytunes_project.be.Song;
 import mytunes_project.dal.PlaylistDAO;
 
 /**
@@ -38,5 +39,10 @@ public class PlaylistManager
     public void saveEdit(Playlist editPlaylist)
     {
         playlistDAO.saveEdit(editPlaylist);
+    }
+
+    public void addSong(Song selectedSong, Playlist selectedPlaylist)
+    {
+        playlistDAO.addSong(selectedSong, selectedPlaylist);
     }
 }
