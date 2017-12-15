@@ -520,6 +520,7 @@ public class BrugerFladeMainController implements Initializable
         });
     }
 
+    //HEJ
     @FXML
     private void addSongToPlaylist(ActionEvent event)
     {
