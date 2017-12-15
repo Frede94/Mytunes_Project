@@ -137,7 +137,7 @@ public class SongDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute ("DELETE FROM PLSRelation WHERE SId =" + selectedSong.getSongId() + ";DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
+            stmt.execute("DELETE FROM PLSRelation WHERE SId =" + selectedSong.getSongId() + ";DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
         } catch (SQLException ex)
         {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -208,6 +208,18 @@ public class SongDAO
             preparedStmtTime.executeUpdate();
             preparedStmtPath.executeUpdate();
 
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void removePSong(Song selectedPSong)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            stmt.execute("DELETE FROM PLSRelation WHERE SId =" + selectedPSong.getSongId());
         } catch (SQLException ex)
         {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);

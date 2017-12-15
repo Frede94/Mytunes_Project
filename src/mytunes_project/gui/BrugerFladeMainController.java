@@ -559,7 +559,19 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickDeletePSong(ActionEvent event)
     {
-        
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Song selectedPSong = songsOnPlaylistList.getSelectionModel().getSelectedItem();
+            songModel.removePSong(selectedPSong);
+        } else
+        {
+
+        }
     }
 
 }
