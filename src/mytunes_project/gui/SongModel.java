@@ -29,7 +29,8 @@ public class SongModel
     private ObservableList<Category> categories;
     public ObservableList<Artist> artists;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
-
+    private ObservableList<Song> songsList = FXCollections.observableArrayList();
+    
     SongManager songManager = new SongManager();
 
     public SongModel()
@@ -165,6 +166,12 @@ public class SongModel
         songs.addAll(searchResults);
 
 //        songManager.search(searchText);
+    }
+
+    void removePSong(Song selectedPSong)
+    {
+        songsList.remove(selectedPSong);
+        SongManager.removePSong(selectedPSong);
     }
 
 }

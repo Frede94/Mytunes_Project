@@ -38,6 +38,11 @@ public class SongManager
         songDAO.remove(selectedSong);
     }
 
+    public static void removePSong(Song selectedPSong)
+    {
+        songDAO.removePSong(selectedPSong);
+    }
+
     /*
     Kalder Vores BLL Songmanager Klasse
      */
