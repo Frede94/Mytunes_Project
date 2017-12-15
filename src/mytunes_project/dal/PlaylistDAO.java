@@ -36,7 +36,8 @@ public class PlaylistDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Playlists WHERE PlaylistId=" + selectedPlaylist.getPlaylistId());
+            stmt.execute("DELETE FROM PLSRelation WHERE PLId =" + selectedPlaylist.getPlaylistId() + ";DELETE FROM Playlists WHERE PlaylistId=" + selectedPlaylist.getPlaylistId());
+            
         } catch (SQLException ex)
         {
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
