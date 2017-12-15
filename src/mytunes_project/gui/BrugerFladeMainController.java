@@ -137,6 +137,8 @@ public class BrugerFladeMainController implements Initializable
     private ChangeListener<Duration> progressChangeListener;
     @FXML
     private Label lblPlaying;
+    @FXML
+    private JFXButton playPauseBtn1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -170,8 +172,10 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickedPlayButton(ActionEvent event) throws MalformedURLException
     {
-
+        lblPlaying.setText("Now Playing: " + selectedSong.getTitle() + " By: " + selectedSong.getArtistName());
+        
         playSelectedSong();
+        setCurrentlyPlaying(mp);
 
     }
 
@@ -181,7 +185,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickStopPlaying(ActionEvent event)
     {
-
+        lblPlaying.setText("Not Playing");
         mp.stop();
 
     }
@@ -442,9 +446,11 @@ public class BrugerFladeMainController implements Initializable
      */
     private void playSelectedSong() throws MalformedURLException
     {
+        
 
         if (selectedSong.equals(songPlaying))
         {
+            
             if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
             {
                 System.out.println("hello det virker!!");
@@ -453,6 +459,7 @@ public class BrugerFladeMainController implements Initializable
             } else
             {
                 System.out.println("hello det virker ikke!!");
+                
                 mp.play();
 
             }
@@ -464,7 +471,7 @@ public class BrugerFladeMainController implements Initializable
 
     private void playRepeat() throws MalformedURLException
     {
-        
+
         if (mp != null)
         {
             mp.stop();
@@ -476,6 +483,7 @@ public class BrugerFladeMainController implements Initializable
         URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
         Media musicFile = new Media(url.toString());
         mp = new MediaPlayer(musicFile);
+
         songPlaying = selectedSong;
         mp.setVolume(volumeSlider.getValue() / 100);
         mp.play();
@@ -490,8 +498,9 @@ public class BrugerFladeMainController implements Initializable
             private void repeatPlaySong()
             {
                 mp.stop();
-                
+
                 int index = songsList.getItems().indexOf(songPlaying);
+
                 System.out.println("Størrelsen er; " + songsList.getItems().size());
                 if (index <= songsList.getItems().size())
                 {
@@ -514,7 +523,8 @@ public class BrugerFladeMainController implements Initializable
                         mp = new MediaPlayer(musicFile);
                         songPlaying = nextSong;
                         mp.setVolume(volumeSlider.getValue() / 100);
-
+                        lblPlaying.setText("Now Playing: " + songPlaying.getTitle() + " By: " + songPlaying.getArtistName());
+                        setCurrentlyPlaying(mp);
                         mp.play();
                         mp.setOnEndOfMedia(new Runnable()
                         {
@@ -535,12 +545,7 @@ public class BrugerFladeMainController implements Initializable
                         alert.showAndWait();
                     }
                 }
-//                if (index >= songsList.getItems().size())
-//                {
-//
-//                    System.out.println("Ny Index; " + index);
-//
-//                }
+
                 System.out.println("end of song");
             }
         });
@@ -607,7 +612,9 @@ public class BrugerFladeMainController implements Initializable
         String source = newPlayer.getMedia().getSource();
         source = source.substring(0, source.length() - ".mp3".length());
         source = source.substring(source.lastIndexOf("/") + 1).replaceAll("%20", " ");
-        lblPlaying.setText("Now Playing: " + selectedSong.getTitle());
+
     }
+
+    
 
 }
