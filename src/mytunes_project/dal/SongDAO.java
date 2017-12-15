@@ -137,7 +137,7 @@ public class SongDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
+            stmt.execute ("DELETE FROM PLSRelation WHERE SId =" + selectedSong.getSongId() + ";DELETE FROM Song WHERE SongId=" + selectedSong.getSongId());
         } catch (SQLException ex)
         {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);

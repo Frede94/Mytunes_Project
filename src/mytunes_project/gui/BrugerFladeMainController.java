@@ -119,7 +119,7 @@ public class BrugerFladeMainController implements Initializable
 
     private Playlist selectedPlaylist;
 
-    private Playlist p;
+    private Playlist selectedPSong;
 
     @FXML
     private TableView<Playlist> playlistView;
