@@ -119,7 +119,7 @@ public class BrugerFladeMainController implements Initializable
 
     private Playlist selectedPlaylist;
 
-    private Playlist selectedPSong;
+    private Song selectedPSong;
 
     @FXML
     private TableView<Playlist> playlistView;
@@ -553,6 +553,12 @@ public class BrugerFladeMainController implements Initializable
 
     @FXML
     private void onSelectedSong(MouseEvent event)
+    {
+        selectedPSong = songsOnPlaylistList.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    private void clickDeletePSong(ActionEvent event)
     {
         
     }
