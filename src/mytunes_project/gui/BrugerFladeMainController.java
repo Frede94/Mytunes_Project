@@ -422,6 +422,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clikedNextsSong(ActionEvent event) throws MalformedURLException
     {
+
         songsList.getSelectionModel().selectNext();
         selectedSong = songsList.getSelectionModel().getSelectedItem();
         playSelectedSong();
@@ -480,12 +481,20 @@ public class BrugerFladeMainController implements Initializable
             {
                 mp.stop();
                 int index = songsList.getItems().indexOf(songPlaying);
-
-                if (index > -1)
+                System.out.println("Størrelsen er; " + songsList.getItems().size());
+                if (index <= songsList.getItems().size())
                 {
                     try
                     {
+                        if (index + 1 >= songsList.getItems().size())
+                        {
+                            index = -1;
+                            System.out.println("Ny Index; " + index);
+                            
+
+                        }
                         index++;
+                        System.out.println("Index er: " + index);
                         Song nextSong = songsList.getItems().get(index);
                         String path = nextSong.getPath();
                         System.out.println(path);
@@ -514,6 +523,12 @@ public class BrugerFladeMainController implements Initializable
 
                         alert.showAndWait();
                     }
+                }
+                if (index >= songsList.getItems().size())
+                {
+
+                    System.out.println("Ny Index; " + index);
+
                 }
                 System.out.println("end of song");
             }
