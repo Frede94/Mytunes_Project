@@ -24,6 +24,8 @@ import mytunes_project.be.Song;
 public class PlaylistDAO
 {
 
+    SongDAO songDAO = new SongDAO();
+
     /**
      * Removes a plislist from the application and the database.
      *
@@ -120,6 +122,59 @@ public class PlaylistDAO
         {
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Song> getSongsByRelation(int plId)
+    {
+        List<Song> songs = new ArrayList();
+        List<Integer> songId = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            String sql = "SELECT * FROM PLSRelation WHERE PLId =" + plId;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                songId.add(rs.getInt("SId"));
+            }
+
+            if (!songId.isEmpty())
+            {
+                sql = "SELECT * FROM Song WHERE SongId =" + songId.get(0);
+
+                for (int i = 1; i < songId.size(); i++)
+                {
+                    sql = sql + "OR SongId =" + songId.get(i);
+
+                }
+            } else
+            {
+                return null;
+            }
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                Song currentSong = new Song();
+
+                currentSong.setSongId(rs.getInt("SongId"));
+                currentSong.setArtist(songDAO.getArtist(rs.getInt("ArtistId")));
+                currentSong.setCategory(songDAO.getCategory(rs.getInt("CategoryId")));
+                currentSong.setTime(rs.getFloat("Time"));
+                currentSong.setTitle(rs.getString("Title"));
+                currentSong.setPath(rs.getString("Path"));
+                songs.add(currentSong);
+
+            }
+            return songs;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

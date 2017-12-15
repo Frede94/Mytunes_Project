@@ -13,7 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes_project.gui.BrugerFladeMainController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <JFXListView fx:id="songsOnPlaylistList" layoutX="236.0" layoutY="88.0" prefHeight="400.0" prefWidth="181.0" />
+      <JFXListView fx:id="songsOnPlaylistList" layoutX="236.0" layoutY="88.0" onMouseClicked="#onSelectedSong" prefHeight="400.0" prefWidth="181.0" />
       <JFXButton fx:id="newPlaylistBtn" layoutX="29.0" layoutY="510.0" onAction="#newPlaylistOnAction" text="New playlist" />
       <JFXButton fx:id="editPlaylistBtn" layoutX="29.0" layoutY="535.0" onAction="#editPlaylistOnAction" text="Edit playlist" />
       <JFXButton fx:id="deletePlaylistBtn" layoutX="29.0" layoutY="560.0" onAction="#clickDeletePlaylist" text="Delete playlist" />
@@ -58,7 +58,7 @@
       </JFXButton>
       <Label layoutX="29.0" layoutY="16.0" text="Volume:" />
       <Slider fx:id="volumeSlider" layoutX="29.0" layoutY="42.0" onMouseDragged="#setNewVolume" />
-      <TableView fx:id="playlistView" layoutX="12.0" layoutY="88.0" prefHeight="400.0" prefWidth="217.0">
+      <TableView fx:id="playlistView" layoutX="12.0" layoutY="88.0" onMouseClicked="#onSelectedPlaylist" prefHeight="400.0" prefWidth="217.0">
         <columns>
           <TableColumn fx:id="tableColumnPlaylistName" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="tableColumnPlaylistSongs" prefWidth="52.0" text="Songs" />

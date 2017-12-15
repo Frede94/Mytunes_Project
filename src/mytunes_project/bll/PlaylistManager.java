@@ -17,8 +17,6 @@ import mytunes_project.dal.PlaylistDAO;
 public class PlaylistManager
 {
 
-
-
     private PlaylistDAO playlistDAO = new PlaylistDAO();
 
     public void save(Playlist p)
@@ -45,4 +43,11 @@ public class PlaylistManager
     {
         playlistDAO.addSong(selectedSong, selectedPlaylist);
     }
+
+    public List<Song> getSongsByRelation(int plId)
+    {
+        return playlistDAO.getSongsByRelation(plId);
+    }
+    
+
 }

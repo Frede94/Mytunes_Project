@@ -152,6 +152,8 @@ public class BrugerFladeMainController implements Initializable
         playlistView.setItems(playlistModel.getPlaylists());
         playlistModel.loadPlaylists();
 
+        songsOnPlaylistList.setItems(playlistModel.getSongList());
+
     }
 
     /*
@@ -188,6 +190,7 @@ public class BrugerFladeMainController implements Initializable
     {
         selectedPlaylist = playlistView.getSelectionModel().getSelectedItem();
         songsOnPlaylistList.setItems(selectedPlaylist.getSongList());
+        playlistModel.setSongsByRelation(playlistView.getSelectionModel().getSelectedItem().getPlaylistId());
     }
 
     /*
@@ -540,6 +543,18 @@ public class BrugerFladeMainController implements Initializable
         selectedPlaylist.getSongList().add(selectedSong);
         playlistModel.addSong(selectedSong, selectedPlaylist);
 
+    }
+
+    @FXML
+    private void onSelectedPlaylist(MouseEvent event)
+    {
+        playlistModel.setSongsByRelation(playlistView.getSelectionModel().getSelectedItem().getPlaylistId());
+    }
+
+    @FXML
+    private void onSelectedSong(MouseEvent event)
+    {
+        
     }
 
 }
