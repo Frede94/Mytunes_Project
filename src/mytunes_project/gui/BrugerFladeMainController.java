@@ -536,4 +536,10 @@ public class BrugerFladeMainController implements Initializable
         playlistModel.setSongsByRelation(playlistView.getSelectionModel().getSelectedItem().getPlaylistId());
     }
 
+    @FXML
+    private void onSelectedSong(MouseEvent event)
+    {
+        
+    }
+
 }
