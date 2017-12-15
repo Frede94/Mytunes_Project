@@ -86,6 +86,6 @@
          </font>
       </JFXButton>
       <ProgressBar fx:id="progressBar" layoutX="236.0" layoutY="576.0" prefHeight="18.0" prefWidth="608.0" progress="0.0" />
-      <Label layoutX="521.0" layoutY="552.0" text="Playing" />
+      <Label fx:id="lblPlaying" layoutX="521.0" layoutY="552.0" text="Playing" />
     </children>
 </AnchorPane>

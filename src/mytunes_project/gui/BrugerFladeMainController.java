@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -134,6 +135,8 @@ public class BrugerFladeMainController implements Initializable
     private ProgressBar progressBar;
 
     private ChangeListener<Duration> progressChangeListener;
+    @FXML
+    private Label lblPlaying;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -439,6 +442,7 @@ public class BrugerFladeMainController implements Initializable
      */
     private void playSelectedSong() throws MalformedURLException
     {
+
         if (selectedSong.equals(songPlaying))
         {
             if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
@@ -460,6 +464,7 @@ public class BrugerFladeMainController implements Initializable
 
     private void playRepeat() throws MalformedURLException
     {
+        
         if (mp != null)
         {
             mp.stop();
@@ -485,6 +490,7 @@ public class BrugerFladeMainController implements Initializable
             private void repeatPlaySong()
             {
                 mp.stop();
+                
                 int index = songsList.getItems().indexOf(songPlaying);
                 System.out.println("Størrelsen er; " + songsList.getItems().size());
                 if (index <= songsList.getItems().size())
@@ -566,6 +572,29 @@ public class BrugerFladeMainController implements Initializable
     private void clickDeletePSong(ActionEvent event)
     {
 
+    }
+
+    /**
+     * sets the currently playing label to the label of the new media player and
+     * updates the progress monitor.
+     */
+    private void setCurrentlyPlaying(final MediaPlayer newPlayer)
+    {
+        progressBar.setProgress(0);
+        progressChangeListener = new ChangeListener<Duration>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue)
+            {
+                progressBar.setProgress(1.0 * newPlayer.getCurrentTime().toMillis() / newPlayer.getTotalDuration().toMillis());
+            }
+        };
+        newPlayer.currentTimeProperty().addListener(progressChangeListener);
+
+        String source = newPlayer.getMedia().getSource();
+        source = source.substring(0, source.length() - ".mp3".length());
+        source = source.substring(source.lastIndexOf("/") + 1).replaceAll("%20", " ");
+        lblPlaying.setText("Now Playing: " + selectedSong.getTitle());
     }
 
 }
