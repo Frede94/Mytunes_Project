@@ -488,10 +488,9 @@ public class BrugerFladeMainController implements Initializable
                     {
                         if (index + 1 >= songsList.getItems().size())
                         {
+                            songPlaying = selectedSong;
                             index = -1;
                             System.out.println("Ny Index; " + index);
-                            
-
                         }
                         index++;
                         System.out.println("Index er: " + index);
@@ -524,12 +523,12 @@ public class BrugerFladeMainController implements Initializable
                         alert.showAndWait();
                     }
                 }
-                if (index >= songsList.getItems().size())
-                {
-
-                    System.out.println("Ny Index; " + index);
-
-                }
+//                if (index >= songsList.getItems().size())
+//                {
+//
+//                    System.out.println("Ny Index; " + index);
+//
+//                }
                 System.out.println("end of song");
             }
         });
