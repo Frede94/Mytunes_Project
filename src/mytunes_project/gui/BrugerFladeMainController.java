@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -129,6 +130,10 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Playlist, String> tableColumnPlaylistSongs;
     @FXML
     private TableColumn<Playlist, String> tableColumnPlaylistTime;
+    @FXML
+    private ProgressBar progressBar;
+
+    private ChangeListener<Duration> progressChangeListener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -503,6 +508,7 @@ public class BrugerFladeMainController implements Initializable
                         mp = new MediaPlayer(musicFile);
                         songPlaying = nextSong;
                         mp.setVolume(volumeSlider.getValue() / 100);
+
                         mp.play();
                         mp.setOnEndOfMedia(new Runnable()
                         {
@@ -572,6 +578,7 @@ public class BrugerFladeMainController implements Initializable
         {
 
         }
+
     }
 
 }
