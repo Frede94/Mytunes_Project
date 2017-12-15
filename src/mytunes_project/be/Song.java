@@ -135,7 +135,7 @@ public class Song implements Serializable
     @Override
     public String toString()
     {
-        return "Song{" + "title=" + title + ", artist=" + artist + ", category=" + category + ", time=" + time + ", path=" + path + ", songId=" + songId + '}';
+       return title; 
     }
 
 }

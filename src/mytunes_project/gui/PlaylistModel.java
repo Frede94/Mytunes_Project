@@ -21,6 +21,7 @@ public class PlaylistModel
 
     PlaylistManager playlistManager = new PlaylistManager();
     private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
+    private ObservableList<Song> songsList = FXCollections.observableArrayList();
 
     void savePlaylist(Playlist p)
     {
@@ -57,6 +58,17 @@ public class PlaylistModel
     void addSong(Song selectedSong, Playlist selctedPlaylist)
     {
         playlistManager.addSong(selectedSong, selctedPlaylist);
+    }
+
+    public ObservableList<Song> getSongList()
+    {
+        return songsList;
+    }
+
+    public void setSongsByRelation(int plId)
+    {
+        songsList.setAll(playlistManager.getSongsByRelation(plId));
+        
     }
 
 }
