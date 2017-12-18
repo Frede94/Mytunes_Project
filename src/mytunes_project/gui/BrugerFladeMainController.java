@@ -172,10 +172,22 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickedPlayButton(ActionEvent event) throws MalformedURLException
     {
-        lblPlaying.setText("Now Playing: " + selectedSong.getTitle() + " By: " + selectedSong.getArtistName());
-        
-        playSelectedSong();
-        setCurrentlyPlaying(mp);
+        try
+        {
+
+            lblPlaying.setText("Now Playing: " + selectedSong.getTitle() + " By: " + selectedSong.getArtistName());
+
+            playSelectedSong();
+            setCurrentlyPlaying(mp);
+        } catch (Exception ex)
+        {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("MyTunes");
+            alert.setHeaderText("Fejl");
+            alert.setContentText("Du har ikke vaglt en sang");
+
+            alert.showAndWait();
+        }
 
     }
 
@@ -419,7 +431,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /**
-     * Tilføjer en sang til playlisten
+     * spiller forige sang.
      *
      * @param event
      */
@@ -439,11 +451,22 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clikedNextsSong(ActionEvent event) throws MalformedURLException
     {
-
-        songsList.getSelectionModel().selectNext();
-        selectedSong = songsList.getSelectionModel().getSelectedItem();
-        playSelectedSong();
+        int index = songsList.getItems().indexOf(songPlaying);
+        if (index <= songsList.getItems().size())
+        {
+            System.out.println("index = " +index);
+            if (index + 1 >= songsList.getItems().size())
+            {
+                songPlaying = selectedSong;
+                index = -1;
+                System.out.println("Ny Index; " + index);
+            }
+            songsList.getSelectionModel().selectNext();
+            selectedSong = songsList.getSelectionModel().getSelectedItem();
+            playSelectedSong();
+        }
     }
+
 
     /*
     Tager den sang som er selected, og gør den klar til brug.
@@ -451,11 +474,10 @@ public class BrugerFladeMainController implements Initializable
      */
     private void playSelectedSong() throws MalformedURLException
     {
-        
 
         if (selectedSong.equals(songPlaying))
         {
-            
+
             if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
             {
                 System.out.println("hello det virker!!");
@@ -464,16 +486,22 @@ public class BrugerFladeMainController implements Initializable
             } else
             {
                 System.out.println("hello det virker ikke!!");
-                
+
                 mp.play();
 
             }
         } else
         {
             playRepeat();
+
         }
+
     }
 
+    /*
+    spiller alle sangene indtil at den når til den sidste.
+    Når den kommer til den sidste sang i listen starter den forfra.
+     */
     private void playRepeat() throws MalformedURLException
     {
 
@@ -623,7 +651,5 @@ public class BrugerFladeMainController implements Initializable
         source = source.substring(source.lastIndexOf("/") + 1).replaceAll("%20", " ");
 
     }
-
-    
 
 }
