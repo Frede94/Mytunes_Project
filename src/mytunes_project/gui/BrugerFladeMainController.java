@@ -11,12 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
@@ -40,8 +36,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayer.Status;
-import javafx.scene.media.MediaView;
 import javafx.scene.media.Track;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -175,9 +169,9 @@ public class BrugerFladeMainController implements Initializable
         try
         {
 
-        playSelectedSong();
-        lblPlaying.setText("Now Playing: " + selectedPSong.getTitle() + " By: " + selectedPSong.getArtistName());
-        setCurrentlyPlaying(mp);
+            playSelectedSong();
+            lblPlaying.setText("Now Playing: " + selectedPSong.getTitle() + " By: " + selectedPSong.getArtistName());
+            setCurrentlyPlaying(mp);
         } catch (Exception ex)
         {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -381,11 +375,12 @@ public class BrugerFladeMainController implements Initializable
         }
 
     }
-    
+
     /**
-     * Deletes the selcted playlist as well as the relations to any song in the playlist
-     * the song will still remain in the song list.
-     * @param event 
+     * Deletes the selcted playlist as well as the relations to any song in the
+     * playlist the song will still remain in the song list.
+     *
+     * @param event
      */
     @FXML
     private void clickDeletePlaylist(ActionEvent event)
@@ -430,7 +425,8 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /**
-     * spiller forige sang.
+     * spiller forige sang. Når den når til den første sang går den tilbage til
+     * den sidste
      *
      * @param event
      */
@@ -450,12 +446,13 @@ public class BrugerFladeMainController implements Initializable
         playSelectedSong();
 
         lblPlaying.setText("Now Playing: " + songPlaying.getTitle() + " By: " + songPlaying.getArtistName());
-        
+
         setCurrentlyPlaying(mp);
     }
 
     /**
-     * Afspiller den næste sang i rækken
+     * Afspiller den næste sang i rækken når den når til den sidste sang går den
+     * tilbage til den første sang
      *
      * @param event
      */
@@ -476,7 +473,7 @@ public class BrugerFladeMainController implements Initializable
         playSelectedSong();
 
         lblPlaying.setText("Now Playing: " + songPlaying.getTitle() + " By: " + songPlaying.getArtistName());
-        
+
         setCurrentlyPlaying(mp);
     }
 
@@ -597,7 +594,9 @@ public class BrugerFladeMainController implements Initializable
         });
     }
 
-    //HEJ
+    /*
+    tilføjer sange til den valgte playliste når man trykker på pilen
+     */
     @FXML
     private void addSongToPlaylist(ActionEvent event)
     {
@@ -607,21 +606,30 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /*
+    vælger en playliste så de sange som den indeholder bliver vist
+    og når den er valgt kan man også tilføje nye sange til playlisten
+     */
     @FXML
     private void onSelectedPlaylist(MouseEvent event)
     {
         playlistModel.setSongsByRelation(playlistView.getSelectionModel().getSelectedItem().getPlaylistId());
     }
-    
+
+    /*
+    valger den sang som man har valgt på playlisten,
+    og gør den klar den klar til brug i andre metoder.
+     */
     @FXML
     private void onSelectedSong(MouseEvent event)
     {
         selectedPSong = songsOnPlaylistList.getSelectionModel().getSelectedItem();
     }
-    
+
     /**
      * Deletes a song from the selected playlist but not from the song list.
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void clickDeletePSong(ActionEvent event)
@@ -637,7 +645,8 @@ public class BrugerFladeMainController implements Initializable
             songModel.removePSong(selectedPSong);
         } else
         {
-
+            //on cancel...
+            //DO NOTHING...
         }
 
     }
