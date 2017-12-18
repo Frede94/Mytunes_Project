@@ -45,7 +45,11 @@ public class PlaylistDAO
     }
 
     DataBaseConnector dbc = new DataBaseConnector();
-
+    
+    /**
+     * Creates a playlist and saves it to the Database.
+     * @param p 
+     */
     public void save(Playlist p)
     {
         try (Connection con = dbc.getConnection())
@@ -61,7 +65,11 @@ public class PlaylistDAO
 
         }
     }
-
+    
+    /**
+     * Gets all Playlists from the Database.
+     * @return 
+     */
     public List<Playlist> getAllPlaylists()
     {
         List<Playlist> playlists = new ArrayList();
@@ -108,7 +116,12 @@ public class PlaylistDAO
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Creates a relation between the currently selcted Playlist and currently selcted Song.
+     * @param selectedSong
+     * @param selectedPlaylist 
+     */
     public void addSong(Song selectedSong, Playlist selectedPlaylist)
     {
         try (Connection con = dbc.getConnection())
@@ -124,7 +137,12 @@ public class PlaylistDAO
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Get the songs related to the currently selected playlist.
+     * @param plId
+     * @return 
+     */
     public List<Song> getSongsByRelation(int plId)
     {
         List<Song> songs = new ArrayList();

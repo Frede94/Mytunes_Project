@@ -381,7 +381,12 @@ public class BrugerFladeMainController implements Initializable
         }
 
     }
-
+    
+    /**
+     * Deletes the selcted playlist as well as the relations to any song in the playlist
+     * the song will still remain in the song list.
+     * @param event 
+     */
     @FXML
     private void clickDeletePlaylist(ActionEvent event)
     {
@@ -607,13 +612,17 @@ public class BrugerFladeMainController implements Initializable
     {
         playlistModel.setSongsByRelation(playlistView.getSelectionModel().getSelectedItem().getPlaylistId());
     }
-
+    
     @FXML
     private void onSelectedSong(MouseEvent event)
     {
         selectedPSong = songsOnPlaylistList.getSelectionModel().getSelectedItem();
     }
-
+    
+    /**
+     * Deletes a song from the selected playlist but not from the song list.
+     * @param event 
+     */
     @FXML
     private void clickDeletePSong(ActionEvent event)
     {
