@@ -175,16 +175,15 @@ public class BrugerFladeMainController implements Initializable
         try
         {
 
-            lblPlaying.setText("Now Playing: " + selectedSong.getTitle() + " By: " + selectedSong.getArtistName());
-
-            playSelectedSong();
-            setCurrentlyPlaying(mp);
+        playSelectedSong();
+        lblPlaying.setText("Now Playing: " + selectedPSong.getTitle() + " By: " + selectedPSong.getArtistName());
+        setCurrentlyPlaying(mp);
         } catch (Exception ex)
         {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("MyTunes");
             alert.setHeaderText("Fejl");
-            alert.setContentText("Du har ikke vaglt en sang");
+            alert.setContentText("Du har ikke valgt en sang");
 
             alert.showAndWait();
         }
@@ -203,7 +202,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     @FXML
-    private void clickSpecificSong(MouseEvent event) throws MalformedURLException
+    private void clickSpecificSong(MouseEvent event)
     {
 
         selectedSong = songsList.getSelectionModel().getSelectedItem();
@@ -433,9 +432,21 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clikedPrevSong(ActionEvent event) throws MalformedURLException
     {
-        songsList.getSelectionModel().selectPrevious();
-        selectedSong = songsList.getSelectionModel().getSelectedItem();
+        if (songsOnPlaylistList.getItems().size() == songsOnPlaylistList.getSelectionModel().getSelectedIndex() + 1)
+        {
+            songsOnPlaylistList.getSelectionModel().selectLast();
+        } else
+        {
+            songsOnPlaylistList.getSelectionModel().selectPrevious();
+        }
+
+        selectedPSong = songsOnPlaylistList.getSelectionModel().getSelectedItem();
+
         playSelectedSong();
+
+        lblPlaying.setText("Now Playing: " + songPlaying.getTitle() + " By: " + songPlaying.getArtistName());
+        
+        setCurrentlyPlaying(mp);
     }
 
     /**
@@ -446,20 +457,22 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clikedNextsSong(ActionEvent event) throws MalformedURLException
     {
-        int index = songsList.getItems().indexOf(songPlaying);
-        if (index <= songsList.getItems().size())
+
+        if (songsOnPlaylistList.getItems().size() == songsOnPlaylistList.getSelectionModel().getSelectedIndex() + 1)
         {
-            System.out.println("index = " +index);
-            if (index + 1 >= songsList.getItems().size())
-            {
-                songPlaying = selectedSong;
-                index = -1;
-                System.out.println("Ny Index; " + index);
-            }
-            songsList.getSelectionModel().selectNext();
-            selectedSong = songsList.getSelectionModel().getSelectedItem();
-            playSelectedSong();
+            songsOnPlaylistList.getSelectionModel().selectFirst();
+        } else
+        {
+            songsOnPlaylistList.getSelectionModel().selectNext();
         }
+
+        selectedPSong = songsOnPlaylistList.getSelectionModel().getSelectedItem();
+
+        playSelectedSong();
+
+        lblPlaying.setText("Now Playing: " + songPlaying.getTitle() + " By: " + songPlaying.getArtistName());
+        
+        setCurrentlyPlaying(mp);
     }
 
 
@@ -470,7 +483,7 @@ public class BrugerFladeMainController implements Initializable
     private void playSelectedSong() throws MalformedURLException
     {
 
-        if (selectedSong.equals(songPlaying))
+        if (selectedPSong != null && selectedPSong.equals(songPlaying))
         {
 
             if (mp.getStatus() == MediaPlayer.Status.PLAYING)//selectedSong.equals(selectedSong)
@@ -505,14 +518,14 @@ public class BrugerFladeMainController implements Initializable
             mp.stop();
         }
 
-        String path = selectedSong.getPath();
+        String path = selectedPSong.getPath();
         System.out.println(path);
 
         URL url = Paths.get(path).toAbsolutePath().toUri().toURL();
         Media musicFile = new Media(url.toString());
         mp = new MediaPlayer(musicFile);
 
-        songPlaying = selectedSong;
+        songPlaying = selectedPSong;
         mp.setVolume(volumeSlider.getValue() / 100);
         mp.play();
         mp.setOnEndOfMedia(new Runnable()
@@ -527,22 +540,22 @@ public class BrugerFladeMainController implements Initializable
             {
                 mp.stop();
 
-                int index = songsList.getItems().indexOf(songPlaying);
+                int index = songsOnPlaylistList.getItems().indexOf(songPlaying);
 
-                System.out.println("Størrelsen er; " + songsList.getItems().size());
-                if (index <= songsList.getItems().size())
+                System.out.println("Størrelsen er; " + songsOnPlaylistList.getItems().size());
+                if (index <= songsOnPlaylistList.getItems().size())
                 {
                     try
                     {
-                        if (index + 1 >= songsList.getItems().size())
+                        if (index + 1 >= songsOnPlaylistList.getItems().size())
                         {
-                            songPlaying = selectedSong;
+                            songPlaying = selectedPSong;
                             index = -1;
                             System.out.println("Ny Index; " + index);
                         }
                         index++;
                         System.out.println("Index er: " + index);
-                        Song nextSong = songsList.getItems().get(index);
+                        Song nextSong = songsOnPlaylistList.getItems().get(index);
                         String path = nextSong.getPath();
                         System.out.println(path);
 
