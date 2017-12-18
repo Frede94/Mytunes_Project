@@ -127,8 +127,8 @@ public class SongDAO
 //
 //    }
     /**
-     * Removes the selected song from the program, and the database.
-     *
+     * Removes the selected song from the program, and the database. Also removes all the Playlist relations form the selected song.
+     *  
      * @param selectedSong
      */
     public void remove(Song selectedSong)
@@ -213,7 +213,11 @@ public class SongDAO
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Removes the relation between the selected song in a playlist, removing the song from the playlist.
+     * @param selectedPSong 
+     */
     public void removePSong(Song selectedPSong)
     {
         try (Connection con = dbc.getConnection())
