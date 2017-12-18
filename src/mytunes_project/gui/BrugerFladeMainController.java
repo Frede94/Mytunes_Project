@@ -433,11 +433,14 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clikedPrevSong(ActionEvent event) throws MalformedURLException
     {
-        if (songsOnPlaylistList.getItems().size() == songsOnPlaylistList.getSelectionModel().getSelectedIndex() + 1)
+        if (songsOnPlaylistList.getSelectionModel().getSelectedIndex() == 0)
         {
+            System.out.println(songsOnPlaylistList.getItems().size());
+            System.out.println(songsOnPlaylistList.getSelectionModel().getSelectedIndex());
             songsOnPlaylistList.getSelectionModel().selectLast();
         } else
         {
+            
             songsOnPlaylistList.getSelectionModel().selectPrevious();
         }
 
@@ -496,7 +499,6 @@ public class BrugerFladeMainController implements Initializable
             } else
             {
                 System.out.println("hello det virker ikke!!");
-
                 mp.play();
 
             }

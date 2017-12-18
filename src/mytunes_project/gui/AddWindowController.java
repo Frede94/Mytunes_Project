@@ -181,10 +181,10 @@ public class AddWindowController implements Initializable
         txtFile.setText(editSong.getPath());
         txtTime.setText(String.valueOf(editSong.getTime()));
 
-//        String output = comboArtist.getSelectionModel().getSelectedItem().toString(); 
-//        System.out.println(output);
     }
-
+    /*
+    tilføjer en kunstner til listen af kunstnere
+    */
     @FXML
     private void clickAddAction(ActionEvent event)
     {

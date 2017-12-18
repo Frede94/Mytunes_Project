@@ -30,9 +30,12 @@ public class SongModel
     public ObservableList<Artist> artists;
     private static ObservableList<Song> songs = FXCollections.observableArrayList();
     private ObservableList<Song> songsList = FXCollections.observableArrayList();
-    
+
     SongManager songManager = new SongManager();
 
+    /*
+    constructor til songmodel klassen
+     */
     public SongModel()
     {
 
@@ -57,7 +60,6 @@ public class SongModel
 
     public ObservableList<Song> getSongs()
     {
-        //return songsInView;
         return songs;
     }
 
@@ -70,11 +72,6 @@ public class SongModel
 
         songs.clear();
         songs.addAll(loadedSongs);
-    }
-
-    public void createSong(String name)
-    {
-
     }
 
     /*
@@ -90,7 +87,6 @@ public class SongModel
      */
     ObservableList<Artist> getArtists()
     {
-
         return artists;
     }
 
@@ -165,9 +161,11 @@ public class SongModel
         songs.clear();
         songs.addAll(searchResults);
 
-//        songManager.search(searchText);
     }
 
+    /*
+    fjerner den valgte sang fra playlisten
+     */
     void removePSong(Song selectedPSong)
     {
         songsList.remove(selectedPSong);
