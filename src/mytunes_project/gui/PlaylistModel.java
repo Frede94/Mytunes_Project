@@ -67,8 +67,10 @@ public class PlaylistModel
 
     public void setSongsByRelation(int plId)
     {
-        songsList.setAll(playlistManager.getSongsByRelation(plId));
-        
+        List<Song> songs = playlistManager.getSongsByRelation(plId);
+        if (songs != null){
+            songsList.setAll(songs);
+        }
     }
 
 }
